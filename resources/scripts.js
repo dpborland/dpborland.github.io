@@ -2,10 +2,10 @@
 	var request = gapi.client.
 }*/
 
-function init() {
+/*function init() {
 	gapi.client.setApiKey("AIzaSyATgL3tMkSMO-HyenXy9DV-_zrBda073b0");
 	gapi.client.load("civicinfo", "v2").then(makeRequest);
-}
+}*/
 
 
 
@@ -13,18 +13,29 @@ function init() {
 //Search value
 var addressToSearch = document.getElementById("address");
 
+function jsonpCall(data) {
+   return console.log(data);
+}
+
+
+var script = document.createElement('script');
+script.src = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyATgL3tMkSMO-HyenXy9DV-_zrBda073b0&address=4151%20n%20Ashland%20ave%20chicago%20il?callback=jsonpCall";
+
+document.getElementsByTagName('head')[0].appendChild(script);
+
+
 //Function that runs on address submission
-function submitAddress() {
+/*function submitAddress() {
     var urlAdd = addressToSearch.value.replace(/ /g, "%20");
 
     var repSearch = new XMLHttpRequest();
     repSearch.open("GET", "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyATgL3tMkSMO-HyenXy9DV-_zrBda073b0&address=" + urlAdd, true);
     repSearch.send();
-    alert(repSearch.status);
+    alert(repSearch);
 
 
 
-}
+}*/
 
 //Elements that event listeners will be added to
 var magGlass = document.getElementsByClassName("magGlass");
@@ -64,7 +75,6 @@ function bgTransition() {
 //Display Nav elements
 
 //Run submit func
-   submitAddress();
 
 }
 
