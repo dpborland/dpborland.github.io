@@ -1,10 +1,15 @@
-/*function makeRequest() {
-	var request = gapi.client.
-}*/
+function makeRequest() {
+	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress.get({ 'address': '4151 n ashland ave chicago il'});
+	request.then(function(response) {
+		console.log(response);
+	});
+}
 
 function init() {
 	gapi.client.setApiKey("AIzaSyCQf4AAV6Tmu4dRq7xAIr1lngMQBFvslco");
-	gapi.client.load("civicinfo", "v2").then(function() { console.log("loaded"); });
+	gapi.client.load("civicinfo", "v2").then(function() { 
+		console.log("loaded"); 
+	});
 }
 
 
