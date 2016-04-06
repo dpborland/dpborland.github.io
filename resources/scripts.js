@@ -1,5 +1,7 @@
+var addressToSearch = document.getElementById("address");
+
 function makeRequest() {
-	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress.get({ 'address': '4151 n ashland ave chicago il'});
+	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress.get({ 'address': addressToSearch.value});
 	request.then(function(response) {
 		console.log(response);
 	});
@@ -12,21 +14,6 @@ function init() {
 	});
 }
 
-
-
-
-//Search value
-var addressToSearch = document.getElementById("address");
-
-/*function jsonpCall(data) {
-   return console.log(data);
-}
-
-
-var script = document.createElement('script');
-script.src = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyATgL3tMkSMO-HyenXy9DV-_zrBda073b0&address=4151%20n%20Ashland%20ave%20chicago%20il?callback=jsonpCall";
-
-document.getElementsByTagName('head')[0].appendChild(script);*/
 
 
 //Function that runs on address submission
