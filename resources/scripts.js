@@ -67,7 +67,7 @@ function bgTransition() {
 //Display Nav elements
 
 //Run submit func
-
+  makeRequest();
 }
 
 //Event listeners
