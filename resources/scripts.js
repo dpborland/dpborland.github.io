@@ -2,10 +2,10 @@
 	var request = gapi.client.
 }*/
 
-/*function init() {
-	gapi.client.setApiKey("AIzaSyATgL3tMkSMO-HyenXy9DV-_zrBda073b0");
-	gapi.client.load("civicinfo", "v2").then(makeRequest);
-}*/
+function init() {
+	gapi.client.setApiKey("AIzaSyCQf4AAV6Tmu4dRq7xAIr1lngMQBFvslco");
+	gapi.client.load("civicinfo", "v2").then(function() { console.log("loaded"); });
+}
 
 
 
@@ -13,7 +13,7 @@
 //Search value
 var addressToSearch = document.getElementById("address");
 
-function jsonpCall(data) {
+/*function jsonpCall(data) {
    return console.log(data);
 }
 
@@ -21,7 +21,7 @@ function jsonpCall(data) {
 var script = document.createElement('script');
 script.src = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyATgL3tMkSMO-HyenXy9DV-_zrBda073b0&address=4151%20n%20Ashland%20ave%20chicago%20il?callback=jsonpCall";
 
-document.getElementsByTagName('head')[0].appendChild(script);
+document.getElementsByTagName('head')[0].appendChild(script);*/
 
 
 //Function that runs on address submission
