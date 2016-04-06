@@ -1,7 +1,7 @@
 var addressToSearch = document.getElementById("address");
 
 function makeRequest() {
-	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress.get({ 'address': addressToSearch.value});
+	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress({ 'address': addressToSearch.value});
 	request.then(function(response) {
 		console.log(response);
 	});
