@@ -1,9 +1,11 @@
 var addressToSearch = document.getElementById("address");
+var queryResponse;
 
 function makeRequest() {
 	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress({ 'address': addressToSearch.value});
 	request.then(function(response) {
-		console.log(response);
+		queryResponse = response;
+    console.log(response);
 	});
 }
 
@@ -68,10 +70,11 @@ function bgTransition() {
 
 //Run submit func
   makeRequest();
+
+  alert queryResponse;
 }
 
 //Event listeners
 magGlass[0].addEventListener("click", bgTransition, false);
 search.addEventListener("submit", bgTransition, false);
-
 
