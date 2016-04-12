@@ -4,7 +4,6 @@ var queryResponse;
 function makeRequest() {
 	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress({ 'address': addressToSearch.value});
 	request.then(function(response) {
-		queryResponse = JSON.parse(response);
     console.log(response);
 	});
 }
