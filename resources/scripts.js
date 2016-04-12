@@ -71,7 +71,7 @@ function bgTransition() {
 //Run submit func
   makeRequest();
 
-  alert queryResponse;
+  alert(queryResponse);
 }
 
 //Event listeners
