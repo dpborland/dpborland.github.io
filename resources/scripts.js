@@ -5,7 +5,7 @@ function makeRequest() {
 	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress({ 'address': addressToSearch.value});
 	request.then(function(response) {
     queryResponse = response;
-    console.log(response);
+    console.log(response["offices"]);
 	});
 }
 
@@ -57,7 +57,6 @@ function bgTransition() {
 //Run submit func
   makeRequest();
 
-  alert(queryResponse["offices"]);
 }
 
 //Event listeners
