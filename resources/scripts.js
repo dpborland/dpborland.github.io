@@ -17,20 +17,6 @@ function init() {
 }
 
 
-
-//Function that runs on address submission
-/*function submitAddress() {
-    var urlAdd = addressToSearch.value.replace(/ /g, "%20");
-
-    var repSearch = new XMLHttpRequest();
-    repSearch.open("GET", "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyATgL3tMkSMO-HyenXy9DV-_zrBda073b0&address=" + urlAdd, true);
-    repSearch.send();
-    alert(repSearch);
-
-
-
-}*/
-
 //Elements that event listeners will be added to
 var magGlass = document.getElementsByClassName("magGlass");
 var search = document.getElementById("addressSearch");
@@ -70,8 +56,9 @@ function bgTransition() {
 
 //Run submit func
   makeRequest();
+  
+  alert(queryResponse.offices[1]);
 
-  alert(queryResponse);
 }
 
 //Event listeners
