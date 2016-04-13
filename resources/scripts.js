@@ -18,6 +18,10 @@ function init() {
 	});
 }
 
+function alertName() {
+  alert(queryResponse.result.officials[2].name);
+}
+
 
 //Elements that event listeners will be added to
 var magGlass = document.getElementsByClassName("magGlass");
@@ -59,14 +63,15 @@ function bgTransition() {
 
    //Run submit func
    makeRequest();
-
-   alert(queryResponse.result.officals[2].name);
+   alertName();
 
 }
 
 //Event listeners
 magGlass[0].addEventListener("click", bgTransition, false);
 search.addEventListener("submit", bgTransition, false);
+
+
 
 
 
