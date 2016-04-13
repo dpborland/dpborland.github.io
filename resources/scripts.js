@@ -8,6 +8,7 @@ function makeRequest() {
 	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress({ 'address': addressToSearch.value});
 	request.then(function(response) {
     queryResponse = response;
+    alert(queryResponse.result.officials[2].name);
 	});
 }
 
@@ -16,10 +17,6 @@ function init() {
 	gapi.client.load("civicinfo", "v2").then(function() { 
 		console.log("loaded"); 
 	});
-}
-
-function alertName() {
-  alert(queryResponse.result.officials[2].name);
 }
 
 
@@ -63,7 +60,6 @@ function bgTransition() {
 
    //Run submit func
    makeRequest();
-   alertName();
 
 }
 
