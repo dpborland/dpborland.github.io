@@ -1,11 +1,13 @@
+
 var addressToSearch = document.getElementById("address");
 var queryResponse;
+
+//Google Civic Info API scripts
 
 function makeRequest() {
 	var request = gapi.client.civicinfo.representatives.representativeInfoByAddress({ 'address': addressToSearch.value});
 	request.then(function(response) {
     queryResponse = response;
-    console.log(response["offices"]);
 	});
 }
 
@@ -24,7 +26,7 @@ var search = document.getElementById("addressSearch");
 //Dom maniputlation on submit query/mag glass click
 function bgTransition() {
 
-//Variables
+   //Variables
    var html = document.getElementsByTagName("HTML")[0];
    var subTitle = document.getElementsByTagName("H2")[0];
    var title = document.getElementsByClassName("title")[0];
@@ -34,33 +36,38 @@ function bgTransition() {
    var space = document.getElementsByClassName("space")[0];
    var nav = document.getElementsByClassName("navWrap")[0];
 
-//Change background
+   //Change background
    html.className += "cityBackground";
 
-//Remove elements  
+   //Remove elements  
    container.removeChild(title);
    container.removeChild(searchAddress);
    container.removeChild(subTitle);
    container.removeChild(cityIcon);
 
-//Adjusts container div
+   //Adjusts container div
    container.className = "blueTrans";
    container.style.transition = "background 1.0s ease-in 0s, min-width 1s, min-height 1s";
 
-//Adds nav and space boxes
+   //Adds nav and space boxes
    nav.style.minHeight = "10%";
    nav.style.transition = "min-height 1s ease-out 0.2s";
    space.style.minHeight = "10%";
    space.style.transition = "min-height 1s ease-in";
-//Display Nav elements
+   
+   //Display Nav elements
 
-//Run submit func
-  makeRequest();
+   //Run submit func
+   makeRequest();
+
+   alert(queryResponse.result.officals[2].name);
 
 }
 
 //Event listeners
 magGlass[0].addEventListener("click", bgTransition, false);
 search.addEventListener("submit", bgTransition, false);
+
+
 
 
