@@ -370,7 +370,6 @@ body {
 .fullSizedImg {
 	max-height: 100%;
 	max-width: 100%;
-	width: 100%;
 	transition: opacity .5s ease, width 1s ease;
 }
 
