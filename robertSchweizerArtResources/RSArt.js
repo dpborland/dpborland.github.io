@@ -241,8 +241,9 @@ function thumbnailEnlarge(e) {
     var thumbImgList = document.querySelectorAll(".thumbnailImg");
     if (thumbAlt !== undefined) {
         fullSizedImg.classList.add("contentTransparent");
+                    fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + thumbAlt + ".jpg";
+
         window.setTimeout(function() {
-            fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + thumbAlt + ".jpg";
             fullSizedImg.alt = thumbAlt;
                 fullSizedImg.classList.remove("contentTransparent");
         }, 300);
