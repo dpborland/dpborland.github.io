@@ -1,4 +1,4 @@
-//~~~~~~// Toggles and fills the "work" and "about" categories //~~~~~~//
+jpg//~~~~~~// Toggles and fills the "work" and "about" categories //~~~~~~//
 
 var navWork = document.querySelector(".navWork");
 var navAbout = document.querySelector(".navAbout");
@@ -168,7 +168,7 @@ function imageDecrease() {
         if ((imgArray[i].alt === fullSizedImgAlt) && (i !== 0)) {
             fullSizedImg.classList.add("contentTransparent");
             window.setTimeout(function() {
-                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[i - 1].alt + ".webp";
+                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[i - 1].alt + ".jpg";
                 fullSizedImg.alt = imgArray[i - 1].alt;
             }, 300);
             window.setTimeout(function() {
@@ -183,7 +183,7 @@ function imageDecrease() {
         else if ((imgArray[i].alt === fullSizedImgAlt) && (imgArray.indexOf(imgArray[i]) === 0)) {
             fullSizedImg.classList.add("contentTransparent");
             window.setTimeout(function() {
-                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[imgArray.length - 1].alt + ".webp";
+                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[imgArray.length - 1].alt + ".jpg";
                 fullSizedImg.alt = imgArray[imgArray.length - 1].alt;
             }, 300);
             window.setTimeout(function() {
@@ -211,7 +211,7 @@ function imageIncrease() {
         if (imgArray[j].alt === fullSizedImgAlt && j !== (imgArray.length - 1)) {
             fullSizedImg.classList.add("contentTransparent");
             window.setTimeout(function() {
-                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[j + 1].alt + ".webp";
+                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[j + 1].alt + ".jpg";
                 fullSizedImg.alt = imgArray[j + 1].alt;
             }, 300);
             window.setTimeout(function() {
@@ -226,7 +226,7 @@ function imageIncrease() {
         else if (imgArray[j].alt === fullSizedImgAlt && j === (imgArray.length - 1)) {
             fullSizedImg.classList.add("contentTransparent");
             window.setTimeout(function() {
-                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + ".webp";
+                fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + ".jpg";
                 fullSizedImg.alt = imgArray[0].alt;
             }, 300);
             window.setTimeout(function() {
@@ -250,7 +250,7 @@ function thumbnailEnlarge(e) {
     if (thumbAlt !== undefined) {
         fullSizedImg.classList.add("contentTransparent");
         window.setTimeout(function() {
-            fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + thumbAlt + ".webp";
+            fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + thumbAlt + ".jpg";
             fullSizedImg.alt = thumbAlt;
         }, 300);
         window.setTimeout(function() {
