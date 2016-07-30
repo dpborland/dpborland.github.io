@@ -170,8 +170,10 @@ function imageDecrease() {
             window.setTimeout(function() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[i - 1].alt + ".webp";
                 fullSizedImg.alt = imgArray[i - 1].alt;
+            }, 300);
+            window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -183,8 +185,10 @@ function imageDecrease() {
             window.setTimeout(function() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[imgArray.length - 1].alt + ".webp";
                 fullSizedImg.alt = imgArray[imgArray.length - 1].alt;
+            }, 300);
+            window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -209,8 +213,10 @@ function imageIncrease() {
             window.setTimeout(function() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[j + 1].alt + ".webp";
                 fullSizedImg.alt = imgArray[j + 1].alt;
+            }, 300);
+            window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -222,8 +228,10 @@ function imageIncrease() {
             window.setTimeout(function() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + ".webp";
                 fullSizedImg.alt = imgArray[0].alt;
+            }, 300);
+            window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -247,7 +255,7 @@ function thumbnailEnlarge(e) {
         }, 300);
         window.setTimeout(function() {
             fullSizedImg.classList.remove("contentTransparent");
-        }, 1000);
+        }, 750);
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
