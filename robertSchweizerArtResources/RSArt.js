@@ -223,7 +223,7 @@ function imageIncrease() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + ".webp";
                 fullSizedImg.alt = imgArray[0].alt;
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 1000);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
