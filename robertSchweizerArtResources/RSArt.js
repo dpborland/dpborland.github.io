@@ -247,7 +247,7 @@ function thumbnailEnlarge(e) {
         }, 300);
         window.setTimeout(function() {
             fullSizedImg.classList.remove("contentTransparent");
-        }, 400);
+        }, 1000);
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
