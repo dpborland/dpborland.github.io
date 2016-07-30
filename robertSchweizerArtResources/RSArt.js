@@ -171,7 +171,7 @@ function imageDecrease() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[i - 1].alt + ".jpg";
                 fullSizedImg.alt = imgArray[i - 1].alt;
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 350);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -184,7 +184,7 @@ function imageDecrease() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[imgArray.length - 1].alt + ".jpg";
                 fullSizedImg.alt = imgArray[imgArray.length - 1].alt;
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 350);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -210,7 +210,7 @@ function imageIncrease() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[j + 1].alt + ".jpg";
                 fullSizedImg.alt = imgArray[j + 1].alt;
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 350);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -223,7 +223,7 @@ function imageIncrease() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + ".jpg";
                 fullSizedImg.alt = imgArray[0].alt;
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 350);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -245,7 +245,7 @@ function thumbnailEnlarge(e) {
             fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + thumbAlt + ".jpg";
             fullSizedImg.alt = thumbAlt;
                 fullSizedImg.classList.remove("contentTransparent");
-        }, 350);
+        }, 500);
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
@@ -327,7 +327,7 @@ function titleShrink(e) {
                 contentChildren2.map(function(y) {
             	    y.classList.add("contentVisible");
                 });
-            }, 40);
+            }, 200);
             contentChildren[0].removeEventListener("transitionend", newContentFadeIn, false);
         }
 
