@@ -1,4 +1,4 @@
-jpg//~~~~~~// Toggles and fills the "work" and "about" categories //~~~~~~//
+//~~~~~~// Toggles and fills the "work" and "about" categories //~~~~~~//
 
 var navWork = document.querySelector(".navWork");
 var navAbout = document.querySelector(".navAbout");
