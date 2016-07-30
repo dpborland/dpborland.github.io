@@ -244,8 +244,10 @@ function thumbnailEnlarge(e) {
         window.setTimeout(function() {
             fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + thumbAlt + ".webp";
             fullSizedImg.alt = thumbAlt;
-            fullSizedImg.classList.remove("contentTransparent");
         }, 300);
+        window.setTimeout(function() {
+            fullSizedImg.classList.remove("contentTransparent");
+        }, 400);
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
