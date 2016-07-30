@@ -160,7 +160,7 @@ body {
 	width: 50%;
 	display: flex;
 	justify-content: center;
-    background-image: url("images/klimt.webp");
+    background-image: url("images/klimt.jpg");
     background-size: cover;
     background-position: center;
     transition: width .6s ease, -webkit-filter .6s ease;
