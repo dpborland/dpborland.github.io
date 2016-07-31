@@ -349,7 +349,7 @@ body {
     display: flex;
     width: 75%;
     align-items: center;
-    align-self: center    
+    align-self: center;    
     justify-content: center;
     background-blend-mode: color-dodge;
     overflow-y: hidden;
