@@ -1861,5 +1861,10 @@ body {
 	.bioText {
 		font-size: 3vh;
 	}
+	
+	.dropDown {
+		margin-top: 2px;
+		margin-bottom: -2px;
+	}
 }
 
