@@ -742,7 +742,7 @@ body {
 	.workDropExpanded {
 		height: 94%;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.aboutDropExpanded {
@@ -750,7 +750,7 @@ body {
 		justify-content: space-around;
 		font-size: 3em;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.leftLanding {
@@ -1054,7 +1054,7 @@ body {
 	.workDropExpanded {
 		height: 94%;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.aboutDropExpanded {
@@ -1062,7 +1062,7 @@ body {
 		justify-content: space-around;
 		font-size: 3em;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.leftLanding {
@@ -1287,7 +1287,7 @@ body {
 	.workDropExpanded {
 		height: 94%;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.aboutDropExpanded {
@@ -1295,7 +1295,7 @@ body {
 		justify-content: space-around;
 		font-size: 3em;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.leftLanding {
@@ -1524,14 +1524,14 @@ body {
 		height: 94%;
 		font-size: 2.8em;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.aboutDropExpanded {
 		height: 94%;
 		font-size: 3.5em;
 		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
+		transition: height .2s ease, opacity .3s ease, font-size .3s ease;
 	}
 
 	.leftLanding {
