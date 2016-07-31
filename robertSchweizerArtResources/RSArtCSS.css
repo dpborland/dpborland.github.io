@@ -817,6 +817,11 @@ body {
 		height: 20px;
 		width: 20px;
 	}
+	
+	.ringLoader {
+		bottom: calc(50% - 55px);
+		width: 10%;
+	}
 
 	.galleryNavBox {
 		height: 55px;
@@ -905,6 +910,11 @@ body {
 	.fullSizedImg {
 		height: 100%;
 		width: auto;
+	}
+	
+	.ringLoader {
+		bottom: calc(50% - 55px);
+		width: 10%;
 	}
 	
 	.galleryNavBox {
@@ -1119,6 +1129,11 @@ body {
 	.fullScreenArrows {
 		height: 20px;
 		width: 20px;
+	}
+	
+	.ringLoader {
+		bottom: calc(50% - 55px);
+		width: 10%;
 	}
 
 	.galleryNavBox {
@@ -1346,6 +1361,11 @@ body {
 	.fullScreenArrows {
 		height: 20px;
 		width: 20px;
+	}
+	
+	.ringLoader {
+		bottom: calc(50% - 55px);
+		width: 10%;
 	}
 
 	.galleryNavBox {
@@ -1582,6 +1602,11 @@ body {
 	.fullScreenArrows {
 		height: 20px;
 		width: 20px;
+	}
+	
+	.ringLoader {
+		bottom: calc(50% - 55px);
+		width: 10%;
 	}
 
 	.galleryNavBox {
