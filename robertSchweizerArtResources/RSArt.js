@@ -173,7 +173,7 @@ function imageDecrease() {
             }, 300);
             window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 800);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -188,7 +188,7 @@ function imageDecrease() {
             }, 300);
             window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 800);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -216,7 +216,7 @@ function imageIncrease() {
             }, 300);
             window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 800);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -231,7 +231,7 @@ function imageIncrease() {
             }, 300);
             window.setTimeout(function() {
                 fullSizedImg.classList.remove("contentTransparent");
-            }, 500);
+            }, 800);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -255,7 +255,7 @@ function thumbnailEnlarge(e) {
         }, 300);
         window.setTimeout(function() {
             fullSizedImg.classList.remove("contentTransparent");
-        }, 500);
+        }, 800);
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
