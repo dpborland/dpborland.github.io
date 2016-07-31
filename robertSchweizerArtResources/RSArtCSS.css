@@ -217,7 +217,7 @@ body {
     color: #7F7F7F;
     background-color: #f8f8ff;
     opacity: 0;
-    transition: opacity .7s ease;
+    transition: opacity .5s ease;
 }
 
 .bioTextVisible {
