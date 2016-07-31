@@ -370,7 +370,7 @@ body {
 .fullSizedImg {
 	max-height: 100%;
 	max-width: 100%;
-	transition: opacity .3s ease, width 1s ease;
+	transition: opacity .4s ease, width 1s ease;
 }
 
 .fullSizedImg:hover {
