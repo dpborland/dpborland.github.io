@@ -1859,7 +1859,8 @@ body {
 
 @media screen and (min-width: 1016px) {
 	.bioText {
-		font-size: 3vh;
+		font-size: 2.7vh;
+		justify-content: space-between;
 	}
 	
 	.dropDown {
