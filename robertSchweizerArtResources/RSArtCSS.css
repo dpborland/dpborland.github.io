@@ -354,6 +354,7 @@ body {
     background-blend-mode: color-dodge;
     overflow-y: hidden;
     /*opacity: 0;*/
+    z-index: 4;
     transition: opacity .5s ease, -webkit-filter .5s ease, background-color .5s ease;
 }
 
@@ -379,6 +380,13 @@ body {
 
 .fullSizedImg:-webkit-full-screen {
 	cursor: zoom-out;
+}
+
+.ringLoader {
+	position: relative;
+	width: 5%;
+	bottom: calc(50% - 75px);
+	z-index: 0;
 }
 
 .imgDescription {
