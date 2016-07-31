@@ -321,14 +321,14 @@ body {
 }
 
 .contactText {
-	display: flex;
-	flex-direction: column;
-	width: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
     height: 97%;
-	box-sizing: border-box;
+    box-sizing: border-box;
     margin-left: 20px;
     margin-right: 10px;
-	border: 1px solid #BFBFBF;
+    border: 1px solid #BFBFBF;
     padding-right: 50px;
     padding-left: 50px;
     align-self: center;
@@ -349,17 +349,17 @@ body {
     display: flex;
     width: 75%;
     align-items: center;
-    align-self: center;
+    align-self: center    
     justify-content: center;
-	background-blend-mode: color-dodge;
-	overflow-y: hidden;
-	/*opacity: 0;*/
-	transition: opacity .5s ease, -webkit-filter .5s ease, background-color .5s ease;
+    background-blend-mode: color-dodge;
+    overflow-y: hidden;
+    /*opacity: 0;*/
+    transition: opacity .5s ease, -webkit-filter .5s ease, background-color .5s ease;
 }
 
 .imgFullSizeDarkened {
 	background-color: transparent;
-	-webkit-filter: brightness(30%);
+	/*-webkit-filter: brightness(30%);*/
 	transition: background-color .5s ease, -webkit-filter .5s ease;
 }
 
@@ -370,7 +370,7 @@ body {
 .fullSizedImg {
 	max-height: 100%;
 	max-width: 100%;
-	transition: opacity .4s ease, width 1s ease;
+	transition: opacity .3s ease;
 }
 
 .fullSizedImg:hover {
