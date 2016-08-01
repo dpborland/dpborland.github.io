@@ -920,9 +920,9 @@ body {
 	}
 
 	.imgFullSize {
-		margin-bottom: -23px;
-		margin-top: 0px;
-		height: 70%;
+    		margin-bottom: -40px;
+    		margin-top: -30px;
+    		height: 80%;
 	}
 
 	.fullSizedImg {
