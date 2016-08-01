@@ -913,8 +913,13 @@ body {
 
 	.bioText {
 		justify-content: space-between;
+		font-size: 4vmin;
+    		width: 75%;
 	}
 
+	.bioImgBorderBox {
+		display: none;
+	}
 	.dropCap1 {
 		margin-top: 8px;
 	}
