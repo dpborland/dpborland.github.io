@@ -913,7 +913,7 @@ body {
 
 	.bioText {
 		justify-content: space-between;
-		font-size: 4vmin;
+		font-size: 4vmin !important;
     		width: 75%;
 	}
 
