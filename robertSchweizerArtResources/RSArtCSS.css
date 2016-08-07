@@ -2,7 +2,6 @@ html {
 	height: 100%;
 	width: 100%;
 	background-color: #f8f8ff;
-
 }
 
 body {
@@ -11,6 +10,16 @@ body {
 	margin: 0;
 	display: flex;
 }
+
+/* 
+
+//--------------------// 
+
+Left side of page, including Title and Navigation Menu 
+
+//--------------------// 
+
+*/
 
 .leftLanding {
 	height: 100%;
@@ -99,7 +108,6 @@ body {
 	text-align: left;
 }
 
-
 .nav h3 {
 	margin: 0;
 	font-weight: 300;
@@ -109,7 +117,6 @@ body {
 
 .nav h3:hover {
 	cursor: pointer;
-	/*color: #85C7F2;*/
 	color: #7F7F7F;
 	transition: color .4s ease;
 }
@@ -155,6 +162,16 @@ body {
     transition: color .1s ease;
 }
 
+/* 
+
+//--------------------// 
+
+Right side of page, including all image and text content 
+
+//--------------------// 
+
+*/
+
 .rightLanding {
 	height: 100%;
 	width: 50%;
@@ -187,7 +204,6 @@ body {
 }
 
 .heroBorderDivExpanded {
-    /*background-color: rgba(127, 127, 127, .6);*/
 	background-color: rgba(248, 248, 255, .8);
 }
 
@@ -351,32 +367,32 @@ body {
     transition: opacity .5s ease;
 }
 
-.imgFullSize {
+.fullSizedImgContainer {
     height: calc(100% - 90px);
     display: flex;
-    width: 75%;
+    width: 95%;
     align-items: center;
     align-self: center;
     justify-content: center;
 	background-blend-mode: color-dodge;
 	overflow-y: hidden;
-	/*opacity: 0;*/
 	z-index: 4;
 	transition: opacity .5s ease, -webkit-filter .5s ease, background-color .5s ease;
 }
 
-.imgFullSizeDarkened {
+.fullSizedImgContainerDarkened {
 	background-color: transparent;
-	-webkit-filter: brightness(30%);
+	-webkit-filter: brightness(50%);
 	transition: background-color .5s ease, -webkit-filter .5s ease;
 }
 
-.imgFullSize:-webkit-full-screen {
+.fullSizedImgContainer:-webkit-full-screen {
 	background-color: black;
 }
 
 .fullSizedImg {
 	max-height: 100%;
+	max-width: 100%;
 	transition: opacity .3s ease, width 1s ease;
 }
 
@@ -386,6 +402,12 @@ body {
 
 .fullSizedImg:-webkit-full-screen {
 	cursor: zoom-out;
+}
+
+.fullSizedImgSmall {
+	max-height: 100%;
+	max-width: 100%;
+	transition: opacity .3s ease, width 1s ease;
 }
 
 .imgDescription {
@@ -402,15 +424,13 @@ body {
 	text-align: center;
 	align-self: center;
 	justify-content: center;
-
 }
 
-.marinePaintings {
+.galleryThumbnails {
 	display: flex;
 	flex-direction: row;
 	align-self: flex-start;
 	align-items: flex-start;
-	/*background-color: rgba(0, 153, 255, .4);*/
 	height: 75px;
 	width: 100%;
 	box-sizing: border-box;
@@ -425,19 +445,17 @@ body {
 	transition: border .3s ease, opacity .5s ease, height .5s ease;
 }
 
-.marinePaintings:hover {
+.galleryThumbnails:hover {
 	border: 1px solid #bfbfbf;
 	border-bottom: none;
 	transition: border .6s ease .3s;
-
 }
 
-.marinePaintings::-webkit-scrollbar {
+.galleryThumbnails::-webkit-scrollbar {
 	display: none;
 }
 
-
-.galleryImg {
+.thumbnailContainer {
 	position: relative;
 	box-sizing: border-box;
 	text-align: center;
@@ -458,32 +476,15 @@ body {
     cursor: pointer;
     opacity: 1;
     transition: border .3s ease-in, background .6s ease, opacity .5s ease;
-
 }
-
-/*.marinePaintings img {
-    margin-bottom: 5px;
-    margin-right: 8px;
-    flex-shrink: 0;
-    opacity: .3;
-    transition: border .3s ease-out, background .6s ease, opacity .5s ease;
-}
-
-.marinePaintings img:hover {
-    background: rgba(127, 127, 127, .5);
-    cursor: pointer;
-    opacity: 1;
-    transition: border .3s ease-in, background .6s ease, opacity .5s ease;
-
-}*/
 
 .galleryNavBox {
 	display: flex;
+	flex-shrink: 0;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
 	height: 75px;
-	margin-bottom: 5px;
 	font-family: Raleway;
 	font-weight: 300;
 	font-size: 2.4em;
@@ -511,7 +512,6 @@ body {
 	background-color: rgba(0, 0, 0, 0);
 	min-width: 75px;
 	height: 75px;
-	/*border: 1px solid #BFBFBF;*/
 	transition: color .5s ease, border .2s ease, background-color .5s ease;
 }
 
@@ -545,7 +545,6 @@ body {
 	transition: background-color .5s ease;
 }
 
-
 .galleryInfoButton {
 	display: flex;
 	align-items: center;
@@ -563,7 +562,6 @@ body {
     border-bottom: 1px solid transparent;
     border-left: 0px;
     transition: background-color .5s ease, height .3s ease, color .3s ease, border-right .3s ease .3s, border-bottom .3s ease;
-
 }
 
 .galleryInfoButtonHover {
@@ -571,7 +569,6 @@ body {
     border-right: 1px solid #7f7f7f;
     border-bottom: 1px solid #7f7f7f;
 	transition: border-right .5s ease, border-bottom .5s ease, height .3s ease .3s;
-
 }
 
 .galleryInfoButtonExpanded {
@@ -648,7 +645,6 @@ body {
 	box-sizing: border-box;
 	background-color: rgba(0, 0, 0, 0);
 	transition: background-color .3s ease, opacity .3s ease .3s, border-bottom .5s ease, border-left .5s ease .3s;
-
 }
 
 .fullScreenToggle:hover {
@@ -667,9 +663,41 @@ body {
 	transition: transform .2s ease;
 }
 
-@media screen and (min-width: 300px) and (max-width: 349px) {
+/* 
+
+//--------------------// 
+
+Basic CSS for mobile 
+
+//--------------------// 
+
+*/
+
+@media screen and (min-width: 100px) and (max-width: 499px) {
 	body {
 		flex-direction: column;
+	}
+
+	.leftLanding {
+		height: 20%;
+		width: 100%;
+		padding-left: 0px;
+		padding-right: 0px;
+		flex-direction: row;
+		justify-content: left;
+	}
+
+	.leftLandingCollapsed {
+		height: 10%;
+	}
+
+	.leftBorder {
+		flex-direction: row;
+		flex-wrap: wrap;
+		padding-left: 0px;
+		padding-right: 0px;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.spacer {
@@ -690,21 +718,12 @@ body {
 		font-size: 8.2vw;
 	}
 
-	.leftBorder {
-		flex-direction: row;
-		flex-wrap: wrap;
-		padding-left: 0px;
-		padding-right: 0px;
-		align-items: center;
-		justify-content: center;
-	}
-
 	.nav {
 		position: fixed;
 		width: 100%;
 		height: 7%;
 		background-color: ghostwhite;
-		font-size: 1.1em;
+		font-size: 1.3em;
 		display: flex;
 		bottom: 0;
 		left: 0;
@@ -722,8 +741,9 @@ body {
 
 	.navWork {
 		display: flex;
-		width: 100px;
-		letter-spacing: initial;
+    	width: 120px;
+    	margin-left: -6px !important;		
+    	letter-spacing: initial;
 		justify-content: flex-end;
 		transition: width .3s ease;
 	}
@@ -732,7 +752,6 @@ body {
 		display: flex;
 		justify-content: flex-end;
 	}
-
 
 	.dropDown {
 		position: fixed !important;
@@ -746,7 +765,6 @@ body {
 		font-family: Raleway;
 		font-size: 2.3em;
 		font-weight: 100;
-		opacity: 0;
 		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
 		z-index: 99999;
 	}
@@ -763,19 +781,6 @@ body {
 		font-size: 3em;
 		opacity: 1;
 		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-	}
-
-	.leftLanding {
-		height: 20%;
-		width: 100%;
-		padding-left: 0px;
-		padding-right: 0px;
-		flex-direction: row;
-		justify-content: left;
-	}
-
-	.leftLandingCollapsed {
-		height: 10%;
 	}
 
 	.rightLanding {
@@ -807,7 +812,6 @@ body {
 		margin-left: 0%;
 		background-color: rgba(248, 248, 255, .95);
 		transition: margin-left 300ms ease, background-color ease;
-
 	}
 	
 	.galleryInfoButton {
@@ -817,7 +821,6 @@ body {
 
 	.galleryInfoButtonExpanded {
 		background-color: rgba(248, 248, 255, .95);
-
 	}
 
 	.fullScreenToggle {
@@ -831,57 +834,55 @@ body {
 	}
 
 	.ringLoader {
-		bottom: calc(50% - 55px);
+		bottom: calc(50% - 60px);
 		width: 10%;
 	}
 
+	.fullSizedImg {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	.fullSizedImgContainer {
+		width: 95%;
+	}
 
 	.galleryNavBox {
-		height: 55px;
-		margin-bottom: 5px;
-
+		height: 60px;
 	}
 
 	.galleryNavButtons {
 		display: none
 	}
 
-	.marinePaintings {
-		height: 55px;
+	.galleryThumbnails {
+		height: 60px;
 		border-left: none;
 		border-right: none;
 		margin-left: 0px;
 		margin-right: 0px;
 	}
 
-	.marinePaintings:hover {
+	.galleryThumbnails:hover {
 	    border-top: 1px solid #bfbfbf;
 	    border-left: none;
 	    border-right: none;
 	}
 
-	.galleryImg {
-		position: relative;
-		box-sizing: border-box;
-		text-align: center;
-		height: 55px;
-		width: 55px;
+	.thumbnailContainer {
+		height: 60px;
+		width: 60px;
 		margin-right: 4px;
-		margin-bottom: -10px;
-		flex-shrink: 0;
 	}
 
-	.galleryImg:last-child {
+	.thumbnailContainer:last-child {
 		margin-right: 0px;
 	}
 
 	.thumbnailImg {
-		height: 55px;
-		width: 55px;
-	    margin-bottom: 5px;
+		height: 60px;
+		width: 60px;
 	    margin-right: 0px;
-	    flex-shrink: 0;
-	    opacity: .3;
 	    transition: border .3s ease-out, background .6s ease, opacity .5s ease;
 	}
 
@@ -902,8 +903,17 @@ body {
 	.bioImgBorderBox {
 		display: none;
 	}
-
 }
+
+/*
+
+//--------------------// 
+
+Optimization for portrait mode
+
+//--------------------// 
+
+*/
 
 @media screen and (max-height: 500px) {
 
@@ -914,20 +924,21 @@ body {
 	.bioText {
 		justify-content: space-between;
 		font-size: 4vmin !important;
-    		width: 75%;
+    	width: 75%;
 	}
 
 	.bioImgBorderBox {
 		display: none;
 	}
+
 	.dropCap1 {
 		margin-top: 8px;
 	}
 
-	.imgFullSize {
-    		margin-bottom: -40px;
-    		margin-top: -30px;
-    		height: 80%;
+	.fullSizedImgContainer {
+    	margin-bottom: -40px;
+    	margin-top: -30px;
+    	height: 80%;
 	}
 
 	.fullSizedImg {
@@ -936,54 +947,50 @@ body {
 	}
 
 	.ringLoader {
-		bottom: calc(50% - 55px);
+		bottom: calc(50% - 60px);
 		width: 10%;
 	}
 	
 	.galleryNavBox {
-		height: 55px;
-		margin-bottom: 3px;
-
-
+		height: 60px;
 	}
 
 	.galleryNavButtons {
 		display: none
 	}
 
-
-	.marinePaintings {
-		height: 55px;
+	.galleryThumbnails {
+		height: 60px;
 		border-left: none;
 		border-right: none;
 		margin-left: 0px;
 		margin-right: 0px;
 	}
 
-	.marinePaintings:hover {
+	.galleryThumbnails:hover {
 	    border-top: 1px solid #bfbfbf;
 	    border-left: none;
 	    border-right: none;
 	}
 
-	.galleryImg {
+	.thumbnailContainer {
 		position: relative;
 		box-sizing: border-box;
 		text-align: center;
-		height: 55px;
-		width: 55px;
+		height: 60px;
+		width: 60px;
 		margin-right: 4px;
 		margin-bottom: -10px;
 		flex-shrink: 0;
 	}
 
-	.galleryImg:last-child {
+	.thumbnailContainer:last-child {
 		margin-right: 0px;
 	}
 
 	.thumbnailImg {
-		height: 55px;
-		width: 55px;
+		height: 60px;
+		width: 60px;
 	    margin-bottom: 5px;
 	    margin-right: 0px;
 	    flex-shrink: 0;
@@ -996,260 +1003,94 @@ body {
 	}
 }
 
-@media screen and (min-width: 350px) and (max-width: 399px) {
-	body {
-		flex-direction: column;
-	}
+/*
 
-	.spacer {
-		height: 12%;
-	}
+//--------------------// 
+
+Refinements for mobile width ranges 
+
+//--------------------// 
+
+
+*/
+
+@media screen and (min-width: 300px) and (max-width: 349px) {
 
 	.pageTitle {
-		font-size: 10.9vw;
-		padding-bottom: 15px;
-		margin-right: 0px;
-		letter-spacing: 2px;
-		transition: font-size 0s ease;
+		padding-bottom: 20px;
 	}
 
 	.pageTitleCollapsed {
-		letter-spacing: 5.8px;
-		padding-bottom: 5px;
-		font-size: 8.8vw;
-	}
-
-	.leftBorder {
-		flex-direction: row;
-		flex-wrap: wrap;
-		padding-left: 0px;
-		padding-right: 0px;
-		align-items: center;
-		justify-content: center;
+		letter-spacing: 3px;
+		font-size: 10vw;
+		margin-bottom: -10px;
 	}
 
 	.nav {
-		position: fixed;
-		width: 100%;
-		height: 7%;
-		background-color: ghostwhite;
-		font-size: 1.3em;
-		display: flex;
-		bottom: 0;
-		left: 0;
-		padding: 5px;
-		text-align: center;
-		box-sizing: border-box;
-		flex-direction: row;
-		padding-left: 1.5%;
-		padding-right: 1.5%;
-		align-items: center;
-		justify-content: space-between;
-		transition: padding-left .3s ease, padding-right .3s ease;
-		z-index: 9999;
+		font-size: 1.1em;
 	}
 
 	.navWork {
-		display: flex;
-		width: 114px;
-		letter-spacing: initial;
-		justify-content: flex-end;
-		transition: width .3s ease;
-	}
-
-	.navAbout {
-		display: flex;
-		justify-content: flex-end;
-	}
-
-
-	.dropDown {
-		position: fixed !important;
-		top: 0 !important;
-		left: 0 !important;
-		height: 0%;
-		width: 100%;
-		align-items: center;
-		text-align: center;
-		background-color: ghostwhite;
-		font-family: Raleway;
-		font-size: 2.3em;
-		font-weight: 100;
-		opacity: 0;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-		z-index: 99999;
+		width: 100px;
 	}
 
 	.workDropExpanded {
-		height: 94%;
-		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-	}
-
-	.aboutDropExpanded {
-		height: 94%;
-		justify-content: space-around;
-		font-size: 3em;
-		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-	}
-
-	.leftLanding {
-		height: 20%;
-		width: 100%;
-		padding-left: 0px;
-		padding-right: 0px;
-		flex-direction: row;
-		justify-content: left;
-	}
-
-	.leftLandingCollapsed {
-		height: 10%;
-	}
-
-	.rightLanding {
-		height: 73%;
-		width: 100%;
-	}
-
-	.rightLandingExpanded {
-		height: 83%;
-	}
-
-
-	.gallerySpacer {
-		height: 40px;
+		font-size: 2.6em;
 	}
 
 	.infoSpacer {
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		height: 40px;
-		font-size: .8em;
 		padding-left: 10px;
-		margin-left: calc(-100% + 60px);
 	    width: calc(100% - 60px);
 	}
 
-	.infoSpacerExpanded {
-		margin-left: 0%;
-		background-color: rgba(248, 248, 255, .95);
-		transition: margin-left 300ms ease, background-color ease;
-
-	}
-
-	.galleryInfoButton {
-		height: 40px;
-		width: 30px;
-	}
-
-	.galleryInfoButtonExpanded {
-		background-color: rgba(248, 248, 255, .95);
-
-	}
-
-	.fullScreenToggle {
-		height: 40px;
-		width: 30px;
-	}
-
-	.fullScreenArrows {
-		height: 20px;
-		width: 20px;
-	}
-
-	.ringLoader {
-		bottom: calc(50% - 55px);
-		width: 10%;
-	}
-
-	.galleryNavBox {
-		height: 55px;
-		margin-bottom: 5px;
-
-	}
-
-	.galleryNavButtons {
-		display: none
-	}
-
-
-	.marinePaintings {
-		height: 55px;
-		border-left: none;
-		border-right: none;
-		margin-left: 0px;
-		margin-right: 0px;
-	}
-
-	.marinePaintings:hover {
+	.galleryThumbnails:hover {
 	    border-top: 1px solid #bfbfbf;
 	    border-left: none;
 	    border-right: none;
 	}
 
-	.galleryImg {
-		position: relative;
-		box-sizing: border-box;
-		text-align: center;
-		height: 55px;
-		width: 55px;
-		margin-right: 4px;
+	.bioText {
+		padding-left: 25px;
+		padding-right: 25px;
+		font-size: 5.2vmin;
+	}
+}
+
+@media screen and (min-width: 350px) and (max-width: 399px) {
+
+	.pageTitle {
+		font-size: 10.9vw;
+		padding-bottom: 15px;
+	}
+
+	.pageTitleCollapsed {
+		letter-spacing: 3px;
+		font-size: 10vw;
 		margin-bottom: -10px;
-		flex-shrink: 0;
 	}
 
-	.galleryImg:last-child {
-		margin-right: 0px;
+	.workDropExpanded {
+		font-size: 2.6em;
 	}
 
-	.thumbnailImg {
-		height: 55px;
-		width: 55px;
-	    margin-bottom: 5px;
-	    margin-right: 0px;
-	    flex-shrink: 0;
-	    opacity: .3;
-	    transition: border .3s ease-out, background .6s ease, opacity .5s ease;
-	}
-
-	.thumbnailImg:hover {
-		opacity: .3;
+	.thumbnailContainer {
+		margin-bottom: -10px;
 	}
 
 	.bioText {
-		margin-left: 0;
-		margin-right: 0;
 		padding-left: 30px;
 		padding-right: 30px;
-		width: 102%;
-		height: 83%;
 		font-size: 2.7vmax;
 	}
-
-	.bioImgBorderBox {
-		display: none;
-	}
-
 }
 
 @media screen and (min-width: 400px) and (max-width: 449px) {
-	body {
-		flex-direction: column;
-	}
-
-	.spacer {
-		height: 12%;
-	}
 
 	.pageTitle {
 		font-size: 11.3vw;
 		padding-bottom: 20px;
 		margin-right: 0px;
-		letter-spacing: 2px;
-		transition: font-size 0s ease;
 	}
 
 	.pageTitleCollapsed {
@@ -1258,231 +1099,60 @@ body {
 		font-size: 9.2vw;
 	}
 
-	.leftBorder {
-		flex-direction: row;
-		flex-wrap: wrap;
-		padding-left: 0px;
-		padding-right: 0px;
-		align-items: center;
-		justify-content: center;
-	}
-	.nav {
-		position: fixed;
-		width: 100%;
-		height: 7%;
-		background-color: ghostwhite;
-		font-size: 1.3em;
-		display: flex;
-		bottom: 0;
-		left: 0;
-		padding: 5px;
-		text-align: center;
-		box-sizing: border-box;
-		flex-direction: row;
-		padding-left: 1.5%;
-		padding-right: 1.5%;
-		align-items: center;
-		justify-content: space-between;
-		transition: padding-left .3s ease, padding-right .3s ease;
-		z-index: 9999;
-	}
-
-	.navWork {
-		display: flex;
-		width: 114px;
-		letter-spacing: initial;
-		justify-content: flex-end;
-		transition: width .3s ease;
-	}
-
-	.navAbout {
-		display: flex;
-		justify-content: flex-end;
-	}
-
-
-	.dropDown {
-		position: fixed !important;
-		top: 0 !important;
-		left: 0 !important;
-		height: 0%;
-		width: 100%;
-		align-items: center;
-		text-align: center;
-		background-color: ghostwhite;
-		font-family: Raleway;
-		font-size: 2.3em;
-		font-weight: 100;
-		opacity: 0;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-		z-index: 99999;
-	}
-
 	.workDropExpanded {
 		height: 94%;
 		opacity: 1;
+		font-size: 2.7em;
 		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
 	}
 
 	.aboutDropExpanded {
-		height: 94%;
 		justify-content: space-around;
-		font-size: 3em;
-		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-	}
-
-	.leftLanding {
-		height: 20%;
-		width: 100%;
-		padding-left: 0;
-		padding-right: 0;
-		flex-direction: row;
-		justify-content: left;
-
-	}
-
-	.leftLandingCollapsed {
-		height: 10%;
-	}
-
-	.rightLanding {
-		height: 73%;
-		width: 100%;
-	}
-
-	.rightLandingExpanded {
-		height: 83%;
-	}
-
-	.gallerySpacer {
-		height: 40px;
+		font-size: 3.8em;
 	}
 
 	.infoSpacer {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		height: 40px;
-		font-size: .8em;
-		padding-left: 10px;
 		margin-left: calc(-100% + 60px);
 	    width: calc(100% - 60px);
 	}
 
-	.infoSpacerExpanded {
-		margin-left: 0%;
-		background-color: rgba(248, 248, 255, .95);
-		transition: margin-left 300ms ease, background-color ease;
-	}
-
 	.galleryInfoButton {
-		height: 40px;
 		width: 30px;
-	}
-
-	.galleryInfoButtonExpanded {
-		background-color: rgba(248, 248, 255, .95);
-
 	}
 
 	.fullScreenToggle {
-		height: 40px;
 		width: 30px;
 	}
 
-	.fullScreenArrows {
-		height: 20px;
-		width: 20px;
-	}
-
-	.ringLoader {
-		bottom: calc(50% - 55px);
-		width: 10%;
-	}
-
 	.galleryNavBox {
-		height: 55px;
-		margin-bottom: 5px;
-
+		height: 60px;
 	}
 
-	.galleryNavButtons {
-		display: none
+	.galleryThumbnails {
+		height: 60px;
 	}
 
-
-	.marinePaintings {
-		height: 55px;
-		border-left: none;
-		border-right: none;
-		margin-left: 0px;
-		margin-right: 0px;
-	}
-
-	.marinePaintings:hover {
-	    border-top: 1px solid #bfbfbf;
-	    border-left: none;
-	    border-right: none;
-	}
-
-	.galleryImg {
-		position: relative;
-		box-sizing: border-box;
-		text-align: center;
-		height: 55px;
-		width: 55px;
-		margin-right: 4px;
-		margin-bottom: -10px;
-		flex-shrink: 0;
-	}
-
-	.galleryImg:last-child {
-		margin-right: 0px;
+	.thumbnailContainer {
+		height: 60px;
+		width: 60px;
 	}
 
 	.thumbnailImg {
-		height: 55px;
-		width: 55px;
-	    margin-bottom: 5px;
-	    margin-right: 0px;
-	    flex-shrink: 0;
-	    opacity: .3;
-	    transition: border .3s ease-out, background .6s ease, opacity .5s ease;
-	}
-
-	.thumbnailImg:hover {
-		opacity: .3;
+		height: 60px;
+		width: 60px;
 	}
 
 	.bioText {
-		margin-left: 0;
-		margin-right: 0;
 		padding-left: 35px;
 		padding-right: 35px;
-		width: 102%;
-		height: 83%;
 		font-size: 2.9vmax;
-	}
-
-	.bioImgBorderBox {
-		display: none;
 	}
 }
 
 @media screen and (min-width: 450px) and (max-width: 499px) {
-	body {
-		flex-direction: column;
-	}
-
-	.spacer {
-		height: 12%;
-	}
 
 	.pageTitle {
 		font-size: 11.3vw;
-		letter-spacing: 2px;
 		padding-bottom: 10px;
 		margin-top: 2px;
 		transition: font-size 0s ease;
@@ -1494,69 +1164,8 @@ body {
 		letter-spacing: 8px;
 	}
 
-	.leftBorder {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-around;
-		padding-left: 0px;
-		padding-right: 0px;
-		align-items: center;
-		justify-content: center;
-	}
-
 	.heroBorderDivExpanded {
 		border: none;
-	}
-
-	.nav {
-		position: fixed;
-		display: flex;
-		width: 100%;
-		height: 7%;
-		background-color: ghostwhite;
-		font-size: 1.3em;
-		bottom: 0;
-		left: 0;
-		padding: 5px;
-		text-align: center;
-		box-sizing: border-box;
-		flex-direction: row;
-		padding-left: 1.5%;
-		padding-right: 1.5%;
-		align-items: center;
-		justify-content: space-between;
-		transition: padding-left .3s ease, padding-right .3s ease;
-		z-index: 9999;
-	}
-
-	.navWork {
-		display: flex;		
-		width: 114px;		
-		letter-spacing: initial;		
-		justify-content: flex-end;		
-		transition: width .3s ease;
-	}
-
-	.navAbout {
-		display: flex;		
-		justify-content: flex-end;
-	}
-
-	.dropDown {
-		position: fixed !important;
-		top: 0 !important;
-		left: 0 !important;
-		height: 0%;
-		width: 100%;
-		align-items: center;
-		text-align: center;
-		background-color: ghostwhite;
-		font-family: Raleway;
-		font-weight: 100;
-		font-size: 2.3em;
-		opacity: 0;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-		z-index: 99999;
 	}
 
 	.workDropExpanded {
@@ -1567,60 +1176,13 @@ body {
 	}
 
 	.aboutDropExpanded {
-		height: 94%;
-		font-size: 3.5em;
-		opacity: 1;
-		transition: height .3s ease, opacity .4s ease, font-size .3s ease;
-	}
-
-	.leftLanding {
-		height: 20%;
-		width: 100%;
-		padding-left: 0px;
-		padding-right: 0px;
-    	flex-direction: row;
-		justify-content: left;
-	}
-
-	.leftLandingCollapsed {
-		height: 10%;
-	}
-
-	.rightLanding {
-		height: 73%;
-		width: 100%;
-	}
-
-	.rightLandingExpanded {
-		height: 83%;
-	}
-
-	.heroBorder {
-		margin-bottom: 0px;
-	}
-
-
-	.gallerySpacer {
-		height: 40px;
+		font-size: 4.5em;
 	}
 
 	.infoSpacer {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
 		height: 40px;
-		font-size: .8em;
-		padding-left: 10px;
 		margin-left: calc(-100% + 80px);
 	    width: calc(100% - 80px);
-	}
-
-	.infoSpacerExpanded {
-		margin-left: 0%;
-		background-color: rgba(248, 248, 255, .95);
-		transition: margin-left 300ms ease, background-color ease;
-
 	}
 
 	.galleryInfoButton {
@@ -1628,91 +1190,48 @@ body {
 		width: 40px;
 	}
 
-	.galleryInfoButtonExpanded {
-		background-color: rgba(248, 248, 255, .95);
-
-	}
-
 	.fullScreenToggle {
 		height: 40px;
 		width: 40px;
 	}
 
-	.fullScreenArrows {
-		height: 20px;
-		width: 20px;
-	}
-
 	.ringLoader {
-		bottom: calc(50% - 55px);
-		width: 10%;
+		bottom: calc(50% - 65px);
 	}
 
 	.galleryNavBox {
 		height: 65px;
 	}
 
-	.galleryNavButtons {
-		display: none
-	}
-
-	.marinePaintings {
+	.galleryThumbnails {
 		height: 65px;
-		border-left: none;
-		border-right: none;
-		margin-left: 0px;
-		margin-right: 0px;
 	}
 
-	.marinePaintings:hover {
-	    border-top: 1px solid #bfbfbf;
-	    border-left: none;
-	    border-right: none;
-	}
-
-	.galleryImg {
-		position: relative;
-		box-sizing: border-box;
-		text-align: center;
+	.thumbnailContainer {
 		height: 65px;
 		width: 65px;
-		margin-right: 4px;
-		margin-bottom: -10px;
-		flex-shrink: 0;
-	}
-
-	.galleryImg:last-child {
-		margin-right: 0px;
 	}
 
 	.thumbnailImg {
 		height: 65px;
 		width: 65px;
-	    margin-bottom: 5px;
-	    margin-right: 0px;
-	    flex-shrink: 0;
-	    opacity: .3;
-	    transition: border .3s ease-out, background .6s ease, opacity .5s ease;
 	}
 
-	.thumbnailImg:hover {
-		opacity: .3;
-	}
-
-	.bioText {
-		margin-left: 0;
-		margin-right: 0;
-    	width: 102%;
-    	height: 83%;		
+	.bioText {		
     	font-size: 3vmax;
 	}
-
-	.bioImgBorderBox {
-		display: none;
-	}
-
 }
 
+/*
+
+//--------------------// 
+
+Refinements for tablets and lap/desktops
+
+//--------------------// 
+
+
+*/
 
 @media screen and (min-width: 500px) and (max-width: 649px) {
 	.leftLandingCollapsed {
@@ -1731,16 +1250,16 @@ body {
 	}
 
 	.nav {
-		font-size: .58em;
+		font-size: .7em;
 	}
 
 	.navWork {
-		letter-spacing: 1.15px;
+		letter-spacing: 1.36px;
 	}
 
 	.workDropExpanded {
-		height: 65px;
-		margin-top: 3px;
+		height: 75px;
+		margin-top: 1px;
 	}
 
 	.aboutDropExpanded {
@@ -1758,7 +1277,6 @@ body {
 	.bioImgBorderBox {
 		display: none;
 	}
-
 }
 
 @media screen and (min-width: 650px) and (max-width: 749px) {
@@ -1781,7 +1299,7 @@ body {
 	}
 
 	.navWork {
-		letter-spacing: 1.55px !important;
+		letter-spacing: 1.60px !important;
 	}
 
 	.dropDown {
@@ -1797,7 +1315,6 @@ body {
 		height: 25px !important;
 		margin-top: 1px;
 	}
-
 
 	.bioText {
 		font-size: 3vmin;
@@ -1847,14 +1364,12 @@ body {
 		transition: height .3s ease;
 	}
 
-
 	.bioText {
 		font-size: 3vmin;
 		justify-content: space-between;
 		padding-left: 20px;
 		padding-right: 20px;
 	}
-
 }
 
 @media screen and (min-width: 850px) and (max-width: 1015px) {
@@ -1872,25 +1387,27 @@ body {
 	.nav {
 		font-size: 1em;
 	}
+
 	.navWork {
 		letter-spacing: 1.95px;
 	}
+
 	.dropDown {
 		font-size: .6em;
 	}
+
 	.workDropExpanded {
 		height: 80px;
 		margin-top: 2px;
 		opacity: 1; 
 		transition: opacity .2s ease, height .4s ease;
-
 	}
+
 	.aboutDropExpanded {
 		height: 25px;
 		margin-top: 1px;
 		opacity: 1; 
 		transition: opacity .15s ease, height .4s ease;
-
 	}
 
 	.bioText {
