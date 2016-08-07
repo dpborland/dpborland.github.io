@@ -214,6 +214,7 @@ function imageDecrease() {
 function imageIncrease() {
     var fullSizedImg = document.querySelector(".fullSizedImg");
     var thumbImgList = document.querySelectorAll(".thumbnailImg");
+    var fullSizedImgSmall = document.querySelector(".fullSizedImgSmall");
     var imgArray = Array.from(thumbImgList);
     var fullSizedImgAlt = document.querySelector(".fullSizedImg").alt;
 
