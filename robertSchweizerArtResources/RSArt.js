@@ -175,9 +175,11 @@ function imageDecrease() {
                 fullSizedImg.alt = imgArray[i - 1].alt;
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[i - 1].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[i - 1].alt;
-                fullSizedImg.classList.remove("contentTransparent");
-                fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 750);
+                window.setTimeout(function() {
+                	fullSizedImg.classList.remove("contentTransparent");
+                	fullSizedImgSmall.classList.remove("contentTransparent");
+                }, 250);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -192,9 +194,11 @@ function imageDecrease() {
                 fullSizedImg.alt = imgArray[imgArray.length - 1].alt;
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[imgArray.length - 1].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[imgArray.length - 1].alt;
-                fullSizedImg.classList.remove("contentTransparent");
-                fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 750);
+                window.setTimeout(function() {
+                	fullSizedImg.classList.remove("contentTransparent");
+                	fullSizedImgSmall.classList.remove("contentTransparent");
+                }, 250);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -222,9 +226,11 @@ function imageIncrease() {
                 fullSizedImg.alt = imgArray[j + 1].alt;
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[j + 1].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[j + 1].alt;
-                fullSizedImg.classList.remove("contentTransparent");
-                fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 750);
+                window.setTimeout(function() {
+                	fullSizedImg.classList.remove("contentTransparent");
+                	fullSizedImgSmall.classList.remove("contentTransparent");
+                }, 250);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -239,9 +245,11 @@ function imageIncrease() {
                 fullSizedImg.alt = imgArray[0].alt;
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[0].alt;
-                fullSizedImg.classList.remove("contentTransparent");
-                fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 750);
+                window.setTimeout(function() {
+                	fullSizedImg.classList.remove("contentTransparent");
+                	fullSizedImgSmall.classList.remove("contentTransparent");
+                }, 250);
+            }, 500);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -266,9 +274,11 @@ function thumbnailEnlarge(e) {
             fullSizedImg.alt = thumbAlt;
             fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + thumbAlt + "SMALL.jpg";
             fullSizedImgSmallAlt = thumbAlt;
-            fullSizedImg.classList.remove("contentTransparent");
-            fullSizedImgSmall.classList.remove("contentTransparent");
-        }, 750);
+            window.setTimeout(function() {
+            	fullSizedImg.classList.remove("contentTransparent");
+            	fullSizedImgSmall.classList.remove("contentTransparent");
+            }, 250);
+        }, 500);
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
