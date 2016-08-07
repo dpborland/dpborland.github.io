@@ -177,7 +177,7 @@ function imageDecrease() {
                 fullSizedImgSmallAlt = imgArray[i - 1].alt;
                 fullSizedImg.classList.remove("contentTransparent");
                 fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -194,7 +194,7 @@ function imageDecrease() {
                 fullSizedImgSmallAlt = imgArray[imgArray.length - 1].alt;
                 fullSizedImg.classList.remove("contentTransparent");
                 fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -224,7 +224,7 @@ function imageIncrease() {
                 fullSizedImgSmallAlt = imgArray[j + 1].alt;
                 fullSizedImg.classList.remove("contentTransparent");
                 fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -241,7 +241,7 @@ function imageIncrease() {
                 fullSizedImgSmallAlt = imgArray[0].alt;
                 fullSizedImg.classList.remove("contentTransparent");
                 fullSizedImgSmall.classList.remove("contentTransparent");
-            }, 500);
+            }, 750);
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
@@ -268,7 +268,7 @@ function thumbnailEnlarge(e) {
             fullSizedImgSmallAlt = thumbAlt;
             fullSizedImg.classList.remove("contentTransparent");
             fullSizedImgSmall.classList.remove("contentTransparent");
-        }, 500);
+        }, 750);
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
