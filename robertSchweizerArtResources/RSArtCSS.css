@@ -1,4 +1,4 @@
-html {
+	html {
 	height: 100%;
 	width: 100%;
 	background-color: #f8f8ff;
@@ -549,25 +549,25 @@ Right side of page, including all image and text content
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    font-family: times new roman;
-    font-style: italic;
-    font-size: 1.7em;
-    box-sizing: border-box;
-    color: #7f7f7f;
-    width: 50px;
-    height: 50px;
-    margin-right: auto;
-    text-align: center;
-    border-right: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    border-left: 0px;
-    transition: background-color .5s ease, height .3s ease, color .3s ease, border-right .3s ease .3s, border-bottom .3s ease;
+    	font-family: times new roman;
+    	font-style: italic;
+    	font-size: 1.7em;
+    	box-sizing: border-box;
+    	color: #7f7f7f;
+    	width: 50px;
+    	height: 50px;
+    	margin-right: auto;
+    	text-align: center;
+    	border-right: 1px solid transparent;
+    	border-bottom: 1px solid transparent;
+    	border-left: 0px;
+    	transition: background-color .5s ease, height .3s ease, color .3s ease, border-right .3s ease .3s, border-bottom .3s ease;
 }
 
 .galleryInfoButtonHover {
 	cursor: pointer;
-    border-right: 1px solid #7f7f7f;
-    border-bottom: 1px solid #7f7f7f;
+    		border-right: 1px solid #7f7f7f;
+    		border-bottom: 1px solid #7f7f7f;
 	transition: border-right .5s ease, border-bottom .5s ease, height .3s ease .3s;
 }
 
@@ -611,16 +611,16 @@ Right side of page, including all image and text content
 }
 
 .galleryWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    opacity: 0;
-    z-index: 100;
-    transition: opacity .5s ease, background-color .5s ease;
+    	display: flex;
+    	flex-direction: column;
+    	align-items: center;
+    	justify-content: space-between;
+    	height: 100%;
+    	width: 100%;
+    	overflow: hidden;
+    	opacity: 0;
+    	z-index: 100;
+    	transition: opacity .5s ease, background-color .5s ease;
 }
 
 .gallerySpacer {
@@ -1181,7 +1181,7 @@ Refinements for mobile width ranges
 	.infoSpacer {
 		height: 40px;
 		margin-left: calc(-100% + 80px);
-	    width: calc(100% - 80px);
+	    	width: calc(100% - 80px);
 	}
 
 	.galleryInfoButton {
@@ -1264,6 +1264,10 @@ Refinements for tablets and lap/desktops
 	.aboutDropExpanded {
 		height: 25px;
 		margin-top: 2px;
+	}
+	
+	.galleryNavButtons {
+		min-width: 45px;
 	}
 
 	.bioText {
