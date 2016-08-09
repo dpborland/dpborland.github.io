@@ -765,17 +765,19 @@ Basic CSS for mobile
 		font-family: Raleway;
 		font-size: 2.3em;
 		font-weight: 100;
-		transition: opacity .5s ease-in, height 0s ease .5s;
+		transition: opacity .5s ease-in, height 0s ease .5s, font-size 0s ease .5s;
 		z-index: 99999;
 	}
 
 	.workDropExpanded {
+		height: 94%;
 		opacity: 1;
 		transition: opacity .4s ease;
 	}
 
 	.aboutDropExpanded {
 		justify-content: space-around;
+		height: 94%;
 		font-size: 3em;
 		opacity: 1;
 		transition: opacity .4s ease;
@@ -1036,10 +1038,6 @@ Refinements for mobile width ranges
 		font-size: 2.6em;
 	}
 
-	.workDropExpanded {
-		font-size: 2.6em;
-	}
-
 	.infoSpacer {
 		display: flex;
 		padding-left: 10px;
@@ -1076,10 +1074,6 @@ Refinements for mobile width ranges
 		font-size: 2.6em;
 	}
 
-	.workDropExpanded {
-		font-size: 2.6em;
-	}
-
 	.thumbnailContainer {
 		margin-bottom: -10px;
 	}
@@ -1109,14 +1103,7 @@ Refinements for mobile width ranges
 		font-size: 2.7em;
 	}
 
-	.workDropExpanded {
-		height: 94%;
-		opacity: 1;
-		font-size: 2.7em;
-	}
-
 	.aboutDropExpanded {
-		justify-content: space-around;
 		font-size: 3.8em;
 	}
 
@@ -1179,12 +1166,6 @@ Refinements for mobile width ranges
 
 	.dropDown {
 		font-size: 2.8em;
-	}
-
-	.workDropExpanded {
-		height: 94%;
-		font-size: 2.8em;
-		opacity: 1;
 	}
 
 	.aboutDropExpanded {
