@@ -741,9 +741,9 @@ Basic CSS for mobile
 
 	.navWork {
 		display: flex;
-    	width: 120px;
-    	margin-left: -6px !important;		
-    	letter-spacing: initial;
+    		width: 120px;
+    		margin-left: -6px !important;		
+    		letter-spacing: initial;
 		justify-content: flex-end;
 		transition: width .3s ease;
 	}
@@ -805,7 +805,7 @@ Basic CSS for mobile
 		font-size: .8em;
 		padding-left: 10px;
 		margin-left: calc(-100% + 60px);
-	    width: calc(100% - 60px);
+	    	width: calc(100% - 60px);
 	}
 
 	.infoSpacerExpanded {
@@ -852,7 +852,13 @@ Basic CSS for mobile
 	}
 
 	.galleryNavButtons {
-		display: none
+		height: inherit;
+		min-width: 40px;
+		border: none;
+	}
+
+	.galleryNavButtons:hover {
+		background-color: initial;
 	}
 
 	.galleryThumbnails {
@@ -864,9 +870,9 @@ Basic CSS for mobile
 	}
 
 	.galleryThumbnails:hover {
-	    border-top: 1px solid #bfbfbf;
-	    border-left: none;
-	    border-right: none;
+	    	border-top: 1px solid #bfbfbf;
+	    	border-left: none;
+	    	border-right: none;
 	}
 
 	.thumbnailContainer {
