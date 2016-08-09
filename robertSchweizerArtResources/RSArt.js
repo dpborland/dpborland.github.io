@@ -127,12 +127,7 @@ function loadAJAX(e) {
             // 3, 4 & 5: Hovering over thumbnails causes darkening of background, clicking thumbail triggers large img change
             // 6 & 7: Clicking either the full screen icon or large img itself enters fullscreen mode
 
-            if (navButtonLeft.style.display !== "none") {
-                navButtonLeft.addEventListener("click", imageDecrease, false);
-                navButtonRight.addEventListener("click", imageIncrease, false);
-            }
             thumbnail.addEventListener("mouseover", largeImgDarkening, false);
-            /*thumbnail.addEventListener("mouseover", navBoxDarkening, false);*/
             thumbnail.addEventListener("mouseover", galleryDarkening, false);
             thumbnail.addEventListener("click", thumbnailEnlarge, false);
             fullScreen.addEventListener("click", fullScreenImg, false);
@@ -140,6 +135,10 @@ function loadAJAX(e) {
             infoBox.addEventListener("click", infoModalExpand, false);
             infoBox.addEventListener("mouseover", infoBoxHover, false);
             infoBox.addEventListener("mouseout", infoBoxHoverOff, false);
+            if (navButtonLeft.style.display !== "none") {
+                navButtonLeft.addEventListener("click", imageDecrease, false);
+                navButtonRight.addEventListener("click", imageIncrease, false);
+            }
             image.addEventListener("touchstart", function(e){
                 startX = e.touches[0].clientX;
                 e.preventDefault();
