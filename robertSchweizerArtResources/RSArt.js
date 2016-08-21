@@ -55,106 +55,6 @@ dropDown[0].addEventListener("click", heroBorderAlignment, false);
 navAbout.addEventListener("click", navToggle, false);
 dropDown[1].addEventListener("click", heroBorderAlignment, false);
 
-//~~~~~~// Loads ajax content //~~~~~~//
-
-function loadAJAX(e) {
-	var menuSelection = e.target.innerHTML;
-	var ajaxFill = "robertSchweizerArtResources/" + menuSelection + ".html";
-	var heroBorderDiv = document.querySelector(".heroBorder");
-
-    //---// Avoid 404'd AJAX calls //---//
-    if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All" || menuSelection === "Bio" || menuSelection === "Contact") {
-
-        var xhttp = new XMLHttpRequest();
-    	xhttp.onreadystatechange = function() {
-        	if (xhttp.readyState == 4 && xhttp.status == 200) {
-        		heroBorderDiv.innerHTML = xhttp.responseText;
-        	}
-    	};
-    	xhttp.open("GET", ajaxFill, true);
-    	xhttp.send();
-    }
-
-    //~~~//Gallery scripts//~~~//
-
-    if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All") {
-        window.setTimeout(function() {
-            var thumbnail = document.querySelector(".galleryThumbnails");
-            var galleryNav = document.querySelector(".galleryNavBox");
-            var navButtonLeft = document.querySelector(".galleryNavLeft");
-            var navButtonRight = document.querySelector(".galleryNavRight");
-            var galleryThumb = document.querySelector(".thumbnailImg");
-            var fullScreen = document.querySelector(".fullScreenToggle");
-            var fullSizedImg = document.querySelector(".fullSizedImg");
-            var infoBox = document.querySelector(".galleryInfoButton");
-            var image = document.querySelector(".fullSizedImgContainer");
-            var image = document.querySelector(".fullSizedImgContainer");
-            var swipedir;
-            var startX;
-            var endX;
-            var distX;
-            var threshold = 100; //required min distance traveled to be considered swipe
-
-        //---// Dims the large image when thumbnails hovered over //---//
-
-            function largeImgDarkening() {
-                if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
-                    var largeImg = document.querySelector(".fullSizedImgContainer");
-                    largeImg.classList.add("fullSizedImgContainerDarkened");
-
-                    function darkeningReverse() {
-                        largeImg.classList.remove("fullSizedImgContainerDarkened");
-                    }
-                    thumbnail.addEventListener("mouseout", darkeningReverse, false);
-                }
-            }
-
-            function galleryDarkening() {
-                if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
-                    var gallery = document.querySelector(".galleryWrapper");
-                    gallery.classList.add("galleryNavBoxDarkened");
-
-                    function galleryDarkeningReverse() {
-                        gallery.classList.remove("galleryNavBoxDarkened");
-                    }
-
-                    thumbnail.addEventListener("mouseout", galleryDarkeningReverse, false);
-                }
-            }
-
-        //***// Event Listeners //***//
-            // 1 & 2: Clicking Nav Buttons changes large img and highlights appropriate thumbnail 
-            // 3, 4 & 5: Hovering over thumbnails causes darkening of background, clicking thumbail triggers large img change
-            // 6 & 7: Clicking either the full screen icon or large img itself enters fullscreen mode
-
-            thumbnail.addEventListener("mouseover", largeImgDarkening, false);
-            thumbnail.addEventListener("mouseover", galleryDarkening, false);
-            thumbnail.addEventListener("click", thumbnailEnlarge, false);
-            fullScreen.addEventListener("click", fullScreenImg, false);
-            fullSizedImg.addEventListener("click", fullScreenImg, false);
-            infoBox.addEventListener("click", infoModalExpand, false);
-            infoBox.addEventListener("mouseover", infoBoxHover, false);
-            infoBox.addEventListener("mouseout", infoBoxHoverOff, false);
-            if (navButtonLeft.style.display !== "none") {
-                navButtonLeft.addEventListener("click", imageDecrease, false);
-                navButtonRight.addEventListener("click", imageIncrease, false);
-            }
-            image.addEventListener("touchstart", function(e){
-                startX = e.touches[0].clientX;
-                e.preventDefault();
-            }, false);
-
-            image.addEventListener("touchend", function(e){ 
-                endX = e.changedTouches[0].clientX;
-                distX = endX - startX;
-                if (Math.abs(distX) >= threshold) {
-                    distX > 0 ? imageDecrease() : imageIncrease();      
-                }    
-            }, false);
-        }, 100);
-    }
-}
-
 //~~~~~~// Change full-sized image and fade in matching thumbnail, in gallery //~~~~~~//
 
 function imageDecrease() {
@@ -175,8 +75,8 @@ function imageDecrease() {
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[i - 1].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[i - 1].alt;
                 window.setTimeout(function() {
-                	fullSizedImg.classList.remove("contentTransparent");
-                	fullSizedImgSmall.classList.remove("contentTransparent");
+                    fullSizedImg.classList.remove("contentTransparent");
+                    fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
             [].forEach.call(thumbImgList, function(x) {
@@ -194,8 +94,8 @@ function imageDecrease() {
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[imgArray.length - 1].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[imgArray.length - 1].alt;
                 window.setTimeout(function() {
-                	fullSizedImg.classList.remove("contentTransparent");
-                	fullSizedImgSmall.classList.remove("contentTransparent");
+                    fullSizedImg.classList.remove("contentTransparent");
+                    fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
             [].forEach.call(thumbImgList, function(x) {
@@ -227,8 +127,8 @@ function imageIncrease() {
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[j + 1].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[j + 1].alt;
                 window.setTimeout(function() {
-                	fullSizedImg.classList.remove("contentTransparent");
-                	fullSizedImgSmall.classList.remove("contentTransparent");
+                    fullSizedImg.classList.remove("contentTransparent");
+                    fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
             [].forEach.call(thumbImgList, function(x) {
@@ -246,8 +146,8 @@ function imageIncrease() {
                 fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + "SMALL.jpg";
                 fullSizedImgSmallAlt = imgArray[0].alt;
                 window.setTimeout(function() {
-                	fullSizedImg.classList.remove("contentTransparent");
-                	fullSizedImgSmall.classList.remove("contentTransparent");
+                    fullSizedImg.classList.remove("contentTransparent");
+                    fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
             [].forEach.call(thumbImgList, function(x) {
@@ -275,8 +175,8 @@ function thumbnailEnlarge(e) {
             fullSizedImgSmall.srcset = "robertSchweizerArtResources/images/marine/" + thumbAlt + "SMALL.jpg";
             fullSizedImgSmallAlt = thumbAlt;
             window.setTimeout(function() {
-            	fullSizedImg.classList.remove("contentTransparent");
-            	fullSizedImgSmall.classList.remove("contentTransparent");
+                fullSizedImg.classList.remove("contentTransparent");
+                fullSizedImgSmall.classList.remove("contentTransparent");
             }, 250);
         }, 500);
         [].forEach.call(thumbImgList, function(x) {
@@ -289,18 +189,18 @@ function thumbnailEnlarge(e) {
 //~~~~~~// Resizes landing page and loads appropriate AJAX content //-----//
 
 function titleShrink(e) {
-	var heroBorderDiv = document.querySelector(".heroBorder");
+    var heroBorderDiv = document.querySelector(".heroBorder");
 
     //---// If heroBorderDiv has not been expanded from 50% starting width //---//
 
-	if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) {
-	    var leftLanding = document.querySelector(".leftLanding");
-	    var rightLanding = document.querySelector(".rightLanding");
-	    var title = document.querySelector(".pageTitle");
+    if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) {
+        var leftLanding = document.querySelector(".leftLanding");
+        var rightLanding = document.querySelector(".rightLanding");
+        var title = document.querySelector(".pageTitle");
         var robert = document.querySelector(".robertTitle");
-	    var titleBorderDiv = document.querySelector(".leftBorder");
+        var titleBorderDiv = document.querySelector(".leftBorder");
 
-	    leftLanding.classList.add("leftLandingCollapsed");
+        leftLanding.classList.add("leftLandingCollapsed");
         rightLanding.classList.add("rightLandingExpanded");
         title.classList.add("pageTitleCollapsed");
         robert.classList.add("robertTitleCollapsed");
@@ -323,7 +223,7 @@ function titleShrink(e) {
         function contentFade() {
             var contentChildren = [].slice.call(heroBorderDiv.children);
             contentChildren.map(function(x) {
-      	        x.classList.toggle("contentVisible");
+                x.classList.toggle("contentVisible");
             });
             heroBorderDiv.removeEventListener("transitionend", contentFade, false);
         }
@@ -339,7 +239,7 @@ function titleShrink(e) {
 
         var contentChildren = [].slice.call(heroBorderDiv.children);
         contentChildren.map(function(x){
-        	x.classList.toggle("contentVisible");
+            x.classList.toggle("contentVisible");
         });
 
     //---// Fades menu out on selection for mobile //---//    
@@ -359,7 +259,7 @@ function titleShrink(e) {
             window.setTimeout(function(){
                 var contentChildren2 = [].slice.call(heroBorderDiv.children);
                 contentChildren2.map(function(y) {
-            	    y.classList.add("contentVisible");
+                    y.classList.add("contentVisible");
                 });
             }, 200);
             contentChildren[0].removeEventListener("transitionend", newContentFadeIn, false);
@@ -367,8 +267,8 @@ function titleShrink(e) {
 
         contentChildren[0].addEventListener("transitionend", newContentFadeIn, false);
 
-		e.stopPropagation();
-	}
+        e.stopPropagation();
+    }
 }
 
 //******// Event Listeners //******//
@@ -454,5 +354,105 @@ function infoBoxHover() {
 function infoBoxHoverOff() {
     var infoBox = document.querySelector(".galleryInfoButton");
     infoBox.classList.remove("galleryInfoButtonHover");
+}
+
+//~~~~~~// Loads ajax content //~~~~~~//
+
+function loadAJAX(e) {
+    var menuSelection = e.target.innerHTML;
+    var ajaxFill = "robertSchweizerArtResources/" + menuSelection + ".html";
+    var heroBorderDiv = document.querySelector(".heroBorder");
+
+    //---// Avoid 404'd AJAX calls //---//
+    if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All" || menuSelection === "Bio" || menuSelection === "Contact") {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                heroBorderDiv.innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("GET", ajaxFill, true);
+        xhttp.send();
+    }
+
+    //~~~//Gallery scripts//~~~//
+
+    if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All") {
+        window.setTimeout(function() {
+            var thumbnail = document.querySelector(".galleryThumbnails");
+            var galleryNav = document.querySelector(".galleryNavBox");
+            var navButtonLeft = document.querySelector(".galleryNavLeft");
+            var navButtonRight = document.querySelector(".galleryNavRight");
+            var galleryThumb = document.querySelector(".thumbnailImg");
+            var fullScreen = document.querySelector(".fullScreenToggle");
+            var fullSizedImg = document.querySelector(".fullSizedImg");
+            var infoBox = document.querySelector(".galleryInfoButton");
+            var image = document.querySelector(".fullSizedImgContainer");
+            var image = document.querySelector(".fullSizedImgContainer");
+            var swipedir;
+            var startX;
+            var endX;
+            var distX;
+            var threshold = 100; //required min distance traveled to be considered swipe
+
+        //---// Dims the large image when thumbnails hovered over //---//
+
+            function largeImgDarkening() {
+                if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
+                    var largeImg = document.querySelector(".fullSizedImgContainer");
+                    largeImg.classList.add("fullSizedImgContainerDarkened");
+
+                    function darkeningReverse() {
+                        largeImg.classList.remove("fullSizedImgContainerDarkened");
+                    }
+                    thumbnail.addEventListener("mouseout", darkeningReverse, false);
+                }
+            }
+
+            function galleryDarkening() {
+                if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
+                    var gallery = document.querySelector(".galleryWrapper");
+                    gallery.classList.add("galleryNavBoxDarkened");
+
+                    function galleryDarkeningReverse() {
+                        gallery.classList.remove("galleryNavBoxDarkened");
+                    }
+
+                    thumbnail.addEventListener("mouseout", galleryDarkeningReverse, false);
+                }
+            }
+
+        //***// Event Listeners //***//
+            // 1 & 2: Clicking Nav Buttons changes large img and highlights appropriate thumbnail 
+            // 3, 4 & 5: Hovering over thumbnails causes darkening of background, clicking thumbail triggers large img change
+            // 6 & 7: Clicking either the full screen icon or large img itself enters fullscreen mode
+
+            thumbnail.addEventListener("mouseover", largeImgDarkening, false);
+            thumbnail.addEventListener("mouseover", galleryDarkening, false);
+            thumbnail.addEventListener("click", thumbnailEnlarge, false);
+            fullScreen.addEventListener("click", fullScreenImg, false);
+            fullSizedImg.addEventListener("click", fullScreenImg, false);
+            infoBox.addEventListener("click", infoModalExpand, false);
+            infoBox.addEventListener("mouseover", infoBoxHover, false);
+            infoBox.addEventListener("mouseout", infoBoxHoverOff, false);
+            if (navButtonLeft.style.display !== "none") {
+                navButtonLeft.addEventListener("click", imageDecrease, false);
+                navButtonRight.addEventListener("click", imageIncrease, false);
+            }
+            image.addEventListener("touchstart", function(e){
+                startX = e.touches[0].clientX;
+                e.preventDefault();
+            }, false);
+
+            image.addEventListener("touchend", function(e){ 
+                endX = e.changedTouches[0].clientX;
+                distX = endX - startX;
+                if (Math.abs(distX) >= threshold) {
+                    distX > 0 ? imageDecrease() : imageIncrease();      
+                }    
+            }, false);
+        }, 100);
+    }
 }
 
