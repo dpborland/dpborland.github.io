@@ -393,6 +393,7 @@ Right side of page, including all image and text content
 .fullSizedImg {
 	max-height: 100%;
 	max-width: 100%;
+	z-index: 1;
 	transition: opacity .3s ease, width 1s ease;
 }
 
