@@ -31,6 +31,7 @@ function navToggle(e) {
         dropDown[1].style.zIndex = "2",
         dropDown[0].style.zIndex = "-1");
     }
+
     //---// If the screen is larger, both nav menus can be displayed //---//
     else {
         e.target === navWork ?
@@ -42,8 +43,6 @@ function navToggle(e) {
         dropDown[1].innerHTML = "<li>Bio<li>Contact", 
         dropDown[1].classList.toggle("aboutDropExpanded"));
     }
-
-
 }
 
 //*****// Event listeners //******//
@@ -191,25 +190,30 @@ function thumbnailEnlarge(e) {
 function titleShrink(e) {
     var heroBorderDiv = document.querySelector(".heroBorder");
 
-    //---// If heroBorderDiv has not been expanded from 50% starting width //---//
+    //---// If heroBorderDiv has not been expanded from 50% starting width, expand heroBorderDiv and shrink left landing and title //---//
 
     if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) {
         var leftLanding = document.querySelector(".leftLanding");
+            leftLanding.classList.add("leftLandingCollapsed");
+        
         var rightLanding = document.querySelector(".rightLanding");
+            rightLanding.classList.add("rightLandingExpanded");
+        
         var title = document.querySelector(".pageTitle");
+            title.classList.add("pageTitleCollapsed");
+        
         var robert = document.querySelector(".robertTitle");
+            robert.classList.add("robertTitleCollapsed");
+        
         var titleBorderDiv = document.querySelector(".leftBorder");
+            titleBorderDiv.classList.add("leftBorderCollapsed");
 
-        leftLanding.classList.add("leftLandingCollapsed");
-        rightLanding.classList.add("rightLandingExpanded");
-        title.classList.add("pageTitleCollapsed");
-        robert.classList.add("robertTitleCollapsed");
         heroBorderDiv.classList.add("heroBorderDivExpanded");
-        titleBorderDiv.classList.add("leftBorderCollapsed");
 
         loadAJAX(e);
 
     //---// Fades menu out on selection for mobile //---//    
+
         if (window.matchMedia("(max-width: 499px)").matches) {
             navWork.childNodes[0].nodeValue = "+ Paintings";
             navAbout.childNodes[0].nodeValue = "+ Information";
@@ -219,7 +223,7 @@ function titleShrink(e) {
         } 
 
     //---// Fades AJAX content in //---//
-    
+
         function contentFade() {
             var contentChildren = [].slice.call(heroBorderDiv.children);
             contentChildren.map(function(x) {
@@ -326,6 +330,8 @@ function heroBorderAlignment(e) {
     }, 450);
 }
 
+//~~~~~~// Expands the info box containing painting title, size, and price //~~~~~~//
+
 function infoModalExpand() {
     var infoBox = document.querySelector(".galleryInfoButton");
     var fullScreenBox = document.querySelector(".fullScreenToggle");
@@ -346,6 +352,8 @@ function infoModalExpand() {
             infoBox.classList.add("galleryInfoButtonExpanded"));
 }
 
+//~~~~~~// Controls hover state for infoModal //~~~~~~//
+
 function infoBoxHover() {
     var infoBox = document.querySelector(".galleryInfoButton");
     infoBox.classList.add("galleryInfoButtonHover");
@@ -356,6 +364,37 @@ function infoBoxHoverOff() {
     infoBox.classList.remove("galleryInfoButtonHover");
 }
 
+//~~~~~~// Dims the large image when thumbnails hovered over //~~~~~~//
+
+function largeImgDarkening() {
+    if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
+        var largeImg = document.querySelector(".fullSizedImgContainer");
+        var thumbnail = document.querySelector(".galleryThumbnails");
+        largeImg.classList.add("fullSizedImgContainerDarkened");
+
+        function darkeningReverse() {
+            largeImg.classList.remove("fullSizedImgContainerDarkened");
+        }
+        thumbnail.addEventListener("mouseout", darkeningReverse, false);
+    }
+}
+
+//~~~~~~// Dims the thumbnail gallery when thumbnails hovered over //~~~~~~//
+
+function galleryDarkening() {
+    if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
+        var gallery = document.querySelector(".galleryWrapper");
+        var thumbnail = document.querySelector(".galleryThumbnails");
+        gallery.classList.add("galleryNavBoxDarkened");
+
+        function galleryDarkeningReverse() {
+            gallery.classList.remove("galleryNavBoxDarkened");
+        }
+
+        thumbnail.addEventListener("mouseout", galleryDarkeningReverse, false);
+    }
+}
+
 //~~~~~~// Loads ajax content //~~~~~~//
 
 function loadAJAX(e) {
@@ -363,7 +402,7 @@ function loadAJAX(e) {
     var ajaxFill = "robertSchweizerArtResources/" + menuSelection + ".html";
     var heroBorderDiv = document.querySelector(".heroBorder");
 
-    //---// Avoid 404'd AJAX calls //---//
+    //---// Load the appropriate AJAX content, while avoiding 404'd AJAX requests //---//
     if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All" || menuSelection === "Bio" || menuSelection === "Contact") {
 
         var xhttp = new XMLHttpRequest();
@@ -374,85 +413,55 @@ function loadAJAX(e) {
         };
         xhttp.open("GET", ajaxFill, true);
         xhttp.send();
-    }
 
-    //~~~//Gallery scripts//~~~//
+        //---// If a gallery is selected, attaches appropriate event listeners for gallery control //---//
 
-    if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All") {
-        window.setTimeout(function() {
-            var thumbnail = document.querySelector(".galleryThumbnails");
-            var galleryNav = document.querySelector(".galleryNavBox");
-            var navButtonLeft = document.querySelector(".galleryNavLeft");
-            var navButtonRight = document.querySelector(".galleryNavRight");
-            var galleryThumb = document.querySelector(".thumbnailImg");
-            var fullScreen = document.querySelector(".fullScreenToggle");
-            var fullSizedImg = document.querySelector(".fullSizedImg");
-            var infoBox = document.querySelector(".galleryInfoButton");
-            var image = document.querySelector(".fullSizedImgContainer");
-            var image = document.querySelector(".fullSizedImgContainer");
-            var swipedir;
-            var startX;
-            var endX;
-            var distX;
-            var threshold = 100; //required min distance traveled to be considered swipe
+        if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All") {
+            window.setTimeout(function() {
 
-        //---// Dims the large image when thumbnails hovered over //---//
+                var thumbnail = document.querySelector(".galleryThumbnails");
+                    thumbnail.addEventListener("mouseover", largeImgDarkening, false);
+                    thumbnail.addEventListener("mouseover", galleryDarkening, false);
+                    thumbnail.addEventListener("click", thumbnailEnlarge, false);
 
-            function largeImgDarkening() {
-                if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
-                    var largeImg = document.querySelector(".fullSizedImgContainer");
-                    largeImg.classList.add("fullSizedImgContainerDarkened");
-
-                    function darkeningReverse() {
-                        largeImg.classList.remove("fullSizedImgContainerDarkened");
-                    }
-                    thumbnail.addEventListener("mouseout", darkeningReverse, false);
-                }
-            }
-
-            function galleryDarkening() {
-                if (window.matchMedia("(min-width: 500px)").matches && window.matchMedia("(min-height: 400px)").matches) {
-                    var gallery = document.querySelector(".galleryWrapper");
-                    gallery.classList.add("galleryNavBoxDarkened");
-
-                    function galleryDarkeningReverse() {
-                        gallery.classList.remove("galleryNavBoxDarkened");
+                var navButtonLeft = document.querySelector(".galleryNavLeft");
+                var navButtonRight = document.querySelector(".galleryNavRight");
+                    if (navButtonLeft.style.display !== "none") {
+                        navButtonLeft.addEventListener("click", imageDecrease, false);
+                        navButtonRight.addEventListener("click", imageIncrease, false);
                     }
 
-                    thumbnail.addEventListener("mouseout", galleryDarkeningReverse, false);
-                }
-            }
+                var fullScreen = document.querySelector(".fullScreenToggle");
+                    fullScreen.addEventListener("click", fullScreenImg, false);
 
-        //***// Event Listeners //***//
-            // 1 & 2: Clicking Nav Buttons changes large img and highlights appropriate thumbnail 
-            // 3, 4 & 5: Hovering over thumbnails causes darkening of background, clicking thumbail triggers large img change
-            // 6 & 7: Clicking either the full screen icon or large img itself enters fullscreen mode
+                var fullSizedImg = document.querySelector(".fullSizedImg");
+                    fullSizedImg.addEventListener("click", fullScreenImg, false);
 
-            thumbnail.addEventListener("mouseover", largeImgDarkening, false);
-            thumbnail.addEventListener("mouseover", galleryDarkening, false);
-            thumbnail.addEventListener("click", thumbnailEnlarge, false);
-            fullScreen.addEventListener("click", fullScreenImg, false);
-            fullSizedImg.addEventListener("click", fullScreenImg, false);
-            infoBox.addEventListener("click", infoModalExpand, false);
-            infoBox.addEventListener("mouseover", infoBoxHover, false);
-            infoBox.addEventListener("mouseout", infoBoxHoverOff, false);
-            if (navButtonLeft.style.display !== "none") {
-                navButtonLeft.addEventListener("click", imageDecrease, false);
-                navButtonRight.addEventListener("click", imageIncrease, false);
-            }
-            image.addEventListener("touchstart", function(e){
-                startX = e.touches[0].clientX;
-                e.preventDefault();
-            }, false);
+                var infoBox = document.querySelector(".galleryInfoButton");
+                    infoBox.addEventListener("click", infoModalExpand, false);
+                    infoBox.addEventListener("mouseover", infoBoxHover, false);
+                    infoBox.addEventListener("mouseout", infoBoxHoverOff, false);
 
-            image.addEventListener("touchend", function(e){ 
-                endX = e.changedTouches[0].clientX;
-                distX = endX - startX;
-                if (Math.abs(distX) >= threshold) {
-                    distX > 0 ? imageDecrease() : imageIncrease();      
-                }    
-            }, false);
-        }, 100);
+                //---// Anonymous functions for mobile swipe control, so event can be passed //---//
+                var image = document.querySelector(".fullSizedImgContainer");
+                    var startX;
+                    var endX;
+                    var distX;
+                    var threshold = 100; //required min distance traveled to be considered swipe
+                    image.addEventListener("touchstart", function(e){
+                        startX = e.touches[0].clientX;
+                        e.preventDefault();
+                    }, false);
+                    image.addEventListener("touchend", function(e){ 
+                        endX = e.changedTouches[0].clientX;
+                        distX = endX - startX;
+                        if (Math.abs(distX) >= threshold) {
+                            distX > 0 ? imageDecrease() : imageIncrease();      
+                        }    
+                    }, false);
+
+            }, 200);
+        }
     }
 }
 
