@@ -1,8 +1,4 @@
-//~~~~~~// Toggles and fills the "work" and "about" categories //~~~~~~//
-
-var navWork = document.querySelector(".navWork");
-var navAbout = document.querySelector(".navAbout");
-var dropDown = document.querySelectorAll(".dropDown")
+//~~~~~~// Toggles and fills the "Paintings" and "Information" categories //~~~~~~//
 
 function navToggle(e) {
     var navWorkText = navWork.childNodes[0];
@@ -45,16 +41,7 @@ function navToggle(e) {
     }
 }
 
-//*****// Event listeners //******//
-  // 1 & 2: When the "Paintings" menu group is clicked, the menu elements are presented and page is appropriately aligned
-  // 3 & 4: When the "Information" menu group is clicked, the menu elements are presented and page is appropriately aligned
-
-navWork.addEventListener("click", navToggle, false);
-dropDown[0].addEventListener("click", heroBorderAlignment, false);
-navAbout.addEventListener("click", navToggle, false);
-dropDown[1].addEventListener("click", heroBorderAlignment, false);
-
-//~~~~~~// Change full-sized image and fade in matching thumbnail, in gallery //~~~~~~//
+//~~~~~~// Changes full-sized image and fade in matching thumbnail, in gallery //~~~~~~//
 
 function imageDecrease() {
     var thumbImgList = document.querySelectorAll(".thumbnailImg");
@@ -107,7 +94,6 @@ function imageDecrease() {
 }
 
 //~~~~~~// Change full-sized image in gallery on click //~~~~~~//
-
 
 function imageIncrease() {
     var fullSizedImg = document.querySelector(".fullSizedImg");
@@ -185,101 +171,28 @@ function thumbnailEnlarge(e) {
     }
 }
 
-//~~~~~~// Resizes landing page and loads appropriate AJAX content //-----//
+//~~~~~~// Fades content in/out //~~~~~~//
 
-function titleShrink(e) {
+function contentFade() {
     var heroBorderDiv = document.querySelector(".heroBorder");
-
-    //---// If heroBorderDiv has not been expanded from 50% starting width, expand heroBorderDiv and shrink left landing and title //---//
-
-    if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) {
-        var leftLanding = document.querySelector(".leftLanding");
-            leftLanding.classList.add("leftLandingCollapsed");
-        
-        var rightLanding = document.querySelector(".rightLanding");
-            rightLanding.classList.add("rightLandingExpanded");
-        
-        var title = document.querySelector(".pageTitle");
-            title.classList.add("pageTitleCollapsed");
-        
-        var robert = document.querySelector(".robertTitle");
-            robert.classList.add("robertTitleCollapsed");
-        
-        var titleBorderDiv = document.querySelector(".leftBorder");
-            titleBorderDiv.classList.add("leftBorderCollapsed");
-
-        heroBorderDiv.classList.add("heroBorderDivExpanded");
-
-        loadAJAX(e);
-
-    //---// Fades menu out on selection for mobile //---//    
-
-        if (window.matchMedia("(max-width: 499px)").matches) {
-            navWork.childNodes[0].nodeValue = "+ Paintings";
-            navAbout.childNodes[0].nodeValue = "+ Information";
-
-            dropDown[0].classList.remove("workDropExpanded");
-            dropDown[1].classList.remove("aboutDropExpanded");
-        } 
-
-    //---// Fades AJAX content in //---//
-
-        function contentFade() {
-            var contentChildren = [].slice.call(heroBorderDiv.children);
-            contentChildren.map(function(x) {
-                x.classList.toggle("contentVisible");
-            });
-            heroBorderDiv.removeEventListener("transitionend", contentFade, false);
-        }
-
-        heroBorderDiv.addEventListener("transitionend", contentFade, false);
-
-        e.stopPropagation();
-    }
-
-    else if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === true) {
-
-    //---// If heroBorderDiv has been expanded from intial width of 50%, scans content and removes contentVisible class to trigger fade out //---//
-
-        var contentChildren = [].slice.call(heroBorderDiv.children);
-        contentChildren.map(function(x){
+    var contentChildren = [].slice.call(heroBorderDiv.children);
+        contentChildren.map(function(x) {
             x.classList.toggle("contentVisible");
         });
-
-    //---// Fades menu out on selection for mobile //---//    
-
-        if (window.matchMedia("(max-width: 499px)").matches) {
-            navWork.childNodes[0].nodeValue = "+ Paintings";
-            navAbout.childNodes[0].nodeValue = "+ Information";
-
-            dropDown[0].classList.remove("workDropExpanded");
-            dropDown[1].classList.remove("aboutDropExpanded");
-        } 
-
-    //---// Loads the new AJAX content, waits a beat, and adds the contentVisible class to trigger fade in //---//
-
-        function newContentFadeIn() {
-            loadAJAX(e);
-            window.setTimeout(function(){
-                var contentChildren2 = [].slice.call(heroBorderDiv.children);
-                contentChildren2.map(function(y) {
-                    y.classList.add("contentVisible");
-                });
-            }, 200);
-            contentChildren[0].removeEventListener("transitionend", newContentFadeIn, false);
-        }
-
-        contentChildren[0].addEventListener("transitionend", newContentFadeIn, false);
-
-        e.stopPropagation();
-    }
+    heroBorderDiv.removeEventListener("transitionend", contentFade, false);
 }
 
-//******// Event Listeners //******//
-    // 1 & 2: Runs page alignment, content and transitions when menu items selected
-
-dropDown[0].addEventListener("click", titleShrink, false);
-dropDown[1].addEventListener("click", titleShrink, false);
+function newContentFadeIn() {
+    var heroBorderDiv = document.querySelector(".heroBorder");
+    var contentChildren = [].slice.call(heroBorderDiv.children);
+    window.setTimeout(function(){
+        var contentChildren2 = [].slice.call(heroBorderDiv.children);
+        contentChildren2.map(function(y) {
+            y.classList.add("contentVisible");
+        });
+    }, 200);
+    contentChildren[0].removeEventListener("transitionend", newContentFadeIn, false);
+}
 
 //~~~~~~// Full screen image toggle //~~~~~~//
 
@@ -356,12 +269,12 @@ function infoModalExpand() {
 
 function infoBoxHover() {
     var infoBox = document.querySelector(".galleryInfoButton");
-    infoBox.classList.add("galleryInfoButtonHover");
+        infoBox.classList.add("galleryInfoButtonHover");
 }
 
 function infoBoxHoverOff() {
     var infoBox = document.querySelector(".galleryInfoButton");
-    infoBox.classList.remove("galleryInfoButtonHover");
+        infoBox.classList.remove("galleryInfoButtonHover");
 }
 
 //~~~~~~// Dims the large image when thumbnails hovered over //~~~~~~//
@@ -395,6 +308,58 @@ function galleryDarkening() {
     }
 }
 
+//~~~~~~// Attaches all necessary event listeners after AJAX request is made //~~~~~~//
+
+function galleryEventListeners(menuSelection) {
+    if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All") {
+        
+        window.setTimeout(function() {
+
+            var thumbnail = document.querySelector(".galleryThumbnails");
+                thumbnail.addEventListener("mouseover", largeImgDarkening, false);
+                thumbnail.addEventListener("mouseover", galleryDarkening, false);
+                thumbnail.addEventListener("click", thumbnailEnlarge, false);
+
+            var navButtonLeft = document.querySelector(".galleryNavLeft");
+            var navButtonRight = document.querySelector(".galleryNavRight");
+                if (navButtonLeft.style.display !== "none") {
+                    navButtonLeft.addEventListener("click", imageDecrease, false);
+                    navButtonRight.addEventListener("click", imageIncrease, false);
+                }
+
+            var fullScreen = document.querySelector(".fullScreenToggle");
+                fullScreen.addEventListener("click", fullScreenImg, false);
+
+            var fullSizedImg = document.querySelector(".fullSizedImg");
+                fullSizedImg.addEventListener("click", fullScreenImg, false);
+
+            var infoBox = document.querySelector(".galleryInfoButton");
+                infoBox.addEventListener("click", infoModalExpand, false);
+                infoBox.addEventListener("mouseover", infoBoxHover, false);
+                infoBox.addEventListener("mouseout", infoBoxHoverOff, false);
+
+            //---// Anonymous functions for mobile swipe control, so event can be passed //---//
+            var image = document.querySelector(".fullSizedImgContainer");
+                var startX;          // First point along X-axis touched
+                var endX;            // Last point along X-axis touched
+                var distX;           // Distance traveled along X-axis
+                var threshold = 100; // Required min distance traveled along X-axis to be considered swipe
+                image.addEventListener("touchstart", function(e){
+                    startX = e.touches[0].clientX;
+                    e.preventDefault();
+                }, false);
+                image.addEventListener("touchend", function(e){ 
+                    endX = e.changedTouches[0].clientX;
+                    distX = endX - startX;
+                    if (Math.abs(distX) >= threshold) {
+                        distX > 0 ? imageDecrease() : imageIncrease();      
+                    }    
+                }, false);
+
+        }, 200);
+    }
+}
+
 //~~~~~~// Loads ajax content //~~~~~~//
 
 function loadAJAX(e) {
@@ -402,7 +367,7 @@ function loadAJAX(e) {
     var ajaxFill = "robertSchweizerArtResources/" + menuSelection + ".html";
     var heroBorderDiv = document.querySelector(".heroBorder");
 
-    //---// Load the appropriate AJAX content, while avoiding 404'd AJAX requests //---//
+    //---// Load the appropriate AJAX content (while avoiding 404'd AJAX requests), then attaches event listeners //---//
     if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All" || menuSelection === "Bio" || menuSelection === "Contact") {
 
         var xhttp = new XMLHttpRequest();
@@ -414,54 +379,95 @@ function loadAJAX(e) {
         xhttp.open("GET", ajaxFill, true);
         xhttp.send();
 
-        //---// If a gallery is selected, attaches appropriate event listeners for gallery control //---//
-
-        if (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All") {
-            window.setTimeout(function() {
-
-                var thumbnail = document.querySelector(".galleryThumbnails");
-                    thumbnail.addEventListener("mouseover", largeImgDarkening, false);
-                    thumbnail.addEventListener("mouseover", galleryDarkening, false);
-                    thumbnail.addEventListener("click", thumbnailEnlarge, false);
-
-                var navButtonLeft = document.querySelector(".galleryNavLeft");
-                var navButtonRight = document.querySelector(".galleryNavRight");
-                    if (navButtonLeft.style.display !== "none") {
-                        navButtonLeft.addEventListener("click", imageDecrease, false);
-                        navButtonRight.addEventListener("click", imageIncrease, false);
-                    }
-
-                var fullScreen = document.querySelector(".fullScreenToggle");
-                    fullScreen.addEventListener("click", fullScreenImg, false);
-
-                var fullSizedImg = document.querySelector(".fullSizedImg");
-                    fullSizedImg.addEventListener("click", fullScreenImg, false);
-
-                var infoBox = document.querySelector(".galleryInfoButton");
-                    infoBox.addEventListener("click", infoModalExpand, false);
-                    infoBox.addEventListener("mouseover", infoBoxHover, false);
-                    infoBox.addEventListener("mouseout", infoBoxHoverOff, false);
-
-                //---// Anonymous functions for mobile swipe control, so event can be passed //---//
-                var image = document.querySelector(".fullSizedImgContainer");
-                    var startX;
-                    var endX;
-                    var distX;
-                    var threshold = 100; //required min distance traveled to be considered swipe
-                    image.addEventListener("touchstart", function(e){
-                        startX = e.touches[0].clientX;
-                        e.preventDefault();
-                    }, false);
-                    image.addEventListener("touchend", function(e){ 
-                        endX = e.changedTouches[0].clientX;
-                        distX = endX - startX;
-                        if (Math.abs(distX) >= threshold) {
-                            distX > 0 ? imageDecrease() : imageIncrease();      
-                        }    
-                    }, false);
-
-            }, 200);
-        }
+        galleryEventListeners(menuSelection);
     }
 }
+
+//~~~~~~// Resizes landing page and loads appropriate AJAX content //~~~~~~//
+
+function titleShrink(e) {
+    var heroBorderDiv = document.querySelector(".heroBorder");
+
+    if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) {
+
+        //---// If heroBorderDiv hasn't been expanded, triggers expansion, shrinks left landing and title, loads AJAX //---//
+
+        var leftLanding = document.querySelector(".leftLanding");
+            leftLanding.classList.add("leftLandingCollapsed");
+        
+        var rightLanding = document.querySelector(".rightLanding");
+            rightLanding.classList.add("rightLandingExpanded");
+        
+        var title = document.querySelector(".pageTitle");
+            title.classList.add("pageTitleCollapsed");
+        
+        var robert = document.querySelector(".robertTitle");
+            robert.classList.add("robertTitleCollapsed");
+        
+        var titleBorderDiv = document.querySelector(".leftBorder");
+            titleBorderDiv.classList.add("leftBorderCollapsed");
+
+        heroBorderDiv.classList.add("heroBorderDivExpanded");
+
+        loadAJAX(e);
+
+        //---// Fades menu out on selection for mobile //---//    
+
+        if (window.matchMedia("(max-width: 499px)").matches) {
+            navWork.childNodes[0].nodeValue = "+ Paintings";
+            navAbout.childNodes[0].nodeValue = "+ Information";
+
+            dropDown[0].classList.remove("workDropExpanded");
+            dropDown[1].classList.remove("aboutDropExpanded");
+        } 
+
+        heroBorderDiv.addEventListener("transitionend", contentFade, false);
+
+        e.stopPropagation();
+    }
+
+    else if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === true) {
+
+        //---// If heroBorderDiv has been expanded from intial width of 50%, scans content and removes contentVisible class to trigger fade out //---//
+
+        contentFade();
+
+        //---// Allows current content to fade out, then loads and fades in new content //---//    
+
+        window.setTimeout(function() {
+            loadAJAX(e);
+            newContentFadeIn();
+        }, 500);
+
+        //---// Fades menu out on selection for mobile //---//    
+
+        if (window.matchMedia("(max-width: 499px)").matches) {
+            navWork.childNodes[0].nodeValue = "+ Paintings";
+            navAbout.childNodes[0].nodeValue = "+ Information";
+
+            dropDown[0].classList.remove("workDropExpanded");
+            dropDown[1].classList.remove("aboutDropExpanded");
+        } 
+
+        e.stopPropagation();
+    }
+}
+
+//******// Event Listeners //******//
+
+// navWork: When the "Paintings" menu group is clicked, the menu elements are presented and page is appropriately aligned
+var navWork = document.querySelector(".navWork");
+    navWork.addEventListener("click", navToggle, false);
+
+// navAbout: When the "Information" menu group is clicked, the menu elements are presented and page is appropriately aligned
+var navAbout = document.querySelector(".navAbout");
+    navAbout.addEventListener("click", navToggle, false);
+
+// dropDown: When either the "Paintings" or "Information" drop menu choices are clicked, the landing page is resized (if necessary), the AJAX content is loaded and faded in/out
+var dropDown = document.querySelectorAll(".dropDown")
+    dropDown[0].addEventListener("click", heroBorderAlignment, false);
+    dropDown[1].addEventListener("click", heroBorderAlignment, false);
+    dropDown[0].addEventListener("click", titleShrink, false);
+    dropDown[1].addEventListener("click", titleShrink, false);
+
 
