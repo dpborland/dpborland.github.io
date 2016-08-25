@@ -779,7 +779,7 @@ Basic CSS for mobile
 	.aboutDropExpanded {
 		justify-content: space-around;
 		height: 94%;
-		font-size: 3em;
+		font-size: 2.3em;
 		opacity: 1;
 		transition: opacity .4s ease;
 	}
@@ -1038,6 +1038,10 @@ Refinements for mobile width ranges
 	.dropDown {
 		font-size: 2.6em;
 	}
+	
+	.aboutDropExpanded {
+		font-size: 4em !important;
+	}
 
 	.infoSpacer {
 		display: flex;
@@ -1073,6 +1077,10 @@ Refinements for mobile width ranges
 
 	.dropDown {
 		font-size: 2.6em;
+	}
+	
+	.aboutDropExpanded {
+		font-size: 4em !important;
 	}
 
 	.thumbnailContainer {
