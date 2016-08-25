@@ -452,7 +452,7 @@ function titleShrink(e) {
         window.setTimeout(function() {
             loadAJAX(e);
             newContentFadeIn();
-        }, 500);
+        }, 1000);
 
         //---// Fades menu out on selection for mobile //---//    
         if (window.matchMedia("(max-width: 499px)").matches) {
