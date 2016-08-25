@@ -4,7 +4,7 @@ function navToggle(e) {
     var navWorkText = navWork.childNodes[0];
     var navAboutText = navAbout.childNodes[0];
 
-    //---// If the screen is smaller, displays only one nav menu //---//
+    //---// If the screen is smaller (mobile), displays only one nav menu //---//
     if (window.matchMedia("(max-width: 499px)").matches) {   
         e.target === navWork ?
         (navWorkText.nodeValue === "- Paintings" ? navWorkText.nodeValue = "+ Paintings" : navWorkText.nodeValue = "- Paintings",
@@ -41,7 +41,7 @@ function navToggle(e) {
     }
 }
 
-//~~~~~~// Changes full-sized image and fade in matching thumbnail, in gallery //~~~~~~//
+//~~~~~~// Changes full-sized image and fades in matching thumbnail //~~~~~~//
 
 function imageDecrease() {
     var thumbImgList = document.querySelectorAll(".thumbnailImg");
@@ -51,7 +51,10 @@ function imageDecrease() {
     var fullSizedImgSmall = document.querySelector(".fullSizedImgSmall");
     var fullSizedImgSmallAlt = document.querySelector(".fullSizedImgSmall").alt;
 
+    //---// Loops through all loaded thumbnails //---//
     for (var i = 0; i < imgArray.length; i++) {
+
+        //---// Runs if the selected thumbnail isn't at index 0 //---//
         if ((imgArray[i].alt === fullSizedImgAlt) && (i !== 0)) {
             fullSizedImg.classList.add("contentTransparent");
             fullSizedImgSmall.classList.add("contentTransparent");
@@ -65,12 +68,17 @@ function imageDecrease() {
                     fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
+            
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
+            
             imgArray[i - 1].classList.add("contentVisible");
+            
             return;
-        }   
+        }  
+
+        //----// Runs if the selected thumbnail is at index 0 //---// 
         else if ((imgArray[i].alt === fullSizedImgAlt) && (imgArray.indexOf(imgArray[i]) === 0)) {
             fullSizedImg.classList.add("contentTransparent");
             fullSizedImgSmall.classList.add("contentTransparent");
@@ -84,16 +92,17 @@ function imageDecrease() {
                     fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
+            
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
+            
             imgArray[imgArray.length - 1].classList.add("contentVisible");
+            
             return;
         }
     }
 }
-
-//~~~~~~// Change full-sized image in gallery on click //~~~~~~//
 
 function imageIncrease() {
     var fullSizedImg = document.querySelector(".fullSizedImg");
@@ -102,7 +111,10 @@ function imageIncrease() {
     var imgArray = Array.from(thumbImgList);
     var fullSizedImgAlt = document.querySelector(".fullSizedImg").alt;
 
+    //---// Loops through all loaded thumbnails //---//
     for (var j = 0; j < imgArray.length; j++) {
+
+        //---// Runs if selected thumbnail isn't the last in the array //---//
         if (imgArray[j].alt === fullSizedImgAlt && j !== (imgArray.length - 1)) {
             fullSizedImg.classList.add("contentTransparent");
             fullSizedImgSmall.classList.add("contentTransparent");
@@ -116,14 +128,19 @@ function imageIncrease() {
                     fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
+            
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
+            
             imgArray[j + 1].classList.add("contentVisible");
+            
             return;
         }
+
+        //---// Runs if the selected thumbnail is the last in the array //---//
         else if (imgArray[j].alt === fullSizedImgAlt && j === (imgArray.length - 1)) {
-            fullSizedImg.classList.add("contentTransparent");
+            fullSizedImg.classList.add("contentTransparent");  
             fullSizedImgSmall.classList.add("contentTransparent");
             window.setTimeout(function() {
                 fullSizedImg.src = "robertSchweizerArtResources/images/marine/" + imgArray[0].alt + ".jpg";
@@ -135,10 +152,13 @@ function imageIncrease() {
                     fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
+            
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
+            
             imgArray[0].classList.add("contentVisible");
+            
             return;
         }
     }
@@ -151,6 +171,7 @@ function thumbnailEnlarge(e) {
     var fullSizedImg = document.querySelector(".fullSizedImg");
     var fullSizedImgSmall = document.querySelector(".fullSizedImgSmall");
     var thumbImgList = document.querySelectorAll(".thumbnailImg");
+    
     if (thumbAlt !== undefined) {
         fullSizedImg.classList.add("contentTransparent");
         fullSizedImgSmall.classList.add("contentTransparent");
@@ -164,14 +185,16 @@ function thumbnailEnlarge(e) {
                 fullSizedImgSmall.classList.remove("contentTransparent");
             }, 250);
         }, 500);
+        
         [].forEach.call(thumbImgList, function(x) {
             x.classList.remove("contentVisible");
         });        
+        
         e.target.classList.add("contentVisible");
     }
 }
 
-//~~~~~~// Fades content in/out //~~~~~~//
+//~~~~~~// Fades main content in/out //~~~~~~//
 
 function contentFade() {
     var heroBorderDiv = document.querySelector(".heroBorder");
@@ -388,22 +411,17 @@ function loadAJAX(e) {
 function titleShrink(e) {
     var heroBorderDiv = document.querySelector(".heroBorder");
 
+    //---// If heroBorderDiv hasn't been expanded, triggers expansion, shrinks left landing and title, loads AJAX //---//
     if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) {
-
-        //---// If heroBorderDiv hasn't been expanded, triggers expansion, shrinks left landing and title, loads AJAX //---//
 
         var leftLanding = document.querySelector(".leftLanding");
             leftLanding.classList.add("leftLandingCollapsed");
-        
         var rightLanding = document.querySelector(".rightLanding");
             rightLanding.classList.add("rightLandingExpanded");
-        
         var title = document.querySelector(".pageTitle");
             title.classList.add("pageTitleCollapsed");
-        
         var robert = document.querySelector(".robertTitle");
             robert.classList.add("robertTitleCollapsed");
-        
         var titleBorderDiv = document.querySelector(".leftBorder");
             titleBorderDiv.classList.add("leftBorderCollapsed");
 
@@ -412,7 +430,6 @@ function titleShrink(e) {
         loadAJAX(e);
 
         //---// Fades menu out on selection for mobile //---//    
-
         if (window.matchMedia("(max-width: 499px)").matches) {
             navWork.childNodes[0].nodeValue = "+ Paintings";
             navAbout.childNodes[0].nodeValue = "+ Information";
@@ -426,21 +443,18 @@ function titleShrink(e) {
         e.stopPropagation();
     }
 
+    //---// If heroBorderDiv has been expanded from intial width of 50%, scans content and removes contentVisible class to trigger fade out //---//
     else if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === true) {
-
-        //---// If heroBorderDiv has been expanded from intial width of 50%, scans content and removes contentVisible class to trigger fade out //---//
 
         contentFade();
 
         //---// Allows current content to fade out, then loads and fades in new content //---//    
-
         window.setTimeout(function() {
             loadAJAX(e);
             newContentFadeIn();
         }, 500);
 
         //---// Fades menu out on selection for mobile //---//    
-
         if (window.matchMedia("(max-width: 499px)").matches) {
             navWork.childNodes[0].nodeValue = "+ Paintings";
             navAbout.childNodes[0].nodeValue = "+ Information";
