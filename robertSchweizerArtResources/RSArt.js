@@ -213,7 +213,7 @@ function newContentFadeIn() {
         contentChildren2.map(function(y) {
             y.classList.add("contentVisible");
         });
-    }, 200);
+    }, 1000);
     contentChildren[0].removeEventListener("transitionend", newContentFadeIn, false);
 }
 
