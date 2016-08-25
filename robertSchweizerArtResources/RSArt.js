@@ -451,8 +451,10 @@ function titleShrink(e) {
         //---// Allows current content to fade out, then loads and fades in new content //---//    
         window.setTimeout(function() {
             loadAJAX(e);
+        }, 350);
+        window.setTimeout(function() {
             newContentFadeIn();
-        }, 750);
+        }, 500);
 
         //---// Fades menu out on selection for mobile //---//    
         if (window.matchMedia("(max-width: 499px)").matches) {
