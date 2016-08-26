@@ -424,9 +424,11 @@ function loadAJAX(e) {
 
 function titleShrink(e) {
     var heroBorderDiv = document.querySelector(".heroBorder");
+    var menuSelection = e.target.innerHTML;
 
     //---// If heroBorderDiv hasn't been expanded, triggers expansion, shrinks left landing and title, loads AJAX //---//
-    if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) {
+    if ((heroBorderDiv.classList.contains("heroBorderDivExpanded") === false) &&
+        (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All" || menuSelection === "Bio" || menuSelection === "Contact")) {
 
         var leftLanding = document.querySelector(".leftLanding");
             leftLanding.classList.add("leftLandingCollapsed");
@@ -458,7 +460,7 @@ function titleShrink(e) {
     }
 
     //---// If heroBorderDiv has been expanded from intial width of 50%, scans content and removes contentVisible class to trigger fade out //---//
-    else if (heroBorderDiv.classList.contains("heroBorderDivExpanded") === true) {
+    else if ((heroBorderDiv.classList.contains("heroBorderDivExpanded") === true) && (menuSelection === "Marine" || menuSelection === "Landscapes" || menuSelection === "Portraits" || menuSelection === "Figures &amp; Still Lifes" || menuSelection === "All" || menuSelection === "Bio" || menuSelection === "Contact")) {
 
         contentFade();
 
