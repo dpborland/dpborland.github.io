@@ -149,7 +149,7 @@ Left side of page, including Title and Navigation Menu
 	transition: opacity .15s ease, height .4s ease;
 }
 
-.dropDown li {
+.dropDownItem {
 	color: #BFBFBF;
 	letter-spacing: 1.4px;
 	justify-content: right;
@@ -157,8 +157,13 @@ Left side of page, including Title and Navigation Menu
 	transition: color .4s ease;
 }
 
-.dropDown li:hover {
+.dropDownItem:hover {
     color: #0099ff;
+    transition: color .1s ease;
+}
+
+.dropDownItemHighlight {
+	color: #0099ff;
     transition: color .1s ease;
 }
 
@@ -1035,12 +1040,12 @@ Refinements for mobile width ranges
 		width: 100px;
 	}
 
-	.dropDown {
-		font-size: 2.6em;
-	}
-	
 	.aboutDropExpanded {
 		font-size: 3.7em !important;
+	}
+
+	.dropDown {
+		font-size: 2.6em;
 	}
 
 	.infoSpacer {
@@ -1078,7 +1083,7 @@ Refinements for mobile width ranges
 	.dropDown {
 		font-size: 2.6em;
 	}
-	
+
 	.aboutDropExpanded {
 		font-size: 4em !important;
 	}
