@@ -8,7 +8,7 @@ function navToggle(e) {
     if (window.matchMedia("(max-width: 499px)").matches) {   
         e.target === navWork ?
         (navWorkText.nodeValue === "- Paintings" ? navWorkText.nodeValue = "+ Paintings" : navWorkText.nodeValue = "- Paintings",
-        dropDown[0].innerHTML = "<li>Marine<li>Landscapes<li>Portraits<li>Figures & Still Lifes<li>All", 
+        dropDown[0].innerHTML = "<li class='dropDownItem'>Marine<li class='dropDownItem'>Landscapes<li class='dropDownItem'>Portraits<li class='dropDownItem'>Figures & Still Lifes<li class='dropDownItem'>All", 
         dropDown[0].classList.toggle("workDropExpanded"),
         window.setTimeout(function() {
             dropDown[1].classList.remove("aboutDropExpanded");
@@ -18,7 +18,7 @@ function navToggle(e) {
         dropDown[1].style.zIndex = "-1")
         :
         (navAboutText.nodeValue === "- Information" ? navAboutText.nodeValue = "+ Information" : navAboutText.nodeValue = "- Information",
-        dropDown[1].innerHTML = "<li>Bio<li>Contact", 
+        dropDown[1].innerHTML = "<li class='dropDownItem'>Bio<li class='dropDownItem'>Contact", 
         dropDown[1].classList.toggle("aboutDropExpanded"),
         window.setTimeout(function() {
             dropDown[0].classList.remove("workDropExpanded");
@@ -32,13 +32,27 @@ function navToggle(e) {
     else {
         e.target === navWork ?
         (navWorkText.nodeValue === "- Paintings" ? navWorkText.nodeValue = "+ Paintings" : navWorkText.nodeValue = "- Paintings",
-        dropDown[0].innerHTML = "<li>Marine<li>Landscapes<li>Portraits<li>Figures & Still Lifes<li>All", 
+        dropDown[0].innerHTML = "<li class='dropDownItem'>Marine<li class='dropDownItem'>Landscapes<li class='dropDownItem'>Portraits<li class='dropDownItem'>Figures & Still Lifes<li class='dropDownItem'>All", 
         dropDown[0].classList.toggle("workDropExpanded"))
         :
         (navAboutText.nodeValue === "- Information" ? navAboutText.nodeValue = "+ Information" : navAboutText.nodeValue = "- Information",
-        dropDown[1].innerHTML = "<li>Bio<li>Contact", 
+        dropDown[1].innerHTML = "<li class='dropDownItem'>Bio<li class='dropDownItem'>Contact", 
         dropDown[1].classList.toggle("aboutDropExpanded"));
     }
+}
+
+//~~~~~~// Keeps nav choices highlighted after selection //~~~~~~//
+
+function dropDownItemHighlight(e) {
+    var dropDownItem = e.target; 
+    var dropDownItemList = Array.from(document.querySelectorAll(".dropDownItem"));
+    dropDownItemList.map(function(x) {
+        x.classList.remove("dropDownItemHighlight");
+    })
+    if (e.target !== e.currentTarget) {
+        dropDownItem.classList.add("dropDownItemHighlight");
+    }
+    e.stopPropagation();
 }
 
 //~~~~~~// Changes full-sized image and fades in matching thumbnail //~~~~~~//
@@ -479,11 +493,12 @@ var navWork = document.querySelector(".navWork");
 var navAbout = document.querySelector(".navAbout");
     navAbout.addEventListener("click", navToggle, false);
 
-// dropDown: When either the "Paintings" or "Information" drop menu choices are clicked, the landing page is resized (if necessary), the AJAX content is loaded and faded in/out
+// dropDown: When either the "Paintings" or "Information" drop menu choices are clicked, the landing page is resized (if necessary), the AJAX content is loaded and faded in/out, and the menu item is highlighted
 var dropDown = document.querySelectorAll(".dropDown")
     dropDown[0].addEventListener("click", heroBorderAlignment, false);
     dropDown[1].addEventListener("click", heroBorderAlignment, false);
     dropDown[0].addEventListener("click", titleShrink, false);
     dropDown[1].addEventListener("click", titleShrink, false);
-
+    dropDown[0].addEventListener("click", dropDownItemHighlight, false);
+    dropDown[1].addEventListener("click", dropDownItemHighlight, false);
 
