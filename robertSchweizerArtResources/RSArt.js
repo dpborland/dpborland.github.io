@@ -48,7 +48,7 @@ function dropDownItemHighlight(e) {
     var dropDownItemList = Array.from(document.querySelectorAll(".dropDownItem"));
     dropDownItemList.map(function(x) {
         x.classList.remove("dropDownItemHighlight");
-    })
+    });
     if (e.target !== e.currentTarget) {
         dropDownItem.classList.add("dropDownItemHighlight");
     }
