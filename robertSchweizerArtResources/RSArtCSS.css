@@ -195,6 +195,7 @@ Right side of page, including all image and text content
 .heroBorder {
 	height: 97%;
 	width: 97%;
+	box-sizing: border-box;
 	margin-bottom: 0px;
 	display: flex;
 	flex-wrap: wrap;
@@ -256,6 +257,10 @@ Right side of page, including all image and text content
 .bioText p {
 	width: 100%;
 	text-align: justify;
+}
+
+.bioText::-webkit-scrollbar {
+	display: none;
 }
 
 .dropCap1 {
@@ -340,7 +345,7 @@ Right side of page, including all image and text content
 
 .contentVisible {
 	opacity: 1 !important;
-	transition: opacity .5s ease;
+	transition: opacity .8s ease !important;
 }
 
 .contentTransparent {
@@ -437,7 +442,7 @@ Right side of page, including all image and text content
 	flex-direction: row;
 	align-self: flex-start;
 	align-items: flex-start;
-	height: 75px;
+	height: 90px;
 	width: 100%;
 	box-sizing: border-box;
 	margin-left: 8px;
@@ -491,6 +496,7 @@ Right side of page, including all image and text content
 	justify-content: space-between;
 	width: 100%;
 	height: 75px;
+	padding-bottom: 1px;
 	font-family: Raleway;
 	font-weight: 300;
 	font-size: 2.4em;
@@ -626,7 +632,7 @@ Right side of page, including all image and text content
     overflow: hidden;
     opacity: 0;
     z-index: 100;
-    transition: opacity .5s ease, background-color .5s ease;
+    transition: opacity .2s ease, background-color .5s ease;
 }
 
 .gallerySpacer {
@@ -1328,7 +1334,7 @@ Refinements for tablets and lap/desktops
 	}
 
 	.bioText {
-		font-size: 3vmin;
+		font-size: 2.7vmin;
 		justify-content: space-between;
 		padding-left: 20px;
 		padding-right: 20px;
@@ -1376,7 +1382,7 @@ Refinements for tablets and lap/desktops
 	}
 
 	.bioText {
-		font-size: 3vmin;
+		font-size: 2.6vmin;
 		justify-content: space-between;
 		padding-left: 20px;
 		padding-right: 20px;
