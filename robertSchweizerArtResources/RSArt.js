@@ -69,6 +69,7 @@ function imageDecrease() {
     for (var i = 0; i < imgArray.length; i++) {
 
         //---// Runs if the selected thumbnail isn't at index 0 //---//
+        //---// Fades out current img, changes img src and alt, then fades img back in //---//
         if ((imgArray[i].alt === fullSizedImgAlt) && (i !== 0)) {
             fullSizedImg.classList.add("contentTransparent");
             fullSizedImgSmall.classList.add("contentTransparent");
@@ -82,7 +83,7 @@ function imageDecrease() {
                     fullSizedImgSmall.classList.remove("contentTransparent");
                 }, 250);
             }, 500);
-            
+            //---// Removes opacity: 1 from all thumbnails, then adds it back to the appropriate thumbnail //---//
             [].forEach.call(thumbImgList, function(x) {
                 x.classList.remove("contentVisible");
             }); 
