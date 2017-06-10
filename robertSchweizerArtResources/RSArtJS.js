@@ -264,7 +264,7 @@ if (document.readyState === "complete") {
             .catch( (error) => {
                 console.log(error);
             })
-            .then( dataPipe => loadAJAXContent(dataPipe, response, "heroBorderDiv") )
+            .then( dataPipe => loadAJAXContent(dataPipe, "heroBorderDiv") )
             .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "galleryWrapper") );
         }, false);
     });
