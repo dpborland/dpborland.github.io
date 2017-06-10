@@ -47,7 +47,7 @@ function whatWasSelected(e) {
         } else {
             reject(e);
         }
-    }
+    });
 }
 
 function findCurrentElementOfClass(dataPipe, elementsToSearch, classToSearch) {
