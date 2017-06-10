@@ -37,7 +37,7 @@ function whatWasSelected(e) {
     return new Promise( (resolve, reject) => {
         let dataPipe = {};
 
-        if (e.target.id !== undefined) {
+        if (e.target !== undefined) {
             dataPipe.event = e;
             dataPipe.elementClicked = e.target;
             dataPipe.elementClickedId = e.target.id;
