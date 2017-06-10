@@ -37,12 +37,18 @@ function whatWasSelected(e) {
     return new Promise( (resolve, reject) => {
         let dataPipe = {};
 
-        if (e.target !== undefined) {
+        if (e.target !== undefined && e.touches === undefined) {
             dataPipe.event = e;
             dataPipe.elementClicked = e.target;
             dataPipe.elementClickedId = e.target.id;
             dataPipe.elementClickedAlt = e.target.alt;
+            resolve(dataPipe);
+        } else if (e.target !== undefined && e.touches !== undefined) {
             dataPipe.startingPointX = e.touches[0].clientX;
+            dataPipe.event = e;
+            dataPipe.elementClicked = e.target;
+            dataPipe.elementClickedId = e.target.id;
+            dataPipe.elementClickedAlt = e.target.alt;
             resolve(dataPipe);
         } else {
             reject(e);
