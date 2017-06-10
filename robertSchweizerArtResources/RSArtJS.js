@@ -175,7 +175,7 @@ function mobileSwipeControl(dataPipe, elementClicked) {
     let threshold = 100;
     let endingPointX, distanceTravelledX;
 
-    elementClicked.addEventListener("touchend", function (dataPipe.event) {
+    elementClicked.addEventListener("touchend", () => {
         endingPointX = dataPipe.event.changedTouches[0].clientX;
         dataPipe.distanceTravelledX = endingPointX - dataPipe.startingPointX;
         if (Math.abs(distanceTravelledX) >= threshold) {
