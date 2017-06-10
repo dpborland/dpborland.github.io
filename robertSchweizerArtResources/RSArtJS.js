@@ -229,7 +229,7 @@ if (document.readyState === "complete") {
         .catch( (error) => {
             console.log(error);
         });
-    });
+    }, false);
 
     document.querySelector(".navAbout").addEventListener("click", (e) => {
         whatWasSelected(e)
@@ -238,7 +238,7 @@ if (document.readyState === "complete") {
         .catch( (error) => {
             console.log(error);
         });
-    });
+    }, false);
 
     Array.from(document.querySelectorAll(".dropDownItem")).forEach( (selection) => {
         selection.addEventListener("click", (e) => {
@@ -265,7 +265,7 @@ if (document.readyState === "complete") {
             })
             .then( loadAJAXContent(dataPipe, response, "heroBorderDiv") )
             .then( classToggler(dataPipe, 800, "contentVisible", "galleryWrapper") );
-        });
+        }, false);
     });
 }
 
@@ -285,7 +285,7 @@ if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.qu
             .then( changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
             .catch( (error) => { console.log(error); } )
-        });
+        }, false);
     });
 }
 
@@ -305,7 +305,7 @@ if (document.querySelectorAll(".thumbnailImg") !== undefined && document.querySe
             .then( changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
             .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
             .catch( (error) => { console.log(error); } )
-        });
+        }, false);
     });
 }
 
@@ -329,7 +329,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         .then( changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
         .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
         .catch( (error) => { console.log(error); } )
-    });
+    }, false);
 } else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
     document.querySelector(".fullSizedImgSmall").addEventListener("click", (e) => {
         fullScreenImg("fullSizedImgSmall");
@@ -350,17 +350,17 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         .then( changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
         .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
         .catch( (error) => { console.log(error); } )
-    });
+    }, false);
 }
 
 if (document.querySelector(".fullScreenToggle") !== undefined && document.querySelector(".fullScreenToggle") !== null) {
-    document.querySelector(".fullScreenToggle").addEventListener("click", (e) => {
+    document.querySelector(".fullScreenToggle").addEventListener("click", () => {
         fullScreenImg("fullSizedImg");
     }, false);
 }
 
 if (document.querySelector(".galleryInfoButton") !== undefined && document.querySelector(".galleryInfoButton") !== null) {
-    document.querySelector(".galleryInfoButton").addEventListener("click", (e) => {
+    document.querySelector(".galleryInfoButton").addEventListener("click", () => {
         classToggler("none", 0, "galleryInfoButtonExpanded", "galleryInfoButton");
         textToggler("i", "x", "galleryInfoButton");
         classToggler("none", 50, "infoSpacerExpanded", "infoSpacer");
