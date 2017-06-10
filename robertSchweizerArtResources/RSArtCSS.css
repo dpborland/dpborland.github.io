@@ -46,8 +46,6 @@ Left side of page, including Title and Navigation Menu
 .leftBorder {
 	height: 97%;
 	width: 97%;
-	padding-right: 40px;
-	padding-left: 40px;
 	display: flex;
 	flex-direction: column;
 	align-self: center;
@@ -55,11 +53,6 @@ Left side of page, including Title and Navigation Menu
 	justify-content: flex-start;
 	text-align: center;
 	transition: padding-right .6s ease, padding-left .6s ease;
-}
-
-.leftBorderCollapsed {
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .spacer {
@@ -96,6 +89,7 @@ Left side of page, including Title and Navigation Menu
 }
 
 .nav {
+	width: 100%;
 	font-family: Lato;
 	color: #BFBFBF;
 }
@@ -125,12 +119,12 @@ Left side of page, including Title and Navigation Menu
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	height: 0px;
+	height: 0;
 	font-family: Raleway;
 	font-size: .7em;
 	margin-top: -1px;
 	margin-bottom: 1px;
-	margin-left: -40px;
+	padding-left: 0;
     overflow-y: hidden;
     justify-content: space-around;
     opacity: 0;
@@ -403,6 +397,7 @@ Right side of page, including all image and text content
 .fullSizedImg {
 	max-height: 100%;
 	max-width: 100%;
+	opacity: 0;
 	z-index: 1;
 	transition: opacity .3s ease, width 1s ease;
 }
@@ -418,6 +413,7 @@ Right side of page, including all image and text content
 .fullSizedImgSmall {
 	max-height: 100%;
 	max-width: 100%;
+	opacity: 0;
 	transition: opacity .3s ease, width 1s ease;
 }
 
@@ -693,8 +689,8 @@ Basic CSS for mobile
 	.leftLanding {
 		height: 20%;
 		width: 100%;
-		padding-left: 0px;
-		padding-right: 0px;
+		padding-left: 0;
+		padding-right: 0;
 		flex-direction: row;
 		justify-content: left;
 	}
@@ -706,8 +702,8 @@ Basic CSS for mobile
 	.leftBorder {
 		flex-direction: row;
 		flex-wrap: wrap;
-		padding-left: 0px;
-		padding-right: 0px;
+		padding-left: 0;
+		padding-right: 0;
 		align-items: center;
 		justify-content: center;
 	}
@@ -719,7 +715,7 @@ Basic CSS for mobile
 	.pageTitle {
 		font-size: 10.9vw;
 		padding-bottom: 20px;
-		margin-right: 0px;
+		margin-right: 0;
 		letter-spacing: 2px;
 		transition: font-size 0s ease;
 	}
@@ -1239,7 +1235,7 @@ Refinements for mobile width ranges
 
 //--------------------// 
 
-Refinements for tablets and lap/desktops
+Refinements for tablets and laptops/desktops
 
 //--------------------// 
 
@@ -1370,7 +1366,7 @@ Refinements for tablets and lap/desktops
 	}
 
 	.workDropExpanded {
-		height: 70px !important;
+		height: 70px;
 		margin-top: 2px;
 		transition: height .3s ease;
 	}
