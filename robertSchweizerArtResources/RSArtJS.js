@@ -230,29 +230,25 @@ function fullScreenImg(elementByClass) {
 if (document.readyState === "complete") {
     document.querySelector(".navWork").addEventListener("click", (e) => {
         whatWasSelected(e)
-        .then( classToggler(dataPipe, 0, "workDropExpanded", "workDrop") )
+        .then( dataPipe => classToggler(dataPipe, 0, "workDropExpanded", "workDrop") )
         .then( textToggler("+ Paintings", "- Paintings", "navWork") )
-        .catch( (error) => {
-            console.log(error);
-        });
+        .catch( error => console.log(error) );
     }, false);
 
     document.querySelector(".navAbout").addEventListener("click", (e) => {
         whatWasSelected(e)
-        .then( classToggler(dataPipe, 0, "aboutDropExpanded", "aboutDrop") )
+        .then( dataPipe => classToggler(dataPipe, 0, "aboutDropExpanded", "aboutDrop") )
         .then( textToggler("+ Information", "- Information", "navAbout") )
-        .catch( (error) => {
-            console.log(error);
-        });
+        .catch( (error) => console.log(error) );
     }, false);
 
     Array.from(document.querySelectorAll(".dropDownItem")).forEach( (selection) => {
         selection.addEventListener("click", (e) => {
             whatWasSelected(e)
-            .then( getAJAXContent(dataPipe) )
-            .then( findCurrentElementOfClass(dataPipe, "dropDownItem", "dropDownItemHighlighted") )
-            .then( findNextThumbnailIndex(dataPipe, "dropDownItem") )
-            .then( classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.currentIndex]) )
+            .then( dataPipe => getAJAXContent(dataPipe) )
+            .then( dataPipe => findCurrentElementOfClass(dataPipe, "dropDownItem", "dropDownItemHighlighted") )
+            .then( dataPipe => findNextThumbnailIndex(dataPipe, "dropDownItem") )
+            .then( dataPipe => classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.currentIndex]) )
             .catch( (dataPipe, error) => {
                 if (dataPipe.currentIndex === undefined) {
                     return dataPipe;
@@ -260,17 +256,16 @@ if (document.readyState === "complete") {
                     return error;
                 }
             })
-            .then( classAdder(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.nextIndex]) )
-            .then( classAdder(dataPipe, 0, "leftLandingCollapsed", "leftLanding") )
-            .then( classAdder(dataPipe, 0, "leftBorderCollapsed", "leftBorder") )
-            .then( classAdder(dataPipe, 0, "pageTitleCollapsed", "pageTitle") )
-            .then( classAdder(dataPipe, 0, "rightLandingExpanded", "rightLanding") )
-            .then( classAdder(dataPipe, 0, "heroBorderDivExpanded", "heroBorderDiv") )
+            .then( dataPipe => classAdder(dataPipe, 0, "leftLandingCollapsed", "leftLanding") )
+            .then( dataPipe => classAdder(dataPipe, 0, "leftBorderCollapsed", "leftBorder") )
+            .then( dataPipe => classAdder(dataPipe, 0, "pageTitleCollapsed", "pageTitle") )
+            .then( dataPipe => classAdder(dataPipe, 0, "rightLandingExpanded", "rightLanding") )
+            .then( dataPipe => classAdder(dataPipe, 0, "heroBorderDivExpanded", "heroBorderDiv") )
             .catch( (error) => {
                 console.log(error);
             })
-            .then( loadAJAXContent(dataPipe, response, "heroBorderDiv") )
-            .then( classToggler(dataPipe, 800, "contentVisible", "galleryWrapper") );
+            .then( dataPipe => loadAJAXContent(dataPipe, response, "heroBorderDiv") )
+            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "galleryWrapper") );
         }, false);
     });
 }
@@ -279,17 +274,17 @@ if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.qu
     Array.from(document.querySelectorAll(".galleryNavButtons")).forEach( (button) => {
         button.addEventListener("click", (e) => {
             whatWasSelected(e)
-            .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-            .then( findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-            .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
-            .then( changeAttribute(dataPipe, "src",
+            .then( dataPipe => findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+            .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
+            .then( dataPipe => changeAttribute(dataPipe, "src",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
                 "fullSizedImg") )
-            .then( changeAttribute(dataPipe, "srcset",
+            .then( dataPipe => changeAttribute(dataPipe, "srcset",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
                 "fullSizedImgSmall") )
-            .then( changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
-            .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
+            .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
+            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
             .catch( (error) => { console.log(error); } )
         }, false);
     });
@@ -299,17 +294,17 @@ if (document.querySelectorAll(".thumbnailImg") !== undefined && document.querySe
     Array.from(document.querySelectorAll(".thumbnailImg")).forEach( (thumbnail) => {
         thumbnail.addEventListener("click", (e) => {
             whatWasSelected(e)
-            .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-            .then( findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-            .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
-            .then( changeAttribute(dataPipe, "src",
+            .then( dataPipe => findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+            .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
+            .then( dataPipe => changeAttribute(dataPipe, "src",
                 ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + ".jpg"),
                 "fullSizedImg") )
-            .then( changeAttribute(dataPipe, "srcset",
+            .then( dataPipe => changeAttribute(dataPipe, "srcset",
                 ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + "SMALL.jpg"),
                 "fullSizedImgSmall") )
-            .then( changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
-            .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
+            .then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
+            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
             .catch( (error) => { console.log(error); } )
         }, false);
     });
@@ -322,18 +317,18 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
     document.querySelector(".fullSizedImg").addEventListener("touchstart", (e) => {
         whatWasSelected(e)
-        .then( mobileSwipeControl(dataPipe, "fullSizedImg") )
-        .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-        .then( findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-        .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
-        .then( changeAttribute(dataPipe, "src",
+        .then( dataPipe => mobileSwipeControl(dataPipe, "fullSizedImg") )
+        .then( dataPipe => findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+        .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+        .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
+        .then( dataPipe => changeAttribute(dataPipe, "src",
             ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + ".jpg"),
             "fullSizedImg") )
-        .then( changeAttribute(dataPipe, "srcset",
+        .then( dataPipe => changeAttribute(dataPipe, "srcset",
             ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + "SMALL.jpg"),
             "fullSizedImgSmall") )
-        .then( changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
-        .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
+        .then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
+        .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
         .catch( (error) => { console.log(error); } )
     }, false);
 } else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
@@ -343,18 +338,18 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
     document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", (e) => {
         whatWasSelected(e)
-        .then( mobileSwipeControl(dataPipe, "fullSizedImgSmall") )
-        .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-        .then( findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-        .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
-        .then( changeAttribute(dataPipe, "src",
+        .then( dataPipe => mobileSwipeControl(dataPipe, "fullSizedImgSmall") )
+        .then( dataPipe => findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+        .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+        .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
+        .then( dataPipe => changeAttribute(dataPipe, "src",
             ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + ".jpg"),
             "fullSizedImg") )
-        .then( changeAttribute(dataPipe, "srcset",
+        .then( dataPipe => changeAttribute(dataPipe, "srcset",
             ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + "SMALL.jpg"),
             "fullSizedImgSmall") )
-        .then( changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
-        .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
+        .then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
+        .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
         .catch( (error) => { console.log(error); } )
     }, false);
 }
