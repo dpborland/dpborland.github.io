@@ -228,17 +228,17 @@ function fullScreenImg(elementByClass) {
 //---// Event Listeners and Promise Chain Composition //---//
 
 if (document.readyState === "complete") {
-    document.querySelector(".navWork").addEventListener("click", (e) => {
+    document.querySelector(".navWorkHeading").addEventListener("click", (e) => {
         whatWasSelected(e)
         .then( dataPipe => classToggler(dataPipe, 0, "workDropExpanded", "workDrop") )
-        .then( textToggler("+ Paintings", "- Paintings", "navWork") )
+        .then( textToggler("+ Paintings", "- Paintings", "navWorkHeading") )
         .catch( error => console.log(error) );
     }, false);
 
-    document.querySelector(".navAbout").addEventListener("click", (e) => {
+    document.querySelector(".navAboutHeading").addEventListener("click", (e) => {
         whatWasSelected(e)
         .then( dataPipe => classToggler(dataPipe, 0, "aboutDropExpanded", "aboutDrop") )
-        .then( textToggler("+ Information", "- Information", "navAbout") )
+        .then( textToggler("+ Information", "- Information", "navAboutHeading") )
         .catch( (error) => console.log(error) );
     }, false);
 
