@@ -29,7 +29,9 @@ function loadAJAXContent(dataPipe, containterElementByClass) {
         }, false);
 
         container.insertAdjacentHTML("afterbegin", dataPipe.response);
+    });
 }
+
 
 function whatWasSelected(e) {
     return new Promise( (resolve, reject) => {
