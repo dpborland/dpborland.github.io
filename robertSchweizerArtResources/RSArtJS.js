@@ -2,7 +2,7 @@
 
 function getAJAXContent(dataPipe) {
     return new Promise( (resolve, reject) => {
-        let ajaxFill = "robertSchweizerArtResources/" + dataPipe.event.textContent + ".html";
+        let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent + ".html";
         let xhttp = new XMLHttpRequest();
 
         xhttp.open("GET", ajaxFill, true);
