@@ -222,7 +222,7 @@ function fullScreenImg(elementByClass) {
 //---// Event Listeners and Promise Chain Composition //---//
 
 if (document.readyState === "complete") {
-    document.querySelector(".navWork").addEventListener("click", () => {
+    document.querySelector(".navWork").addEventListener("click", (e) => {
         whatWasSelected(e)
         .then( classToggler(dataPipe, 0, "workDropExpanded", "workDrop") )
         .then( textToggler("+ Paintings", "- Paintings", "navWork") )
@@ -231,7 +231,7 @@ if (document.readyState === "complete") {
         });
     });
 
-    document.querySelector(".navAbout").addEventListener("click", () => {
+    document.querySelector(".navAbout").addEventListener("click", (e) => {
         whatWasSelected(e)
         .then( classToggler(dataPipe, 0, "aboutDropExpanded", "aboutDrop") )
         .then( textToggler("+ Information", "- Information", "navAbout") )
@@ -241,7 +241,7 @@ if (document.readyState === "complete") {
     });
 
     Array.from(document.querySelectorAll(".dropDownItem")).forEach( (selection) => {
-        selection.addEventListener("click", () => {
+        selection.addEventListener("click", (e) => {
             whatWasSelected(e)
             .then( getAJAXContent(dataPipe) )
             .then( findCurrentElementOfClass(dataPipe, "dropDownItem", "dropDownItemHighlighted") )
@@ -271,7 +271,7 @@ if (document.readyState === "complete") {
 
 if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.querySelectorAll(".galleryNavButtons") !== null) {
     Array.from(document.querySelectorAll(".galleryNavButtons")).forEach( (button) => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (e) => {
             whatWasSelected(e)
             .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( findNextThumbnailIndex(dataPipe, "thumbnailImg") )
@@ -291,7 +291,7 @@ if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.qu
 
 if (document.querySelectorAll(".thumbnailImg") !== undefined && document.querySelectorAll(".thumbnailImg") !== null) {
     Array.from(document.querySelectorAll(".thumbnailImg")).forEach( (thumbnail) => {
-        thumbnail.addEventListener("click", () => {
+        thumbnail.addEventListener("click", (e) => {
             whatWasSelected(e)
             .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( findNextThumbnailIndex(dataPipe, "thumbnailImg") )
@@ -310,11 +310,11 @@ if (document.querySelectorAll(".thumbnailImg") !== undefined && document.querySe
 }
 
 if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
-    document.querySelector(".fullSizedImg").addEventListener("click", () => {
+    document.querySelector(".fullSizedImg").addEventListener("click", (e) => {
         fullScreenImg("fullSizedImg");
     }, false);
 
-    document.querySelector(".fullSizedImg").addEventListener("touchstart", () => {
+    document.querySelector(".fullSizedImg").addEventListener("touchstart", (e) => {
         whatWasSelected(e)
         .then( mobileSwipeControl(dataPipe, "fullSizedImg") )
         .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
@@ -331,11 +331,11 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         .catch( (error) => { console.log(error); } )
     });
 } else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
-    document.querySelector(".fullSizedImgSmall").addEventListener("click", () => {
+    document.querySelector(".fullSizedImgSmall").addEventListener("click", (e) => {
         fullScreenImg("fullSizedImgSmall");
     }, false);
 
-    document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", () => {
+    document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", (e) => {
         whatWasSelected(e)
         .then( mobileSwipeControl(dataPipe, "fullSizedImgSmall") )
         .then( findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
@@ -354,13 +354,13 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 }
 
 if (document.querySelector(".fullScreenToggle") !== undefined && document.querySelector(".fullScreenToggle") !== null) {
-    document.querySelector(".fullScreenToggle").addEventListener("click", () => {
+    document.querySelector(".fullScreenToggle").addEventListener("click", (e) => {
         fullScreenImg("fullSizedImg");
     }, false);
 }
 
 if (document.querySelector(".galleryInfoButton") !== undefined && document.querySelector(".galleryInfoButton") !== null) {
-    document.querySelector(".galleryInfoButton").addEventListener("click", () => {
+    document.querySelector(".galleryInfoButton").addEventListener("click", (e) => {
         classToggler("none", 0, "galleryInfoButtonExpanded", "galleryInfoButton");
         textToggler("i", "x", "galleryInfoButton");
         classToggler("none", 50, "infoSpacerExpanded", "infoSpacer");
