@@ -330,7 +330,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         .then( classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
         .catch( (error) => { console.log(error); } )
     });
-} else if (document.querySelector(".fullSizedImgSmall") !== undefined || document.querySelector(".fullSizedImgSmall") !== null) {
+} else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
     document.querySelector(".fullSizedImgSmall").addEventListener("click", () => {
         fullScreenImg("fullSizedImgSmall");
     }, false);
