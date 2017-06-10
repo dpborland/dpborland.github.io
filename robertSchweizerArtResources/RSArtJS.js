@@ -24,7 +24,7 @@ function loadAJAXContent(dataPipe, containterElementByClass) {
     return new Promise( (resolve, reject) => {
         let container = document.querySelector("." + containterElementByClass);
 
-        containter.addEventListener("DOMContentLoaded", () => {
+        container.addEventListener("DOMContentLoaded", () => {
             resolve(dataPipe);
         }, false);
 
