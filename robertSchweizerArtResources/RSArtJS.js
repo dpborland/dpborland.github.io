@@ -41,17 +41,16 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     xhttp.onload = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             dataPipe.response = xhttp.responseText;
+            Array.isArray(containerElementByClass) ?
+                (container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]],
+                    container.innerHTML = dataPipe.response)
+                :
+                (container = document.querySelector("." + containerElementByClass),
+                    container.innerHTML = dataPipe.response);
         } else {
             console.log(xhttp.status);
         }
     }
-
-    Array.isArray(containerElementByClass) ?
-        (container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]],
-        container.innerHTML = dataPipe.response)
-        :
-        (container = document.querySelector("." + containerElementByClass),
-        container.innerHTML = dataPipe.response);
 
     xhttp.send();
     return dataPipe;
