@@ -37,7 +37,7 @@ function loadAJAXContent(dataPipe, containerElementByClass) {
     Array.isArray(containerElementByClass) ?
         container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]]
         :
-        container = Array.from(document.querySelector("." + containerElementByClass));
+        container = document.querySelector("." + containerElementByClass);
 
     //container.insertAdjacentHTML("afterbegin", dataPipe.response);
     container.innerHTML(dataPipe.response);
