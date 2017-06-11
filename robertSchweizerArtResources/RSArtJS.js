@@ -1,6 +1,6 @@
 //---// Function Declarations //---//
 
-function getAJAXContent(dataPipe) {
+/*function getAJAXContent(dataPipe) {
     return new Promise( (resolve, reject) => {
         let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.split(" ").join("").toLowerCase() + ".html";
         let xhttp = new XMLHttpRequest();
@@ -8,16 +8,16 @@ function getAJAXContent(dataPipe) {
         xhttp.open("GET", ajaxFill, true);
 
 
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                dataPipe.response = xhttp.responseText;
-                resolve(dataPipe);
-            } else {
-                reject(Error(xhttp.statusText));
-            }
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            dataPipe.response = xhttp.responseText;
+            resolve(dataPipe);
+        } else {
+            reject(Error(xhttp.statusText));
+        }
 
         xhttp.send();
     });
-}
+}*/
 
 /*function loadAJAXContent(dataPipe, containterElementByClass) {
     return new Promise( (resolve, reject) => {
@@ -30,6 +30,23 @@ function getAJAXContent(dataPipe) {
 
     });
 }*/
+
+function getAJAXContent(dataPipe) {
+    let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.split(" ").join("").toLowerCase() + ".html";
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", ajaxFill, true);
+
+
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+        dataPipe.response = xhttp.responseText;
+    } else {
+        console.log(xhttp.status);
+    }
+
+    xhttp.send();
+    return dataPipe;
+}
 
 function loadAJAXContent(dataPipe, containerElementByClass) {
     let container;
