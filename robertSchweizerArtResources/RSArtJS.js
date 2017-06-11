@@ -24,10 +24,10 @@ function loadAJAXContent(dataPipe, containterElementByClass) {
         let container = document.querySelector("." + containterElementByClass);
 
         container.addEventListener("DOMContentLoaded", () => {
+            container.insertAdjacentHTML("afterbegin", dataPipe.response);
             resolve(dataPipe);
         }, false);
 
-        container.insertAdjacentHTML("afterbegin", dataPipe.response);
     });
 }
 
