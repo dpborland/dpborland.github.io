@@ -42,7 +42,7 @@ function getAJAXContent(dataPipe) {
             dataPipe.response = xhttp.responseText;
         } else {
             console.log(xhttp.status);
-        });
+        }
     }
 
     xhttp.send();
