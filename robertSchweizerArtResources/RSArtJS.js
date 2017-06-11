@@ -9,14 +9,14 @@ function getAJAXContent(dataPipe) {
 
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                dataPipe.response = xhttp.response;
+                dataPipe.response = xhttp.responseText;
                 resolve(dataPipe);
             } else {
                 reject(Error(xhttp.statusText));
             }
         };
 
-        xhttp.send();
+        xhttp.send("");
     });
 }
 
