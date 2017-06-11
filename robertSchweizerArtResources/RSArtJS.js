@@ -6,11 +6,11 @@ function getAJAXContent(dataPipe) {
         let xhttp = new XMLHttpRequest();
 
         xhttp.open("GET", ajaxFill, true);
+        dataPipe.response = xhttp.responseText;
 
-        xhttp.onreadystatechange = () => {
+
+    xhttp.onreadystatechange = () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                dataPipe.response = xhttp.responseText;
-                console.log(xhttp.responseText);
                 resolve(dataPipe);
             } else {
                 reject(Error(xhttp.statusText));
