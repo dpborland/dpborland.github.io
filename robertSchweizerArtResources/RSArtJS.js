@@ -37,12 +37,13 @@ function getAJAXContent(dataPipe) {
 
     xhttp.open("GET", ajaxFill, true);
 
-    xhttp.onreadystatechange(
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-        dataPipe.response = xhttp.responseText;
-    } else {
-        console.log(xhttp.status);
-    });
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            dataPipe.response = xhttp.responseText;
+        } else {
+            console.log(xhttp.status);
+        });
+    }
 
     xhttp.send();
     return dataPipe;
