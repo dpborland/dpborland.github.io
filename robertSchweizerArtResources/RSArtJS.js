@@ -32,6 +32,8 @@ function getAJAXContent(dataPipe) {
 }*/
 
 function loadAJAXContent(dataPipe, containerElementByClass) {
+    let container;
+    
     Array.isArray(containerElementByClass) ?
         container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]]
         :
