@@ -8,15 +8,16 @@ function getAJAXContent(dataPipe) {
         xhttp.open("GET", ajaxFill, true);
 
         xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if (xhttp.readyState == XMLHttpRequest.DONE && xhttp.status == 200) {
                 dataPipe.response = xhttp.responseText;
+                console.log(xhttp.responseText);
                 resolve(dataPipe);
             } else {
                 reject(Error(xhttp.statusText));
             }
         };
 
-        xhttp.send("");
+        xhttp.send();
     });
 }
 
