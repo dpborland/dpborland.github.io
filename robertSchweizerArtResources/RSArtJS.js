@@ -2,7 +2,7 @@
 
 function getAJAXContent(dataPipe) {
     return new Promise( (resolve, reject) => {
-        let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.toLowerCase() + ".html";
+        let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.split(" ").join("").toLowerCase() + ".html";
         let xhttp = new XMLHttpRequest();
 
         xhttp.open("GET", ajaxFill, true);
@@ -19,7 +19,7 @@ function getAJAXContent(dataPipe) {
     });
 }
 
-function loadAJAXContent(dataPipe, containterElementByClass) {
+/*function loadAJAXContent(dataPipe, containterElementByClass) {
     return new Promise( (resolve, reject) => {
         let container = document.querySelector("." + containterElementByClass);
 
@@ -29,6 +29,17 @@ function loadAJAXContent(dataPipe, containterElementByClass) {
         }, false);
 
     });
+}*/
+
+function loadAJAXContent(dataPipe, containerElementByClass) {
+    Array.isArray(containerElementByClass) ?
+        container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]]
+        :
+        container = Array.from(document.querySelector("." + containerElementByClass));
+
+    container.insertAdjacentHTML("afterbegin", dataPipe.response);
+
+    return dataPipe;
 }
 
 
@@ -263,11 +274,11 @@ if (document.readyState === "complete") {
             .then( dataPipe => classAdder(dataPipe, 0, "leftBorderCollapsed", "leftBorder") )
             .then( dataPipe => classAdder(dataPipe, 0, "pageTitleCollapsed", "pageTitle") )
             .then( dataPipe => classAdder(dataPipe, 0, "rightLandingExpanded", "rightLanding") )
-            .then( dataPipe => classAdder(dataPipe, 0, "heroBorderDivExpanded", "heroBorderDiv") )
+            .then( dataPipe => classAdder(dataPipe, 0, "heroBorderDivExpanded", "heroBorder") )
             .catch( (error) => {
                 console.log(error);
             })
-            .then( dataPipe => loadAJAXContent(dataPipe, "heroBorderDiv") )
+            .then( dataPipe => loadAJAXContent(dataPipe, "heroBorder") )
             .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "galleryWrapper") );
         }, false);
     });
