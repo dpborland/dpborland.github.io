@@ -116,9 +116,13 @@ function classAdder(dataPipe, delayTime, classToAdd, ...targetElementByClass) {
         });
     }
 
-    window.setTimeout( () => {
+    if(delayTime !== 0) {
+        window.setTimeout( () => {
+            return dataPipe;
+        }, delayTime);
+    } else {
         return dataPipe;
-    }, delayTime);
+    }
 }
 
 function classToggler(dataPipe, delayTime = 0, classToToggle, ...targetElementsByClass) {
