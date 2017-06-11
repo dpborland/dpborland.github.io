@@ -37,7 +37,7 @@ function getAJAXContent(dataPipe) {
 
     xhttp.open("GET", ajaxFill, true);
 
-    xhttp.onreadystatechange = () => {
+    xhttp.onload = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             dataPipe.response = xhttp.responseText;
         } else {
