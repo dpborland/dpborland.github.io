@@ -40,7 +40,7 @@ function loadAJAXContent(dataPipe, containerElementByClass) {
         container = document.querySelector("." + containerElementByClass);
 
     //container.insertAdjacentHTML("afterbegin", dataPipe.response);
-    container.innerHTML(dataPipe.response);
+    container.innerHTML = dataPipe.response;
 
     return dataPipe;
 }
