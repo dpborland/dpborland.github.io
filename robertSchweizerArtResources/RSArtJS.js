@@ -47,11 +47,11 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     }
 
     Array.isArray(containerElementByClass) ?
-        container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]]
+        (container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]],
+        container.innerHTML = dataPipe.response)
         :
-        container = document.querySelector("." + containerElementByClass);
-
-    container.innerHTML = dataPipe.response;
+        (container = document.querySelector("." + containerElementByClass),
+        container.innerHTML = dataPipe.response);
 
     xhttp.send();
     return dataPipe;
