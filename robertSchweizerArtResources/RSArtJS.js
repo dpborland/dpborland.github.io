@@ -31,9 +31,10 @@
     });
 }*/
 
-function getAJAXContent(dataPipe) {
+function getAJAXContent(dataPipe, containerElementByClass) {
     let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.split(" ").join("").toLowerCase() + ".html";
     let xhttp = new XMLHttpRequest();
+    let container;
 
     xhttp.open("GET", ajaxFill, true);
 
@@ -45,11 +46,18 @@ function getAJAXContent(dataPipe) {
         }
     }
 
+    Array.isArray(containerElementByClass) ?
+        container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]]
+        :
+        container = document.querySelector("." + containerElementByClass);
+
+    container.innerHTML = dataPipe.response;
+
     xhttp.send();
     return dataPipe;
 }
 
-function loadAJAXContent(dataPipe, containerElementByClass) {
+/*function loadAJAXContent(dataPipe, containerElementByClass) {
     let container;
 
     Array.isArray(containerElementByClass) ?
@@ -61,7 +69,7 @@ function loadAJAXContent(dataPipe, containerElementByClass) {
     container.innerHTML = dataPipe.response;
 
     return dataPipe;
-}
+}*/
 
 
 function whatWasSelected(e) {
