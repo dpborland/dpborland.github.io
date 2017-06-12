@@ -326,9 +326,9 @@ if (document.readyState === "complete") {
     Array.from(document.querySelectorAll(".dropDownItem")).forEach( (selection) => {
         selection.addEventListener("click", (e) => {
             whatWasSelected(e)
+            .then( dataPipe => findCurrentIndex(dataPipe, "dropDownItem") )
             .then( dataPipe => getAJAXContent(dataPipe) )
             .then( dataPipe => classRemover(dataPipe, 0, "dropDownHighLighted", "dropDownItem") )
-            .then( dataPipe => findCurrentIndex(dataPipe, "dropDownItem") )
             .then( dataPipe => classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.currentIndex]) )
             .catch( (dataPipe, error) => {
                 if (dataPipe.currentIndex === undefined) {
@@ -345,7 +345,6 @@ if (document.readyState === "complete") {
             .catch( (error) => {
                 console.log(error);
             })
-            .then( dataPipe => loadAJAXContent(dataPipe, "heroBorder") )
             .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "galleryWrapper") );
         }, false);
     });
