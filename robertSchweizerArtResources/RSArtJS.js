@@ -99,7 +99,7 @@ function findCurrentElementOfClass(dataPipe, elementsToSearch, classToSearch) {
 
     elementArray.findIndex( (element, index) => {
         if (element.classList.contains(classToSearch)) {
-            dataPipe.currentIndex = index;
+            dataPipe["currentIndex"] = index;
             console.log(index);
         }
     });
