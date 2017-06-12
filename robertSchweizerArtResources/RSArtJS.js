@@ -94,12 +94,25 @@ function whatWasSelected(e) {
     });
 }
 
+function findCurrentIndex(dataPipe, ...elementsByClass) {
+    let array = Array.from(document.querySelectorAll("." + elementsByClass));
+
+    array.forEach( (element, index) => {
+        if (element === dataPipe.elementClicked) {
+            console.log(index);
+            dataPipe.currentIndex = index;
+        }
+    });
+
+    return dataPipe;
+}
+
 function findCurrentElementOfClass(dataPipe, elementsToSearch, classToSearch) {
     let elementArray = Array.from(document.querySelectorAll("." + elementsToSearch));
 
     elementArray.findIndex( (element, index) => {
         if (element.classList.contains(classToSearch)) {
-            dataPipe["currentIndex"] = index;
+            dataPipe.currentIndex = index;
             console.log(index);
         }
     });
@@ -161,6 +174,31 @@ function classAdder(dataPipe, delayTime, classToAdd, ...targetElementByClass) {
     } else {
         return dataPipe;
     }
+}
+
+function classRemover(eventDataPipe, delayTime, classToRemove, ..targetElementByClass) {
+    let specificElement, elementArray;
+
+    targetElementByClass.forEach( (target) => {
+        Array.isArray(target) ?
+        specificElement = document.querySelectorAll("." + target[0])[target[1]]
+        :
+        elementArray = Array.from(document.querySelectorAll("." + target))
+    });
+
+    if (specificElement !== undefined && specificElement.classList.contains(classToRemove)) {
+        specificElement.classList.remove(classToRemove);
+    } else if (elementArray !== undefined) {
+        elementArray.forEach( (element) => {
+            if (element.classList.contains(classToRemove)) {
+                element.classList.remove(classToRemove);
+            }
+        });
+    } else {
+        return dataPipe;
+    }
+
+    return dataPipe;
 }
 
 function classToggler(dataPipe, delayTime = 0, classToToggle, ...targetElementsByClass) {
@@ -289,8 +327,8 @@ if (document.readyState === "complete") {
         selection.addEventListener("click", (e) => {
             whatWasSelected(e)
             .then( dataPipe => getAJAXContent(dataPipe) )
-            .then( dataPipe => findCurrentElementOfClass(dataPipe, "dropDownItem", "dropDownItemHighlighted") )
-            .then( dataPipe => findNextThumbnailIndex(dataPipe, "dropDownItem") )
+            .then( dataPipe => classRemover(dataPipe, 0, "dropDownHighLighted", "dropDownItem") )
+            .then( dataPipe => findCurrentIndex(dataPipe, "dropDownItem") )
             .then( dataPipe => classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.currentIndex]) )
             .catch( (dataPipe, error) => {
                 if (dataPipe.currentIndex === undefined) {
