@@ -99,8 +99,8 @@ function findCurrentIndex(dataPipe, ...elementsByClass) {
 
     array.forEach( (element, index) => {
         if (element === dataPipe.elementClicked) {
-            console.log(index);
             dataPipe.currentIndex = index;
+            console.log(dataPipe, index);
             return dataPipe;
         }
     });
