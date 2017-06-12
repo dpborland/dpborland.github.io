@@ -176,7 +176,7 @@ function classAdder(dataPipe, delayTime, classToAdd, ...targetElementByClass) {
     }
 }
 
-function classRemover(eventDataPipe, delayTime, classToRemove, ..targetElementByClass) {
+function classRemover(eventDataPipe, delayTime, classToRemove, ...targetElementByClass) {
     let specificElement, elementArray;
 
     targetElementByClass.forEach( (target) => {
