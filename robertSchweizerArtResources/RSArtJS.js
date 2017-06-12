@@ -101,6 +101,7 @@ function findCurrentIndex(dataPipe, ...elementsByClass) {
         if (element === dataPipe.elementClicked) {
             console.log(index);
             dataPipe.currentIndex = index;
+            return dataPipe;
         }
     });
 
