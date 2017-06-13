@@ -94,12 +94,12 @@ function whatWasSelected(e) {
     });
 }
 
-function findCurrentIndex(dataPipe, ...elementsByClass) {
+function findIndexOfClicked(dataPipe, ...elementsByClass) {
     let array = Array.from(document.querySelectorAll("." + elementsByClass));
 
     array.forEach( (element, index) => {
         if (element === dataPipe.elementClicked) {
-            dataPipe.currentIndex = index;
+            dataPipe.elementClickedIndex = index;
             console.log(dataPipe, index);
             return dataPipe;
         }
@@ -108,12 +108,12 @@ function findCurrentIndex(dataPipe, ...elementsByClass) {
     return dataPipe;
 }
 
-function findCurrentElementOfClass(dataPipe, elementsToSearch, classToSearch) {
+function findElementOfClass(dataPipe, elementsToSearch, classToSearch) {
     let elementArray = Array.from(document.querySelectorAll("." + elementsToSearch));
 
     elementArray.findIndex( (element, index) => {
         if (element.classList.contains(classToSearch)) {
-            dataPipe.currentIndex = index;
+            dataPipe.currentElementIndex = index;
             console.log(index);
         }
     });
@@ -328,9 +328,9 @@ if (document.readyState === "complete") {
         selection.addEventListener("click", (e) => {
             whatWasSelected(e)
             .then( dataPipe => findCurrentIndex(dataPipe, "dropDownItem") )
-            .then( dataPipe => getAJAXContent(dataPipe) )
-            .then( dataPipe => classRemover(dataPipe, 0, "dropDownHighLighted", "dropDownItem") )
-            .then( dataPipe => classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.currentIndex]) )
+            .then( dataPipe => findElementOfClass(dataPipe, "dropDown", "dropDownHighlight") )
+            .then( dataPipe => getAJAXContent(dataPipe, "heroBorder") )
+            .then( dataPipe => classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.currentElementIndex], ["dropDownItem", dataPipe.elementClickedIndex]) )
             .catch( (dataPipe, error) => {
                 if (dataPipe.currentIndex === undefined) {
                     return dataPipe;
@@ -342,11 +342,11 @@ if (document.readyState === "complete") {
             .then( dataPipe => classAdder(dataPipe, 0, "leftBorderCollapsed", "leftBorder") )
             .then( dataPipe => classAdder(dataPipe, 0, "pageTitleCollapsed", "pageTitle") )
             .then( dataPipe => classAdder(dataPipe, 0, "rightLandingExpanded", "rightLanding") )
-            .then( dataPipe => classAdder(dataPipe, 0, "heroBorderDivExpanded", "heroBorder") )
+            .then( dataPipe => classAdder(dataPipe, 800, "heroBorderDivExpanded", "heroBorder") )
             .catch( (error) => {
                 console.log(error);
             })
-            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "galleryWrapper") );
+            .then( dataPipe => classToggler(dataPipe, 0, "contentVisible", "galleryWrapper") );
         }, false);
     });
 }
