@@ -177,7 +177,7 @@ function classAdder(dataPipe, delayTime, classToAdd, ...targetElementByClass) {
     }
 }
 
-function classRemover(eventDataPipe, delayTime, classToRemove, ...targetElementByClass) {
+function classRemover(dataPipe, delayTime, classToRemove, ...targetElementByClass) {
     let specificElement, elementArray;
 
     targetElementByClass.forEach( (target) => {
@@ -327,10 +327,10 @@ if (document.readyState === "complete") {
     Array.from(document.querySelectorAll(".dropDownItem")).forEach( (selection) => {
         selection.addEventListener("click", (e) => {
             whatWasSelected(e)
-            .then( dataPipe => findCurrentIndex(dataPipe, "dropDownItem") )
-            .then( dataPipe => findElementOfClass(dataPipe, "dropDown", "dropDownHighlight") )
+            .then( dataPipe => classRemover(dataPipe, 0, "dropDownItemHighlight", "dropDownItem") )
+            .then( dataPipe => findIndexOfClicked(dataPipe, "dropDownItem") )
             .then( dataPipe => getAJAXContent(dataPipe, "heroBorder") )
-            .then( dataPipe => classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.currentElementIndex], ["dropDownItem", dataPipe.elementClickedIndex]) )
+            .then( dataPipe => classToggler(dataPipe, 0, "dropDownItemHighlight", ["dropDownItem", dataPipe.elementClickedIndex]) )
             .catch( (dataPipe, error) => {
                 if (dataPipe.currentIndex === undefined) {
                     return dataPipe;
