@@ -125,16 +125,16 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
     let elementArray = Array.from(document.querySelectorAll("." + elementsToSearch));
 
     if (dataPipe.elementClickedId === "increment") {
-        dataPipe.currentIndex === elementArray.length - 1 ?
+        dataPipe.currentElementIndex === elementArray.length - 1 ?
             dataPipe.nextIndex = 0
             :
-            dataPipe.nextIndex = currentIndex + 1;
+            dataPipe.nextIndex = dataPipe.currentElementIndex + 1;
 
     } else if (dataPipe.elementClickedId === "decrement") {
-        dataPipe.currentIndex === 0 ?
+        dataPipe.currentElementIndex === 0 ?
             dataPipe.nextIndex = elementArray.length - 1
             :
-            dataPipe.nextIndex = currentIndex - 1;
+            dataPipe.nextIndex = dataPipe.currentElementIndex - 1;
     } else {
         elementArray.findIndex( (element, index) => {
             if (element.id === dataPipe.elementClickedId) {
@@ -307,9 +307,18 @@ function fullScreenImg(elementByClass) {
     }
 }
 
+function delayer (dataPipe, delayTime) {
+    return new Promise( (resolve, reject) => {
+        setTimeout( () => {
+            console.log(dataPipe);
+            resolve(dataPipe);
+        }, delayTime);
+    });
+}
+
 //---// Event Listeners and Promise Chain Composition //---//
 
-if (document.readyState === "complete") {
+document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".navWorkHeading").addEventListener("click", (e) => {
         whatWasSelected(e)
         .then( dataPipe => classToggler(dataPipe, 0, "workDropExpanded", "workDrop") )
@@ -327,6 +336,8 @@ if (document.readyState === "complete") {
     Array.from(document.querySelectorAll(".dropDownItem")).forEach( (selection) => {
         selection.addEventListener("click", (e) => {
             whatWasSelected(e)
+            .then( dataPipe => classRemover(dataPipe, 0, "contentVisible", "galleryWrapper") )
+            .then( dataPipe => delayer(dataPipe, 200))
             .then( dataPipe => classRemover(dataPipe, 0, "dropDownItemHighlight", "dropDownItem") )
             .then( dataPipe => findIndexOfClicked(dataPipe, "dropDownItem") )
             .then( dataPipe => getAJAXContent(dataPipe, "heroBorder") )
@@ -342,22 +353,24 @@ if (document.readyState === "complete") {
             .then( dataPipe => classAdder(dataPipe, 0, "leftBorderCollapsed", "leftBorder") )
             .then( dataPipe => classAdder(dataPipe, 0, "pageTitleCollapsed", "pageTitle") )
             .then( dataPipe => classAdder(dataPipe, 0, "rightLandingExpanded", "rightLanding") )
-            .then( dataPipe => classAdder(dataPipe, 800, "heroBorderDivExpanded", "heroBorder") )
+            .then( dataPipe => classAdder(dataPipe, 0, "heroBorderDivExpanded", "heroBorder") )
+            .then( dataPipe => delayer(dataPipe, 800) )
             .catch( (error) => {
                 console.log(error);
             })
             .then( dataPipe => classToggler(dataPipe, 0, "contentVisible", "galleryWrapper") );
         }, false);
     });
-}
+}, false);
 
 if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.querySelectorAll(".galleryNavButtons") !== null) {
     Array.from(document.querySelectorAll(".galleryNavButtons")).forEach( (button) => {
         button.addEventListener("click", (e) => {
             whatWasSelected(e)
-            .then( dataPipe => findCurrentElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
+            .then( dataPipe => classToggler(dataPipe, 0, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
+            .then( dataPipe => delayer(dataPipe, 800) )
             .then( dataPipe => changeAttribute(dataPipe, "src",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
                 "fullSizedImg") )
