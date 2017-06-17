@@ -148,78 +148,61 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
     return dataPipe;
 }
 
-function classAdder(dataPipe, delayTime, classToAdd, ...targetElementByClass) {
-    let specificElement, elementArray;
-
-    targetElementByClass.forEach( (target) => {
-        Array.isArray(target) ?
-            specificElement = document.querySelectorAll("." + target[0])[target[1]]
-        :
-            elementArray = Array.from(document.querySelectorAll("." + target))
-    })
-
-    if (specificElement !== undefined && !specificElement.classList.contains(classToAdd)) {
-        specificElement.classList.add(classToAdd);
-    } else if (elementArray !== undefined) {
-        elementArray.forEach( (element) => {
-            if (!element.classList.contains(classToAdd)) {
-                element.classList.add(classToAdd);
-            }
-        });
-    }
-
-    if(delayTime !== 0) {
-        window.setTimeout( () => {
-            return dataPipe;
-        }, delayTime);
-    } else {
-        return dataPipe;
-    }
-}
-
-function classRemover(dataPipe, delayTime, classToRemove, ...targetElementByClass) {
-    let specificElement, elementArray;
-
-    targetElementByClass.forEach( (target) => {
-        Array.isArray(target) ?
-        specificElement = document.querySelectorAll("." + target[0])[target[1]]
-        :
-        elementArray = Array.from(document.querySelectorAll("." + target))
-    });
-
-    if (specificElement !== undefined && specificElement.classList.contains(classToRemove)) {
-        specificElement.classList.remove(classToRemove);
-    } else if (elementArray !== undefined) {
-        elementArray.forEach( (element) => {
-            if (element.classList.contains(classToRemove)) {
-                element.classList.remove(classToRemove);
-            }
-        });
-    } else {
-        return dataPipe;
-    }
-
-    return dataPipe;
-}
-
-function classToggler(dataPipe, delayTime = 0, classToToggle, ...targetElementsByClass) {
-
+function classAdder(dataPipe, classToAdd, ...targetElementsByClass) {
     let specificElement, elementArray;
 
     targetElementsByClass.forEach( (target) => {
-        Array.isArray(target) ?
-            (specificElement = document.querySelectorAll("." + target[0])[target[1]],
-                specificElement.classList.toggle(classToToggle))
-            :
-            (elementArray = Array.from(document.querySelectorAll("." + target)),
-                elementArray.forEach( (element) => {
-                    element.classList.toggle(classToToggle);
-                }))
+        if (Array.isArray(target)) {
+            specificElement = document.querySelectorAll("." + target[0])[target[1]];
+            specificElement.classList.add(classToToggle);
+        } else if (!Array.isArray(target)) {
+            elementArray = Array.from(document.querySelectorAll("." + target));
+            elementArray.forEach( (element) => {
+                element.classList.add(classToToggle);
+            });
+        } else {
+            return dataPipe;
+        }
     });
+    return dataPipe;
+}
 
-    window.setTimeout( () => {
-        return dataPipe;
-    }, delayTime);
+function classRemover(dataPipe, classToRemove, ...targetElementsByClass) {
+    let specificElement, elementArray;
+
+    targetElementsByClass.forEach( (target) => {
+        if (Array.isArray(target)) {
+            specificElement = document.querySelectorAll("." + target[0])[target[1]];
+            specificElement.classList.remove(classToToggle);
+        } else if (!Array.isArray(target)) {
+            elementArray = Array.from(document.querySelectorAll("." + target));
+            elementArray.forEach( (element) => {
+                element.classList.remove(classToToggle);
+            });
+        } else {
+            return dataPipe;
+        }
+    });
+    return dataPipe;
+}
+
+function classToggler(dataPipe, classToToggle, ...targetElementsByClass) {
+    let specificElement, elementArray;
+
+    targetElementsByClass.forEach( (target) => {
+        if (Array.isArray(target)) {
+            specificElement = document.querySelectorAll("." + target[0])[target[1]];
+            specificElement.classList.toggle(classToToggle);
+        } else if (!Array.isArray(target)) {
+            elementArray = Array.from(document.querySelectorAll("." + target));
+            elementArray.forEach( (element) => {
+                element.classList.toggle(classToToggle);
+            });
+        } else {
+            return dataPipe;
+        }
+    });
+    return dataPipe;
 }
 
 function changeAttribute(dataPipe, attr, newAttrValue, ...targetElementsByClass) {
@@ -240,8 +223,8 @@ function changeAttribute(dataPipe, attr, newAttrValue, ...targetElementsByClass)
 }
 
 function textToggler(initialText, nextText, elementByClassName) {
-
     let element;
+    
     if (Array.isArray(elementByClassName) === true) {
         element = document.querySelectorAll("." + elementByClassName[0])[elementByClassName[1]];
         element.firstChild.textContent === initialText ?
@@ -369,16 +352,23 @@ if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.qu
             whatWasSelected(e)
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-            .then( dataPipe => classToggler(dataPipe, 0, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-            .then( dataPipe => delayer(dataPipe, 800) )
+            .then( dataPipe => classRemover(dataPipe, 0, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+            .then( dataPipe => classRemover(dataPipe, 0, "contentVisible", ["thumbnailImg", dataPipe.currentElementIndex]) )
+            .then( dataPipe => classAdder(dataPipe, 0, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
+            .then( dataPipe => delayer(dataPipe, 300) )
             .then( dataPipe => changeAttribute(dataPipe, "src",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
                 "fullSizedImg") )
             .then( dataPipe => changeAttribute(dataPipe, "srcset",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
                 "fullSizedImgSmall") )
+            .catch( dataPipe => {
+                console.log(dataPipe);
+                return dataPipe;
+            })
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
-            .then( dataPipe => classToggler(dataPipe, 800, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
+            .then( dataPipe => delayer(dataPipe, 400) )
+            .then( dataPipe => classAdder(dataPipe, 0, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
             .catch( (error) => { console.log(error); } )
         }, false);
     });
