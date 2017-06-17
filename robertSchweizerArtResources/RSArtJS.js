@@ -154,11 +154,11 @@ function classAdder(dataPipe, classToAdd, ...targetElementsByClass) {
     targetElementsByClass.forEach( (target) => {
         if (Array.isArray(target)) {
             specificElement = document.querySelectorAll("." + target[0])[target[1]];
-            specificElement.classList.add(classToToggle);
+            specificElement.classList.add(classToAdd);
         } else if (!Array.isArray(target)) {
             elementArray = Array.from(document.querySelectorAll("." + target));
             elementArray.forEach( (element) => {
-                element.classList.add(classToToggle);
+                element.classList.add(classToAdd);
             });
         } else {
             return dataPipe;
@@ -173,11 +173,11 @@ function classRemover(dataPipe, classToRemove, ...targetElementsByClass) {
     targetElementsByClass.forEach( (target) => {
         if (Array.isArray(target)) {
             specificElement = document.querySelectorAll("." + target[0])[target[1]];
-            specificElement.classList.remove(classToToggle);
+            specificElement.classList.remove(classToRemove);
         } else if (!Array.isArray(target)) {
             elementArray = Array.from(document.querySelectorAll("." + target));
             elementArray.forEach( (element) => {
-                element.classList.remove(classToToggle);
+                element.classList.remove(classToRemove);
             });
         } else {
             return dataPipe;
