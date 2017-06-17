@@ -298,60 +298,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper") );
         }, false);
     });
-
-    if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.querySelectorAll(".galleryNavButtons") !== null) {
-    Array.from(document.querySelectorAll(".galleryNavButtons")).forEach( (button) => {
-        button.addEventListener("click", (e) => {
-        whatWasSelected(e)
-        .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-.then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-.then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
-.then( dataPipe => classRemover(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.currentElementIndex]) )
-.then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
-.then( dataPipe => delayer(dataPipe, 300) )
-.then( dataPipe => changeAttribute(dataPipe, "src",
-        ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
-        "fullSizedImg") )
-.then( dataPipe => changeAttribute(dataPipe, "srcset",
-        ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
-        "fullSizedImgSmall") )
-.catch( dataPipe => {
-        console.log(dataPipe);
-    return dataPipe;
-})
-.then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
-.then( dataPipe => delayer(dataPipe, 400) )
-.then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
-.catch( (error) => { console.log(error); } )
-}, false);
-});
-}
-
-    if (document.querySelectorAll(".thumbnailImg") !== undefined && document.querySelectorAll(".thumbnailImg") !== null) {
-    Array.from(document.querySelectorAll(".thumbnailImg")).forEach( (thumbnail) => {
-        thumbnail.addEventListener("click", (e) => {
-        whatWasSelected(e)
-        .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-.then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-.then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-.then( dataPipe => delayer(dataPipe, 300) )
-.then( dataPipe => changeAttribute(dataPipe, "src",
-        ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + ".jpg"),
-        "fullSizedImg") )
-.then( dataPipe => changeAttribute(dataPipe, "srcset",
-        ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + "SMALL.jpg"),
-        "fullSizedImgSmall") )
-.then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
-.then( dataPipe => delayer(dataPipe, 400) )
-.then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
-.catch( (error) => { console.log(error); } )
-}, false);
-});
-}
-
 }, false);
 
-/*if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.querySelectorAll(".galleryNavButtons") !== null) {
+if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.querySelectorAll(".galleryNavButtons") !== null) {
     Array.from(document.querySelectorAll(".galleryNavButtons")).forEach( (button) => {
         button.addEventListener("click", (e) => {
             whatWasSelected(e)
@@ -399,7 +348,7 @@ if (document.querySelectorAll(".thumbnailImg") !== undefined && document.querySe
             .catch( (error) => { console.log(error); } )
         }, false);
     });
-}*/
+}
 
 if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
     document.querySelector(".fullSizedImg").addEventListener("click", (e) => {
