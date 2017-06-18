@@ -324,6 +324,47 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch( (error) => { console.log(error); } )
         }
     }, false);
+
+    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+        if (e.target && e.target.matches("img.thumbnailImg")) {
+            whatWasSelected(e)
+            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+            .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+            .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
+            .then( dataPipe => delayer(dataPipe, 300) )
+            .then( dataPipe => changeAttribute(dataPipe, "src",
+                ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + ".jpg"),
+                "fullSizedImg") )
+            .then( dataPipe => changeAttribute(dataPipe, "srcset",
+                ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + "SMALL.jpg"),
+                "fullSizedImgSmall") )
+            .then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
+            .then( dataPipe => delayer(dataPipe, 400) )
+            .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
+            .catch( (error) => { console.log(error); } )
+        }
+    }, false);
+
+    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+        if (e.target && e.target.matches("img.fullSizedImg")) {
+            fullScreenImg("fullSizedImg");
+        }
+    }, false);
+
+    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+        if (e.target && e.target.matches("picture.fullSizedToggle")) {
+            fullScreenImg("fullSizedImg");
+        }
+    }, false);
+
+    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+        if (e.target && e.target.matches("div.galleryInfoButton")) {
+            classToggler("none", "galleryInfoButtonExpanded", "galleryInfoButton");
+            textToggler("i", "X", "galleryInfoButton");
+            classToggler("none", "infoSpacerExpanded", "infoSpacer");
+        }
+    }, false);
+
 }, false);
 
 if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.querySelectorAll(".galleryNavButtons") !== null) {
