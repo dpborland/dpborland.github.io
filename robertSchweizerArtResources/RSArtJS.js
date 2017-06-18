@@ -298,6 +298,32 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper") );
         }, false);
     });
+
+    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+        if (e.target && e.target.matches("div.galleryNavButtons")) {
+            whatWasSelected(e)
+            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+            .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+            .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+            .then( dataPipe => classRemover(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.currentElementIndex]) )
+            .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
+            .then( dataPipe => delayer(dataPipe, 300) )
+            .then( dataPipe => changeAttribute(dataPipe, "src",
+                ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
+                "fullSizedImg") )
+            .then( dataPipe => changeAttribute(dataPipe, "srcset",
+                ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
+                "fullSizedImgSmall") )
+            .catch( dataPipe => {
+                console.log(dataPipe);
+                return dataPipe;
+            })
+            .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
+            .then( dataPipe => delayer(dataPipe, 400) )
+            .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+            .catch( (error) => { console.log(error); } )
+        }
+    }, false);
 }, false);
 
 if (document.querySelectorAll(".galleryNavButtons") !== undefined && document.querySelectorAll(".galleryNavButtons") !== null) {
