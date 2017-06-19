@@ -189,33 +189,28 @@ function textToggler(initialText, nextText, elementByClassName) {
     }
 }
 
-function mobileSwipeControl(dataPipe, ...elementSwiped) {
-    let threshold = 100;
+function mobileSwipeControl(dataPipe, thresholdValue, ...elementSwiped) {
     let specificElement, elementArray;
 
     Array.isArray(elementSwiped) ?
-        specificElement = document.querySelectorAll("." + elementSwiped[0])[elementSwiped[1]]
+        specificElement = document.querySelectorAll("." + elementSwiped[0])[elementSwiped[1]],
         :
         elementArray = document.querySelectorAll("." + elementSwiped);
 
     if (specificElement !== undefined) {
-        specificElement.addEventListener("touchstart", (x) => {
-            specificElement.addEventListener("touchend", (y) => {
-                dataPipe.distanceTravelledX = x.touches[0].clientX - y.changedTouches[0].clientX;
-                if (Math.abs(dataPipe.distanceTravelledX) >= threshold) {
+        specificElement.addEventListener("touchend", (y) => {
+            dataPipe.distanceTravelledX = dataPipe.event.touches[0].clientX - y.changedTouches[0].clientX;
+            if (Math.abs(dataPipe.distanceTravelledX) >= thresholdValue) {
+                dataPipe.distanceTravelledX > 0 ? dataPipe.elementClickedID = "decrement" : dataPipe.elementClickedID = "increment";
+            }
+        });
+    } else if (elementArray !== undefinded) {
+        elementArray.forEach( (element) => {
+            element.addEventListener("touchend", (y) => {
+                dataPipe.distanceTravelledX = dataPipe.event.touches[0].clientX - y.changedTouches[0].clientX;
+                if (Math.abs(dataPipe.distanceTravelledX) >= thresholdValue) {
                     dataPipe.distanceTravelledX > 0 ? dataPipe.elementClickedID = "decrement" : dataPipe.elementClickedID = "increment";
                 }
-            })
-        })
-    } else if (elementArray !== undefinded) {
-        elementArray.forEach( element => {
-            element.addEventListener("touchstart", (x) => {
-                element.addEventListener("touchend", (y) => {
-                    dataPipe.distanceTravelledX = x.touches[0].clientX - y.changedTouches[0].clientX;
-                    if (Math.abs(dataPipe.distanceTravelledX) >= threshold) {
-                        dataPipe.distanceTravelledX > 0 ? dataPipe.elementClickedID = "decrement" : dataPipe.elementClickedID = "increment";
-                    }
-                });
             });
         });
     } else {
@@ -396,7 +391,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
     document.querySelector(".fullSizedImg").addEventListener("touchstart", (e) => {
         whatWasSelected(e)
-        .then( dataPipe => mobileSwipeControl(dataPipe, "fullSizedImg") )
+        .then( dataPipe => mobileSwipeControl(dataPipe, 100, "fullSizedImg") )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
         .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
         .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
@@ -417,7 +412,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
     document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", (e) => {
         whatWasSelected(e)
-        .then( dataPipe => mobileSwipeControl(dataPipe, "fullSizedImgSmall") )
+        .then( dataPipe => mobileSwipeControl(dataPipe, 100, "fullSizedImgSmall") )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
         .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
         .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
