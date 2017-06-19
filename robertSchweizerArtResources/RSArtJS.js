@@ -193,7 +193,7 @@ function mobileSwipeControl(dataPipe, thresholdValue, ...elementSwiped) {
     let specificElement, elementArray;
 
     Array.isArray(elementSwiped) ?
-        specificElement = document.querySelectorAll("." + elementSwiped[0])[elementSwiped[1]],
+        specificElement = document.querySelectorAll("." + elementSwiped[0])[elementSwiped[1]]
         :
         elementArray = document.querySelectorAll("." + elementSwiped);
 
