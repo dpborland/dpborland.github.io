@@ -204,7 +204,7 @@ function mobileSwipeControl(dataPipe, thresholdValue, ...elementSwiped) {
                 dataPipe.distanceTravelledX > 0 ? dataPipe.elementClickedID = "decrement" : dataPipe.elementClickedID = "increment";
             }
         });
-    } else if (elementArray !== undefinded) {
+    } else if (elementArray !== undefined) {
         elementArray.forEach( (element) => {
             element.addEventListener("touchend", (y) => {
                 dataPipe.distanceTravelledX = dataPipe.event.touches[0].clientX - y.changedTouches[0].clientX;
