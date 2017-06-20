@@ -204,10 +204,12 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
 
         if (Math.abs(distanceTravelledX) >= thresholdValue) {
             distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
+        } else {
+            return dataPipe;
         }
-        return dataPipe;
-
-    }, false)
+    }, false);
+    
+    return dataPipe;
 }
 
 function fullScreenImg(elementByClass) {
