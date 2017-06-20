@@ -368,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
+/*if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
     document.querySelector(".fullSizedImg").addEventListener("click", (e) => {
         fullScreenImg("fullSizedImg");
     }, false);
@@ -420,6 +420,6 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
         .catch( (error) => { console.log(error); } )
     }, false);
-}
+}*/
 
 
