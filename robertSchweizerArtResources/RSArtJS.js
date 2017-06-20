@@ -54,7 +54,6 @@ function findIndexOfClicked(dataPipe, ...elementsByClass) {
     array.forEach( (element, index) => {
         if (element === dataPipe.elementClicked) {
             dataPipe.elementClickedIndex = index;
-            console.log(dataPipe, index);
             return dataPipe;
         }
     });
@@ -68,7 +67,6 @@ function findElementOfClass(dataPipe, elementsToSearch, classToSearch) {
     elementArray.findIndex( (element, index) => {
         if (element.classList.contains(classToSearch)) {
             dataPipe.currentElementIndex = index;
-            console.log(index);
         }
     });
 
@@ -200,7 +198,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
     let distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
 
     if (Math.abs(distanceTravelledX) >= thresholdValue) {
-        distanceTravelledX > 0 ? dataPipe.elementClickedID = "decrement" : dataPipe.elementClickedID = "increment";
+        distanceTravelledX > 0 ? dataPipe.elementClickedID = "increment" : dataPipe.elementClickedID = "decrement";
     }
 
     return dataPipe;
