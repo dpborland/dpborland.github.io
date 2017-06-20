@@ -200,11 +200,13 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
 
     dataPipe.elementClicked.addEventListener("touchend", (e) => {
         distanceTravelledX = dataPipe.startingPointX - e.changedTouches[0].clientX;
-    }, false)
+
 
     if (Math.abs(distanceTravelledX) >= thresholdValue) {
         distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
     }
+
+    }, false)
 
     return dataPipe;
 }
