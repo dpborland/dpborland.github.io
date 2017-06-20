@@ -202,15 +202,12 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
     dataPipe.elementClicked.addEventListener("touchend", (e) => {
         distanceTravelledX = dataPipe.startingPointX - e.changedTouches[0].clientX;
 
-
         if (Math.abs(distanceTravelledX) >= thresholdValue) {
             distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
         }
         return dataPipe;
 
     }, false)
-
-    return dataPipe;
 }
 
 function fullScreenImg(elementByClass) {
