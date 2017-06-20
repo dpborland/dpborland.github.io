@@ -78,9 +78,9 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
 
     if (dataPipe.elementClickedId === "increment") {
         dataPipe.currentElementIndex === elementArray.length - 1 ?
-            (dataPipe.nextIndex = 0, console.log("increment"))
+            dataPipe.nextIndex = 0
             :
-            (dataPipe.nextIndex = dataPipe.currentElementIndex + 1, console.log("increment"));
+            dataPipe.nextIndex = dataPipe.currentElementIndex + 1;
 
     } else if (dataPipe.elementClickedId === "decrement") {
         dataPipe.currentElementIndex === 0 ?
@@ -206,6 +206,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
 
 function fullScreenImg(elementByClass) {
     let img = document.querySelector("." + elementByClass);
+
     if (!document.fullscreenElement && !document.mozFullScreenElement &&
         !document.webkitFullscreenElement && !document.msFullscreenElement) {
         if (img.requestFullscreen) {
@@ -240,7 +241,6 @@ function fullScreenImg(elementByClass) {
 function delayer (dataPipe, delayTime) {
     return new Promise( (resolve, reject) => {
         setTimeout( () => {
-            console.log(dataPipe);
             resolve(dataPipe);
         }, delayTime);
     });
@@ -379,8 +379,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
             .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-            .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
-            .then( dataPipe => classRemover(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.currentElementIndex]) )
+            .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
             .then( dataPipe => delayer(dataPipe, 300) )
             .then( dataPipe => changeAttribute(dataPipe, "src",
