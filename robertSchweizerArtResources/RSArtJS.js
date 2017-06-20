@@ -37,6 +37,7 @@ function dataCollector(...events) {
             resolve(dataPipe);
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
             dataPipe.startingPointX = events[0].touches[0].clientX;
+            dataPipe.touches = events[0].touches;
             dataPipe.endingPointX = events[1].changedTouches[0].clientX;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
@@ -368,7 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-/*if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
+if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
     document.querySelector(".fullSizedImg").addEventListener("click", (e) => {
         fullScreenImg("fullSizedImg");
     }, false);
@@ -420,6 +421,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
         .catch( (error) => { console.log(error); } )
     }, false);
-}*/
+}
 
 
