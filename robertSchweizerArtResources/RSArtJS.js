@@ -78,9 +78,9 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
 
     if (dataPipe.elementClickedId === "increment") {
         dataPipe.currentElementIndex === elementArray.length - 1 ?
-            dataPipe.nextIndex = 0
+            (dataPipe.nextIndex = 0, console.log("increment"))
             :
-            dataPipe.nextIndex = dataPipe.currentElementIndex + 1;
+            (dataPipe.nextIndex = dataPipe.currentElementIndex + 1, console.log("increment"));
 
     } else if (dataPipe.elementClickedId === "decrement") {
         dataPipe.currentElementIndex === 0 ?
