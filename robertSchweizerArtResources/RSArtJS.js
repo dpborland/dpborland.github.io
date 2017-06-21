@@ -43,6 +43,7 @@ function dataCollector(...events) {
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
             dataPipe.elementClickedAlt = "";
+            events[0].preventDefault();
             resolve(dataPipe);
         } else {
             reject(e);
@@ -208,7 +209,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
             return dataPipe;
         }
     }, false);
-    
+
     return dataPipe;
 }
 
