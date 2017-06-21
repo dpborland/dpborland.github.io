@@ -85,22 +85,27 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
             :
             dataPipe.nextIndex = dataPipe.currentElementIndex + 1;
 
+        return dataPipe;
+
     } else if (dataPipe.elementClickedId === "decrement") {
         dataPipe.currentElementIndex === 0 ?
             dataPipe.nextIndex = elementArray.length - 1
             :
             dataPipe.nextIndex = dataPipe.currentElementIndex - 1;
+
+        return dataPipe;
     } else {
         elementArray.findIndex( (element, index) => {
             if (element.id === dataPipe.elementClickedId) {
                 dataPipe.nextIndex = index;
+                return dataPipe;
             } else if (element === dataPipe.elementClicked) {
                 dataPipe.nextIndex = index;
+                return dataPipe;
             }
         });
     }
 
-    return dataPipe;
 }
 
 function classAdder(dataPipe, classToAdd, ...targetElementsByClass) {
