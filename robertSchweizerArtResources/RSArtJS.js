@@ -43,7 +43,7 @@ function dataCollector(...events) {
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
             dataPipe.elementClickedAlt = "";
-            events[0].preventDefault();
+            events.preventDefault();
             resolve(dataPipe);
         } else {
             reject(e);
