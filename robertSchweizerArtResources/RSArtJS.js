@@ -106,7 +106,7 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
         });
     }
 
-    //return dataPipe;
+    return dataPipe;
 }
 
 function classAdder(dataPipe, classToAdd, ...targetElementsByClass) {
