@@ -43,7 +43,7 @@ function dataCollector(...events) {
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
             dataPipe.elementClickedAlt = "";
-            events.preventDefault();
+            events[0].preventDefault();
             resolve(dataPipe);
         } else {
             reject(e);
@@ -210,7 +210,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
 
     dataPipe.elementClicked.addEventListener("touchend", (x) => {
         distanceTravelledX = dataPipe.startingPointX - x.changedTouches[0].clientX;
-
+        x.preventDefault();
         if (Math.abs(distanceTravelledX) >= thresholdValue) {
             distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
             console.log(dataPipe);
