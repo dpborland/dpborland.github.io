@@ -39,7 +39,7 @@ function dataCollector(...events) {
             dataPipe.startingPointX = events[0].touches[0].clientX;
             dataPipe.touches = events[0].touches;
             //dataPipe.endingPointX = events[1].changedTouches[0].clientX;
-            dataPipe.changedTouches = events[1].changedTouches;
+            dataPipe.changedTouches = events[0].changedTouches;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
             dataPipe.elementClickedAlt = "";
@@ -206,8 +206,8 @@ function textToggler(initialText, nextText, elementByClassName) {
 function mobileSwipeInitiator(dataPipe, thresholdValue) {
     let distanceTravelledX, endingPointX;
 
-    dataPipe.elementClicked.addEventListener("touchend", (e) => {
-        distanceTravelledX = dataPipe.startingPointX - e.changedTouches[0].clientX;
+    dataPipe.elementClicked.addEventListener("touchend", (x) => {
+        distanceTravelledX = dataPipe.startingPointX - x.changedTouches[0].clientX;
 
         if (Math.abs(distanceTravelledX) >= thresholdValue) {
             distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
