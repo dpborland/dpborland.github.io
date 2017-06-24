@@ -81,26 +81,28 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
 
     if (dataPipe.elementClickedId === "increment") {
         dataPipe.currentElementIndex === elementArray.length - 1 ?
-            dataPipe.nextIndex = 0
+            (dataPipe.nextIndex = 0, console.log(dataPipe.elementClickedId, dataPipe.nextIndex))
             :
-            dataPipe.nextIndex = dataPipe.currentElementIndex + 1;
+            (dataPipe.nextIndex = dataPipe.currentElementIndex + 1, console.log(dataPipe.elementClickedId, dataPipe.nextIndex));
 
         //return dataPipe;
 
     } else if (dataPipe.elementClickedId === "decrement") {
         dataPipe.currentElementIndex === 0 ?
-            dataPipe.nextIndex = elementArray.length - 1
+            (dataPipe.nextIndex = elementArray.length - 1, console.log(dataPipe.elementClickedId, dataPipe.nextIndex))
             :
-            dataPipe.nextIndex = dataPipe.currentElementIndex - 1;
+            (dataPipe.nextIndex = dataPipe.currentElementIndex - 1, console.log(dataPipe.elementClickedId, dataPipe.nextIndex));
 
         //return dataPipe;
     } else {
         elementArray.findIndex( (element, index) => {
             if (element.id === dataPipe.elementClickedId) {
                 dataPipe.nextIndex = index;
+                console.log(dataPipe.elementClickedId, dataPipe.nextIndex);
                 //return dataPipe;
             } else if (element === dataPipe.elementClicked) {
                 dataPipe.nextIndex = index;
+                console.log(dataPipe.elementClickedId, dataPipe.nextIndex);
                 //return dataPipe;
             }
         });
