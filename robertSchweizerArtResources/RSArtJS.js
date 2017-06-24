@@ -84,19 +84,16 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
             dataPipe.nextIndex = 0
             :
             dataPipe.nextIndex = dataPipe.currentElementIndex + 1;
-        console.log(dataPipe);
 
-        return dataPipe;
+        //return dataPipe;
 
     } else if (dataPipe.elementClickedId === "decrement") {
         dataPipe.currentElementIndex === 0 ?
             dataPipe.nextIndex = elementArray.length - 1
             :
             dataPipe.nextIndex = dataPipe.currentElementIndex - 1;
-        console.log(dataPipe);
 
-
-        return dataPipe;
+        //return dataPipe;
     } /*else {
         elementArray.findIndex( (element, index) => {
             if (element.id === dataPipe.elementClickedId) {
