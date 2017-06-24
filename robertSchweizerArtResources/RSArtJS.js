@@ -219,7 +219,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
         }
     }, false);
 
-    return dataPipe;
+    //return dataPipe;
 }
 
 function fullScreenImg(elementByClass) {
