@@ -94,7 +94,7 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
             dataPipe.nextIndex = dataPipe.currentElementIndex - 1;
 
         return dataPipe;
-    } else {
+    } /*else {
         elementArray.findIndex( (element, index) => {
             if (element.id === dataPipe.elementClickedId) {
                 dataPipe.nextIndex = index;
@@ -104,7 +104,7 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
                 return dataPipe;
             }
         });
-    }
+    }*/
 
     return dataPipe;
 }
