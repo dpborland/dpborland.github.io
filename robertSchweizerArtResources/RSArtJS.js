@@ -98,10 +98,10 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
         elementArray.findIndex( (element, index) => {
             if (element.id === dataPipe.elementClickedId) {
                 dataPipe.nextIndex = index;
-                return dataPipe;
+                //return dataPipe;
             } else if (element === dataPipe.elementClicked) {
                 dataPipe.nextIndex = index;
-                return dataPipe;
+                //return dataPipe;
             }
         });
     }
