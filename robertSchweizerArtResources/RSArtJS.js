@@ -213,7 +213,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
 
         if (Math.abs(distanceTravelledX) >= thresholdValue) {
             distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
-            console.log(dataPipe.elementClickedId);
+            console.log(dataPipe);
             return dataPipe;
         } else {
             return dataPipe;
