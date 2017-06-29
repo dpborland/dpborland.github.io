@@ -38,7 +38,7 @@ function dataCollector(...events) {
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
             dataPipe.startingPointX = events[0].touches[0].clientX;
             dataPipe.touches = events[0].touches;
-            //dataPipe.endingPointX = events[1].changedTouches[0].clientX;
+            dataPipe.endingPointX = events[1].changedTouches[0].clientX;
             dataPipe.changedTouches = events[0].changedTouches;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
@@ -205,15 +205,14 @@ function textToggler(initialText, nextText, elementByClassName) {
     }
 }
 
-function mobileSwipeInitiator(dataPipe, thresholdValue) {
+/*function mobileSwipeInitiator(dataPipe, thresholdValue) {
     let distanceTravelledX, endingPointX;
 
     dataPipe.elementClicked.addEventListener("touchend", (x) => {
         distanceTravelledX = dataPipe.startingPointX - x.changedTouches[0].clientX;
-        x.preventDefault();
         if (Math.abs(distanceTravelledX) >= thresholdValue) {
             distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
-            console.log(dataPipe);
+            console.log(distanceTravelledX, dataPipe.startingPointX, dataPipe.changedTouches[0].clientX);
             return dataPipe;
         } else {
             return dataPipe;
@@ -221,6 +220,20 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
     }, false);
 
     //return dataPipe;
+}*/
+
+function mobileSwipeInitiator(dataPipe, thresholdValue) {
+    let distanceTravelledX, endingPointX;
+
+
+    distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
+    if (Math.abs(distanceTravelledX) >= thresholdValue) {
+        distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
+        console.log(distanceTravelledX, dataPipe.startingPointX, dataPipe.endingPointX);
+        return dataPipe;
+    } else {
+        return dataPipe;
+    }
 }
 
 function fullScreenImg(elementByClass) {
