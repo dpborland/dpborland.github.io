@@ -38,7 +38,7 @@ function dataCollector(...events) {
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
             dataPipe.startingPointX = events[0].touches[0].clientX;
             dataPipe.touches = events[0].touches;
-            dataPipe.endingPointX = events[1].changedTouches[0].clientX;
+            dataPipe.endingPointX = events[0].changedTouches[0].clientX;
             dataPipe.changedTouches = events[0].changedTouches;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
@@ -223,7 +223,7 @@ function textToggler(initialText, nextText, elementByClassName) {
 }*/
 
 function mobileSwipeInitiator(dataPipe, thresholdValue) {
-    let distanceTravelledX, endingPointX;
+    let distanceTravelledX;
 
 
     distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
@@ -405,8 +405,9 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         fullScreenImg("fullSizedImg");
     }, false);
 
-    document.querySelector(".fullSizedImg").addEventListener("touchstart", (touchStart) => {
-        document.querySelector(".fullSizedImg").addEventListener("touchend", (touchEnd) => {
+    document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
+
+        document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
             dataCollector(touchStart, touchEnd)
             .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
@@ -427,9 +428,13 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( dataPipe => delayer(dataPipe, 400) )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
-            .catch( (error) => { console.log(error); } )
+            .catch( (error) => { console.log(error); } );
+
         }, false);
-    }, false);
+
+        touchStart.preventDefault();
+
+}, false);
 
 
 } else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
