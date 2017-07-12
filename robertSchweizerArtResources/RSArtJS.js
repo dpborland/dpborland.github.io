@@ -38,7 +38,7 @@ function dataCollector(...events) {
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
             dataPipe.startingPointX = events[0].touches[0].clientX;
             dataPipe.touches = events[0].touches;
-            dataPipe.endingPointX = events[0].changedTouches[0].clientX;
+            dataPipe.endingPointX = events[1].changedTouches[0].clientX;
             dataPipe.changedTouches = events[0].changedTouches;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
