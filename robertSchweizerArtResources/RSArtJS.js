@@ -36,9 +36,9 @@ function dataCollector(...events) {
             dataPipe.elementClickedAlt = events[0].target.alt;
             resolve(dataPipe);
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
-            dataPipe.startingPointX = events[2] //events[0].touches[0].clientX;
+            dataPipe.startingPointX = events[0].touches[0].clientX;
             dataPipe.touches = events[0].touches;
-            dataPipe.endingPointX = events[3]; //events[1].changedTouches[0].clientX;
+            dataPipe.endingPointX = events[1].changedTouches[0].clientX;
             dataPipe.changedTouches = events[0].changedTouches;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
@@ -406,10 +406,8 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
     }, false);
 
     document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
-        let start = touchStart.touches[0].clientX;
 
         document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
-            let end = touchEnd.changedTouches[0].clientX;
             dataCollector(touchStart, touchEnd)
             .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
