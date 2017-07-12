@@ -25,7 +25,7 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     return dataPipe;
 }
 
-function dataCollector(...events) {
+function dataCollector(start, end, ...events) {
     return new Promise( (resolve, reject) => {
         let dataPipe = {};
 
@@ -410,7 +410,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
         document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
             let end = touchEnd.changedTouches[0].clientX;
-            dataCollector(start, end)
+            dataCollector(touchStart, touchEnd)
             .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
