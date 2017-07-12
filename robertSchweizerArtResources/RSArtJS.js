@@ -25,7 +25,7 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     return dataPipe;
 }
 
-function dataCollector(start, end, ...events) {
+function dataCollector(...events) {
     return new Promise( (resolve, reject) => {
         let dataPipe = {};
 
@@ -36,9 +36,9 @@ function dataCollector(start, end, ...events) {
             dataPipe.elementClickedAlt = events[0].target.alt;
             resolve(dataPipe);
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
-            dataPipe.startingPointX = events[0] //events[0].touches[0].clientX;
+            dataPipe.startingPointX = events[2] //events[0].touches[0].clientX;
             dataPipe.touches = events[0].touches;
-            dataPipe.endingPointX = events[1]; //events[1].changedTouches[0].clientX;
+            dataPipe.endingPointX = events[3]; //events[1].changedTouches[0].clientX;
             dataPipe.changedTouches = events[0].changedTouches;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
