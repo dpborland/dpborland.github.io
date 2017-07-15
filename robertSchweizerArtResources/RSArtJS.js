@@ -238,6 +238,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
 
 function getEndingPoint(event, dataPipe) {
     let endingPointX = event.changedTouches[0].clientX;
+    dataPipe.endingPointX = endingPointX;
     console.log(endingPointX, dataPipe);
 }
 
