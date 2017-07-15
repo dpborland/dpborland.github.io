@@ -38,7 +38,7 @@ function dataCollector(...events) {
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
             dataPipe.startingPointX = events[0].touches[0].clientX;
             dataPipe.touches = events[0].touches;
-            dataPipe.endingPointX = events[1].changedTouches[events[1].changedTouches.length - 1].clientX;
+            //dataPipe.endingPointX = events[1].changedTouches[events[1].changedTouches.length - 1].clientX;
             dataPipe.changedTouches = events[0].changedTouches;
             dataPipe.elementClicked = events[0].target;
             dataPipe.elementClickedId = "";
@@ -225,7 +225,6 @@ function textToggler(initialText, nextText, elementByClassName) {
 function mobileSwipeInitiator(dataPipe, thresholdValue) {
     let distanceTravelledX;
 
-
     distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
     if (Math.abs(distanceTravelledX) >= thresholdValue) {
         distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
@@ -235,6 +234,10 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
     } else {
         return dataPipe;
     }
+}
+
+function getEndingPoint(event) {
+    dataPipe.endingPointX = event.changedTouches[0].clientX;
 }
 
 function fullScreenImg(elementByClass) {
@@ -407,31 +410,34 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
     }, false);
 
     document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
-
-        document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
-            dataCollector(touchStart, touchEnd)
-            .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
-            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-            .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-            .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-            .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
-            .then( dataPipe => delayer(dataPipe, 300) )
-            .then( dataPipe => changeAttribute(dataPipe, "src",
+        dataCollector(touchStart)
+        .then( dataPipe => {
+            document.querySelector(".fullSizedImgContainer").addEventListener("touchend", getEndingPoint, false);
+            return dataPipe;
+        })
+        .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
+        .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+        .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+        .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
+        .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
+        .then( dataPipe => delayer(dataPipe, 300) )
+        .then( dataPipe => changeAttribute(dataPipe, "src",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
                 "fullSizedImg") )
-            .then( dataPipe => changeAttribute(dataPipe, "srcset",
+        .then( dataPipe => changeAttribute(dataPipe, "srcset",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
                 "fullSizedImgSmall") )
-            .catch( dataPipe => {
+        .catch( dataPipe => {
                 console.log(dataPipe);
-                return dataPipe;
-            })
-            .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
-            .then( dataPipe => delayer(dataPipe, 400) )
-            .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
-            .catch( (error) => { console.log(error); } );
-
-        }, false);
+            return dataPipe;
+        })
+        .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
+        .then( dataPipe => delayer(dataPipe, 400) )
+        .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+        .then( dataPipe => {
+            document.querySelector(".fullSizedImgContainer").removeEventListener("touchend", getEndingPoint, false);
+        })
+        .catch( (error) => { console.log(error); } );
 
         touchStart.preventDefault();
 
