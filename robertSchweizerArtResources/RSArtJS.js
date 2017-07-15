@@ -236,10 +236,9 @@ function mobileSwipeInitiator(dataPipe, thresholdValue) {
     }
 }
 
-function getEndingPoint(event) {
+function getEndingPoint(event, dataPipe) {
     let endingPointX = event.changedTouches[0].clientX;
-    console.log(endingPointX);
-    return endingPointX;
+    console.log(endingPointX, dataPipe);
 }
 
 function fullScreenImg(elementByClass) {
