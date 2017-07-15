@@ -412,7 +412,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
     document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
         dataCollector(touchStart)
         .then( dataPipe => {
-            document.querySelector(".fullSizedImgContainer").addEventListener("touchend", getEndingPoint, false);
+            document.querySelector(".fullSizedImgContainer").addEventListener("touchend", getEndingPoint.bind(null, dataPipe), false);
             return dataPipe;
         })
         .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
