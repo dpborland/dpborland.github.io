@@ -259,7 +259,7 @@ function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
                     :
                     (dataPipe.elementClickedId = "decrement", resolve(dataPipe));
             } else {
-                reject(console.log("swipeInit Rejected!"));
+                reject(console.log(dataPipe, "swipeInit Rejected!"));
             }
         });
 
