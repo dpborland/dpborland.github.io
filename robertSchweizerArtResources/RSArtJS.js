@@ -249,7 +249,7 @@ function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
 
         document.querySelector("." + targetElementByClass).addEventListener("touchend", getEndingPoint, false);
 
-        return Promise.race(getEndingPoint).then( endingPointX => {
+        return new Promise.race(getEndingPoint).then( endingPointX => {
             dataPipe.endingPointX = endingPointX;
             document.querySelector("." + targetElementByClass).removeEventListener("touchend", getEndingPoint, false);
             distanceTravelledX = Math(abs(dataPipe.startingPointX - dataPipe.endingPointX));
