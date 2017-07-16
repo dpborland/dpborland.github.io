@@ -266,9 +266,9 @@ function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
     });
 }
 
-function getEndingPoint(event) {
+function getEndingPoint(e) {
     return new Promise( (resolve, reject) => {
-        let endingPointX = event.changedTouches[0].clientX;
+        let endingPointX = e.changedTouches[0].clientX;
         if (endingPointX !== undefined && endingPointX !== null) {
             resolve(endingPointX);
         } else {
