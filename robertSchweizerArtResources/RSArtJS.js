@@ -242,9 +242,39 @@ function mobileSwipeInitiator(dataPipe, thresholdValue, elementByClass) {
     }
 }
 
+function swipeInit(dataPipe, threshold, targetElementByClass) {
+    return new Promise( (resolve, reject) => {
+        let distanceTravelledX;
+        dataPipe.startingPointX = dataPipe.events[0].touches[0].clientX;
+
+        document.querySelector("." + targetElementByClass).addEventListener("touchend", getEndingPoint, false);
+
+        getEndingPoint.then( endingPointX => {
+            dataPipe.endingPointX = endingPointX;
+            document.querySelector("." + targetElementByClass).removeEventListener("touchend", getEndingPoint, false);
+            distanceTravelledX = Math(abs(dataPipe.startingPointX - dataPipe.endingPointX));
+            if (distanceTravelledX >= threshold) {
+                distanceTravelledX > 0 ?
+                    (dataPipe.elementClickedId = "increment", resolve(dataPipe))
+                    :
+                    (dataPipe.elementClickedId = "decrement", resolve(dataPipe));
+            } else {
+                reject(console.log("swipeInit Rejected!"));
+            }
+        });
+
+    });
+}
+
 function getEndingPoint(event) {
-    endingPointX = event.changedTouches[0].clientX;
-    return endingPointX;
+    return new Promise( (resolve, reject) => {
+        let endingPointX = event.changedTouches[0].clientX;
+        if (endingPointX !== undefined && endingPointX !== null) {
+            resolve(endingPointX);
+        } else {
+            reject(console.log("getEndingPoint Rejected!"));
+        };
+    });
 }
 
 function fullScreenImg(elementByClass) {
@@ -418,7 +448,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
     document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
         dataCollector(touchStart)
-        .then( dataPipe => mobileSwipeInitiator(dataPipe, 100, "fullSizedImg") )
+        .then( dataPipe => mobileSwipeInit(dataPipe, 100, "fullSizedImg") )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
         .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
         .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
@@ -441,7 +471,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
         touchStart.preventDefault();
 
-}, false);
+    }, false);
 
 
 } else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
