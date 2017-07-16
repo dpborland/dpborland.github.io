@@ -242,7 +242,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue, elementByClass) {
     }
 }
 
-function swipeInit(dataPipe, threshold, targetElementByClass) {
+function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
     return new Promise( (resolve, reject) => {
         let distanceTravelledX;
         dataPipe.startingPointX = dataPipe.events[0].touches[0].clientX;
