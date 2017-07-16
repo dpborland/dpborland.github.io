@@ -249,7 +249,7 @@ function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
 
         document.querySelector("." + targetElementByClass).addEventListener("touchend", getEndingPoint, false);
 
-        Promise.all([getEndingPoint()]).then( endingPointX => {
+        Promise.all(getEndingPoint).then( endingPointX => {
             dataPipe.endingPointX = endingPointX;
             document.querySelector("." + targetElementByClass).removeEventListener("touchend", getEndingPoint, false);
             distanceTravelledX = Math.abs(dataPipe.startingPointX - dataPipe.endingPointX);
@@ -267,8 +267,9 @@ function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
 }
 
 function getEndingPoint(e) {
+    let endingPointX = e.changedTouches[0].clientX;
+
     return new Promise( (resolve, reject) => {
-        let endingPointX = e.changedTouches[0].clientX;
         if (endingPointX !== undefined && endingPointX !== null) {
             resolve(endingPointX);
         } else {
