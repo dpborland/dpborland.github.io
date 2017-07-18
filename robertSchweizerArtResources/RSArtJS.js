@@ -451,7 +451,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         let touchStartX = touchStart.touches[0].clientX;
     }, false);
     document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
-        dataCollector(touchEnd, touchStart)
+        dataCollector(touchEnd, touchStartX)
         .then( dataPipe => mobileSwipeInit(dataPipe, 100, "fullSizedImg") )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
         .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
