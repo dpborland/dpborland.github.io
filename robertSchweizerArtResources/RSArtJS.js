@@ -263,7 +263,7 @@ function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
             }
         });
 
-    });
+    //});
 }
 
 function getEndingPoint(e) {
