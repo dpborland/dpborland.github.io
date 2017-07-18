@@ -252,8 +252,8 @@ function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
         Promise.all([getEndingPoint]).then( endingPointX => {
             dataPipe.endingPointX = endingPointX;
             document.querySelector("." + targetElementByClass).removeEventListener("touchend", getEndingPoint, false);*/
-            distanceTravelledX = Math.abs(dataPipe.startingPointX - dataPipe.endingPointX);
-            if (distanceTravelledX >= threshold) {
+            distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
+            if (Math.abs(distanceTravelledX) >= threshold) {
                 distanceTravelledX > 0 ?
                     (dataPipe.elementClickedId = "increment", resolve(dataPipe))
                     :
