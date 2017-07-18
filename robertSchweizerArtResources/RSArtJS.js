@@ -448,7 +448,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
     }, false);
 
     document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
-        let touchStartX = e.touches[0].clientX;
+        let touchStartX = touchStart.touches[0].clientX;
     }, false);
     document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
         dataCollector(touchEnd, touchStart)
