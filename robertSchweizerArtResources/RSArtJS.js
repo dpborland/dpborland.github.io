@@ -245,7 +245,7 @@ function mobileSwipeInitiator(dataPipe, thresholdValue, elementByClass) {
 function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
     return new Promise( (resolve, reject) => {
         let distanceTravelledX;
-        dataPipe.startingPointX = dataPipe.touches[0].clientX;
+        //dataPipe.startingPointX = dataPipe.touches[0].clientX;
 
         document.querySelector("." + targetElementByClass).addEventListener("touchend", getEndingPoint, false);
 
