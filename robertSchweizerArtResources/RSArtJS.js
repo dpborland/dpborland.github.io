@@ -245,13 +245,13 @@ function mobileSwipeInitiator(dataPipe, thresholdValue, elementByClass) {
 function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
     return new Promise( (resolve, reject) => {
         let distanceTravelledX;
-        //dataPipe.startingPointX = dataPipe.touches[0].clientX;
+        /*dataPipe.startingPointX = dataPipe.touches[0].clientX;
 
         document.querySelector("." + targetElementByClass).addEventListener("touchend", getEndingPoint, false);
 
         Promise.all([getEndingPoint]).then( endingPointX => {
             dataPipe.endingPointX = endingPointX;
-            document.querySelector("." + targetElementByClass).removeEventListener("touchend", getEndingPoint, false);
+            document.querySelector("." + targetElementByClass).removeEventListener("touchend", getEndingPoint, false);*/
             distanceTravelledX = Math.abs(dataPipe.startingPointX - dataPipe.endingPointX);
             if (distanceTravelledX >= threshold) {
                 distanceTravelledX > 0 ?
