@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, false);
 
     document.querySelector(".heroBorder").addEventListener("touchend", (touchEnd) => {
-        if (touchStart.target && touchStart.target.matches("div.fullSizedImgContainer")) {
+        if (touchEnd.target && touchEnd.target.matches("div.fullSizedImgContainer")) {
             dataCollector(touchEnd)
             .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
@@ -468,7 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch( (error) => { console.log(error); } );
         }
     }, false);
-    
+
 }, false);
 
 
