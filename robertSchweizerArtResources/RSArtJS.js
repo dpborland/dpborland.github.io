@@ -438,13 +438,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }, false);
 
     document.querySelector(".heroBorder").addEventListener("touchstart", (touchStart) => {
-        if (touchStart.target && touchStart.target.matches("picture.fullSizedImgContainer")) {
+        if (touchStart.target && (touchEnd.target.matches("img.fullSizedImg") || touchEnd.target.matches("source.fullSizedImgSmall"))) {
             return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
         }
     }, false);
 
     document.querySelector(".heroBorder").addEventListener("touchend", (touchEnd) => {
-        if (touchEnd.target && touchEnd.target.matches("picture.fullSizedImgContainer")) {
+        if (touchEnd.target && (touchEnd.target.matches("img.fullSizedImg") || touchEnd.target.matches("source.fullSizedImgSmall"))) {
             dataCollector(touchEnd)
             .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
