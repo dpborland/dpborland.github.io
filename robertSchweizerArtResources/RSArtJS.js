@@ -25,28 +25,26 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     return dataPipe;
 }
 
-function dataCollector(...events) {
+function dataCollector(event) {
     return new Promise( (resolve, reject) => {
         let dataPipe = {};
 
         if (events[0].target !== undefined && events[0].touches === undefined) {
-            dataPipe.event = events[0];
-            dataPipe.elementClicked = events[0].target;
-            dataPipe.elementClickedId = events[0].target.id;
-            dataPipe.elementClickedAlt = events[0].target.alt;
+            dataPipe.event = event;
+            dataPipe.elementClicked = event.target;
+            dataPipe.elementClickedId = event.target.id;
+            dataPipe.elementClickedAlt = event.target.alt;
             resolve(dataPipe);
         } else if (events[0].target !== undefined && events[0].touches !== undefined) {
-            dataPipe.startingPointX = events[1];//events[0].touches[0].clientX;
-            dataPipe.touches = events[0].touches;
-            dataPipe.endingPointX = events[0].changedTouches[events[0].changedTouches.length - 1].clientX;
-            dataPipe.changedTouches = events[0].changedTouches;
-            dataPipe.elementClicked = events[0].target;
+            dataPipe.touches = event.touches;
+            dataPipe.endingPointX = event.changedTouches[event.changedTouches.length - 1].clientX;
+            dataPipe.elementClicked = event.target;
             dataPipe.elementClickedId = "";
             dataPipe.elementClickedAlt = "";
-            events[0].preventDefault();
+            event.preventDefault();
             resolve(dataPipe);
         } else {
-            reject(e);
+            reject(event);
         }
     });
 }
@@ -220,7 +218,7 @@ function textToggler(initialText, nextText, elementByClassName) {
     }, false);
 
     //return dataPipe;
-}*/
+}
 
 function mobileSwipeInitiator(dataPipe, thresholdValue, elementByClass) {
     let distanceTravelledX, endingPointX;
@@ -242,28 +240,39 @@ function mobileSwipeInitiator(dataPipe, thresholdValue, elementByClass) {
     }
 }
 
-function mobileSwipeInit(dataPipe, threshold, targetElementByClass) {
+function mobileSwipeInit(dataPipe, threshold) {
     return new Promise( (resolve, reject) => {
-        let distanceTravelledX;
-        /*dataPipe.startingPointX = dataPipe.touches[0].clientX;
+        let distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
 
-        document.querySelector("." + targetElementByClass).addEventListener("touchend", getEndingPoint, false);
+        if (Math.abs(distanceTravelledX) >= threshold) {
+            distanceTravelledX > 0 ?
+                (dataPipe.elementClickedId = "increment", resolve(dataPipe))
+                :
+                (dataPipe.elementClickedId = "decrement", resolve(dataPipe));
+        } else {
+            reject(console.log(endingPointX, dataPipe, "swipeInit Rejected!"));
+        }
+    });
+}*/
 
-        Promise.all([getEndingPoint]).then( endingPointX => {
-            dataPipe.endingPointX = endingPointX;
-            document.querySelector("." + targetElementByClass).removeEventListener("touchend", getEndingPoint, false);*/
-            distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
-            if (Math.abs(distanceTravelledX) >= threshold) {
-                distanceTravelledX > 0 ?
-                    (dataPipe.elementClickedId = "increment", resolve(dataPipe))
-                    :
-                    (dataPipe.elementClickedId = "decrement", resolve(dataPipe));
-            } else {
-                reject(console.log(endingPointX, dataPipe, "swipeInit Rejected!"));
-            }
-        });
+function mobileSwipeInit(touchstart) {
+    let distanceTravelledX;
+    let startingPointX = touchstart.event.clientX;
 
-    //});
+    return function(dataPipe, threshold) {
+        distanceTravelledX = startingPointX - dataPipe.endingPointX;
+
+        if (Math.abs(distanceTravelledX) >= threshold) {
+            distanceTravelledX > 0 ?
+                dataPipe.elementClickedId = "increment"
+                :
+                dataPipe.elementClickedId = "decrement";
+        } else {
+            return dataPipe;
+        }
+
+        return dataPipe;
+    }
 }
 
 function getEndingPoint(e) {
@@ -448,11 +457,12 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
     }, false);
 
     document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
-        let touchStartX = touchStart.touches[0].clientX;
+        mobileSwipeInit = mobileSwipeInit(touchStart);
     }, false);
+
     document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
-        dataCollector(touchEnd, touchStartX)
-        .then( dataPipe => mobileSwipeInit(dataPipe, 100, "fullSizedImg") )
+        dataCollector(touchEnd)
+        .then( dataPipe => mobileSwipeInit(dataPipe, 100) )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
         .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
         .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
