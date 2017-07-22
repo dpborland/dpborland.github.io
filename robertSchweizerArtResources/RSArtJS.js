@@ -257,7 +257,7 @@ function mobileSwipeInit(dataPipe, threshold) {
 
 function mobileSwipeInit(touchstart) {
     let distanceTravelledX;
-    let startingPointX = touchstart.clientX;
+    let startingPointX = touchstart.touches[0].clientX;
 
     return function(dataPipe, threshold) {
         dataPipe.startingPointX = startingPointX;
