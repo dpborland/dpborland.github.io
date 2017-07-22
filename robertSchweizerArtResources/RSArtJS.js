@@ -269,26 +269,12 @@ function mobileSwipeInit(touchstart) {
                 :
                 dataPipe.elementClickedId = "decrement";
 
-            console.log(startingPointX);
-
             return dataPipe;
 
         } else {
             return dataPipe;
         }
     }
-}
-
-function getEndingPoint(e) {
-    let endingPointX = e.changedTouches[0].clientX;
-
-    return new Promise( (resolve, reject) => {
-        if (endingPointX !== undefined && endingPointX !== null) {
-            resolve(endingPointX);
-        } else {
-            reject(console.log("getEndingPoint Rejected!"));
-        };
-    });
 }
 
 function fullScreenImg(elementByClass) {
@@ -451,6 +437,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, false);
 
+    document.querySelector(".heroBorder").addEventListener("touchstart", (touchStart) => {
+        if (touchStart.target && touchStart.target.matches("div.fullSizedImgContainer")) {
+            return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
+        }
+    }, false);
+
+    document.querySelector(".heroBorder").addEventListener("touchend", (touchEnd) => {
+        if (touchStart.target && touchStart.target.matches("div.fullSizedImgContainer")) {
+            dataCollector(touchEnd)
+            .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
+            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+            .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+            .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
+            .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
+            .then( dataPipe => delayer(dataPipe, 300) )
+            .then( dataPipe => changeAttribute(dataPipe, "src",
+                ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
+                "fullSizedImg") )
+            .then( dataPipe => changeAttribute(dataPipe, "srcset",
+                ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
+                "fullSizedImgSmall") )
+            .catch( dataPipe => {
+                console.log(dataPipe);
+                return dataPipe;
+            })
+            .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
+            .then( dataPipe => delayer(dataPipe, 400) )
+            .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+            .catch( (error) => { console.log(error); } );
+        }
+    }, false);
+    
 }, false);
 
 
@@ -461,56 +479,65 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
     }, false);
 
     document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
-        mobileSwipeInit = mobileSwipeInit(touchStart);
+        return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
     }, false);
 
     document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
         dataCollector(touchEnd)
-        .then( dataPipe => mobileSwipeInit(dataPipe, 100) )
+        .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
         .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
         .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
         .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
         .then( dataPipe => delayer(dataPipe, 300) )
         .then( dataPipe => changeAttribute(dataPipe, "src",
-                ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
-                "fullSizedImg") )
+            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
+            "fullSizedImg") )
         .then( dataPipe => changeAttribute(dataPipe, "srcset",
-                ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
-                "fullSizedImgSmall") )
+            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
+            "fullSizedImgSmall") )
         .catch( dataPipe => {
-                console.log(dataPipe);
+            console.log(dataPipe);
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
         .then( dataPipe => delayer(dataPipe, 400) )
         .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
         .catch( (error) => { console.log(error); } );
-
-        touchStart.preventDefault();
-
     }, false);
 
 
 } else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
+    document.querySelector(".fullSizedImgSmall").addEventListener("click", (e) => {
+        fullScreenImg("fullSizedImgSmall");
+    }, false);
+
+    document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
+        return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
+    }, false);
 
     document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", (e) => {
-        dataCollector(e)
-        .then( dataPipe => mobileSwipeInitiator(dataPipe, 100) )
+        dataCollector(touchEnd)
+        .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
         .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-        .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentIndex]) )
+        .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
+        .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
         .then( dataPipe => delayer(dataPipe, 300) )
         .then( dataPipe => changeAttribute(dataPipe, "src",
-            ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + ".jpg"),
+            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
             "fullSizedImg") )
         .then( dataPipe => changeAttribute(dataPipe, "srcset",
-            ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + "SMALL.jpg"),
+            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
             "fullSizedImgSmall") )
-        .then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
+        .catch( dataPipe => {
+            console.log(dataPipe);
+            return dataPipe;
+        })
+        .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
         .then( dataPipe => delayer(dataPipe, 400) )
-        .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
-        .catch( (error) => { console.log(error); } )
+        .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+        .catch( (error) => { console.log(error); } );
     }, false);
 }
 
