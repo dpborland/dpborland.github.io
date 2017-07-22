@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, false);
 
     document.querySelector(".heroBorder").addEventListener("touchstart", (touchStart) => {
-        if (touchStart.target && (touchEnd.target.matches("img.fullSizedImg") || touchEnd.target.matches("source.fullSizedImgSmall"))) {
+        if (touchStart.target && (touchStart.target.matches("img.fullSizedImg") || touchStart.target.matches("source.fullSizedImgSmall"))) {
             return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
         }
     }, false);
