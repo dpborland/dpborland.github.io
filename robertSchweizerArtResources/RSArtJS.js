@@ -29,13 +29,13 @@ function dataCollector(event) {
     return new Promise( (resolve, reject) => {
         let dataPipe = {};
 
-        if (events[0].target !== undefined && events[0].touches === undefined) {
+        if (event.target !== undefined && event.touches === undefined) {
             dataPipe.event = event;
             dataPipe.elementClicked = event.target;
             dataPipe.elementClickedId = event.target.id;
             dataPipe.elementClickedAlt = event.target.alt;
             resolve(dataPipe);
-        } else if (events[0].target !== undefined && events[0].touches !== undefined) {
+        } else if (event.target !== undefined && event.touches !== undefined) {
             dataPipe.touches = event.touches;
             dataPipe.endingPointX = event.changedTouches[event.changedTouches.length - 1].clientX;
             dataPipe.elementClicked = event.target;
