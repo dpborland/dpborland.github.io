@@ -260,6 +260,7 @@ function mobileSwipeInit(touchstart) {
     let startingPointX = touchstart.clientX;
 
     return function(dataPipe, threshold) {
+        dataPipe.startingPoint = startingPoint;
         distanceTravelledX = startingPointX - dataPipe.endingPointX;
 
         if (Math.abs(distanceTravelledX) >= threshold) {
@@ -267,11 +268,12 @@ function mobileSwipeInit(touchstart) {
                 dataPipe.elementClickedId = "increment"
                 :
                 dataPipe.elementClickedId = "decrement";
+
+            return dataPipe;
+
         } else {
             return dataPipe;
         }
-
-        return dataPipe;
     }
 }
 
