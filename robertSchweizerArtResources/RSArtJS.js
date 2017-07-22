@@ -269,6 +269,8 @@ function mobileSwipeInit(touchstart) {
                 :
                 dataPipe.elementClickedId = "decrement";
 
+            console.log(startingPointX);
+
             return dataPipe;
 
         } else {
