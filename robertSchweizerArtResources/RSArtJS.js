@@ -56,15 +56,14 @@ function dataCollector(event, ...keyValuePairs) {
 
         if (event.target !== undefined) {
             keyValuePairs.forEach( (keyValue) => {
-                dataPipe[keyValue[0]] = event[keyValue[1]];
+                dataPipe[keyValue[0]] = keyValue[1];
             });
 
-
+            resolve(dataPipe);
 
         } else {
             reject(event);
         }
-    resolve(dataPipe);
     });
 }
 
