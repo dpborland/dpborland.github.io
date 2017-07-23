@@ -12,10 +12,10 @@ function getAJAXContent(dataPipe, containerElementByClass) {
             response = xhttp.responseText;
             Array.isArray(containerElementByClass) ?
                 (container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]],
-                    container.innerHTML = response)
+                    container.innerHTML = response, console.log(response))
                 :
                 (container = document.querySelector("." + containerElementByClass),
-                    container.innerHTML = response);
+                    container.innerHTML = response, console.log(response));
         } else {
             console.log(xhttp.status);
         }
