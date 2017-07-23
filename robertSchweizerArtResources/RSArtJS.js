@@ -363,6 +363,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["elementClicked", event.target],
                 ["elementClickedId", event.target.id],
                 ["elementClickedAlt", event.target.alt])
+            .then( dataPipe => {
+                console.log(dataPipe);
+                return dataPipe;
+            })
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "galleryWrapper") )
             .then( dataPipe => delayer(dataPipe, 200))
             .then( dataPipe => classRemover(dataPipe, "dropDownItemHighlight", "dropDownItem") )
