@@ -54,7 +54,7 @@ function dataCollector(event, ...keyValuePairs) {
     return new Promise( (resolve, reject) => {
        let dataPipe = {};
 
-        if (event.target !== undefined && event.touches === undefined) {
+        if (event.target !== undefined) {
             keyValuePairs.forEach( (keyValue) => {
                 dataPipe[keyValue[0]] = event[keyValue[1]];
             });
