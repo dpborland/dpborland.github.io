@@ -59,11 +59,12 @@ function dataCollector(event, ...keyValuePairs) {
                 dataPipe[keyValue[0]] = event[keyValue[1]];
             });
 
-            resolve(dataPipe);
+
 
         } else {
             reject(event);
         }
+    resolve(dataPipe);
     });
 }
 
