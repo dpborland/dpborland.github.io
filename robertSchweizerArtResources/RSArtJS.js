@@ -396,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //---// Controls image gallery's navigation buttons //---//
     document.querySelector(".heroBorder").addEventListener("click", (event) => {
-        if (e.target && e.target.matches("div.galleryNavButtons")) {
+        if (event.target && event.target.matches("div.galleryNavButtons")) {
             dataCollector(event, ["event", event],
                 ["elementClicked", event.target],
                 ["elementClickedId", event.target.id],
@@ -426,7 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //---// Allows for gallery image selection based on thumbnail clicked //---//
     document.querySelector(".heroBorder").addEventListener("click", (event) => {
-        if (e.target && e.target.matches("img.thumbnailImg")) {
+        if (event.target && event.target.matches("img.thumbnailImg")) {
             dataCollector(event, ["event", event],
                 ["elementClicked", event.target],
                 ["elementClickedId", event.target.id],
@@ -449,20 +449,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //---// Opens current image in full screen when either the image itself, of the full screen toggle, are clicked //---//
     document.querySelector(".heroBorder").addEventListener("click", (event) => {
-        if (e.target && e.target.matches("img.fullSizedImg")) {
+        if (event.target && event.target.matches("img.fullSizedImg")) {
             fullScreenImg("fullSizedImg");
         }
     }, false);
 
     document.querySelector(".heroBorder").addEventListener("click", (event) => {
-        if (e.target && e.target.matches("img.fullScreenArrows")) {
+        if (event.target && event.target.matches("img.fullScreenArrows")) {
             fullScreenImg("fullSizedImg");
         }
     }, false);
 
 //---// Opens the image's information tab //---//
     document.querySelector(".heroBorder").addEventListener("click", (event) => {
-        if (e.target && e.target.matches("div.galleryInfoButton")) {
+        if (event.target && event.target.matches("div.galleryInfoButton")) {
             classToggler("none", "galleryInfoButtonExpanded", "galleryInfoButton");
             textToggler("i", "X", "galleryInfoButton");
             classToggler("none", "infoSpacerExpanded", "infoSpacer");
