@@ -12,17 +12,16 @@ function getAJAXContent(dataPipe, containerElementByClass) {
             response = xhttp.responseText;
             Array.isArray(containerElementByClass) ?
                 (container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]],
-                    container.innerHTML = response, console.log(response))
+                    container.innerHTML = response)
                 :
                 (container = document.querySelector("." + containerElementByClass),
-                    container.innerHTML = response, console.log(response));
+                    container.innerHTML = response);
         } else {
             console.log(xhttp.status);
         }
     }
 
     xhttp.send();
-    console.log(ajaxFill);
     return dataPipe;
 }
 
@@ -363,10 +362,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["elementClicked", event.target],
                 ["elementClickedId", event.target.id],
                 ["elementClickedAlt", event.target.alt])
-            .then( dataPipe => {
-                console.log(dataPipe);
-                return dataPipe;
-            })
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "galleryWrapper") )
             .then( dataPipe => delayer(dataPipe, 200))
             .then( dataPipe => classRemover(dataPipe, "dropDownItemHighlight", "dropDownItem") )
