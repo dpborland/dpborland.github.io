@@ -22,6 +22,7 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     }
 
     xhttp.send();
+    console.log(ajaxFill);
     return dataPipe;
 }
 
