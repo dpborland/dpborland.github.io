@@ -50,7 +50,7 @@ function getAJAXContent(dataPipe, containerElementByClass) {
 }*/
 
 function dataCollector(event, ...keyValuePairs) {
-    return new Promise( (resolve, reject) {
+    return new Promise( (resolve, reject) => {
        let dataPipe = {};
 
         if (event.target !== undefined && event.touches === undefined) {
