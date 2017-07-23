@@ -25,7 +25,7 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     return dataPipe;
 }
 
-function dataCollector(event) {
+/*function dataCollector(event) {
     return new Promise( (resolve, reject) => {
         let dataPipe = {};
 
@@ -43,6 +43,23 @@ function dataCollector(event) {
             dataPipe.elementClickedAlt = "";
             event.preventDefault();
             resolve(dataPipe);
+        } else {
+            reject(event);
+        }
+    });
+}*/
+
+function dataCollector(event, ...keyValuePairs) {
+    return new Promise( (resolve, reject) {
+       let dataPipe = {};
+
+        if (event.target !== undefined && event.touches === undefined) {
+            keyValuePairs.forEach( (keyValue) => {
+                dataPipe[keyValue[0]] = event.[keyValue[1]];
+            });
+
+            resolve(dataPipe);
+
         } else {
             reject(event);
         }
@@ -322,25 +339,29 @@ function delayer (dataPipe, delayTime) {
 //---// Event Listeners and Promise Chain Composition //---//
 
 document.addEventListener("DOMContentLoaded", () => {
+
 //---// Toggles menu headings between open and closed states when clicked //---//
-    document.querySelector(".navWorkHeading").addEventListener("click", (e) => {
-        dataCollector(e)
+    document.querySelector(".navWorkHeading").addEventListener("click", (event) => {
+        dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "workDropExpanded", "workDrop") )
         .then( textToggler("+ Paintings", "- Paintings", "navWorkHeading") )
         .catch( error => console.log(error) );
     }, false);
 
-    document.querySelector(".navAboutHeading").addEventListener("click", (e) => {
-        dataCollector(e)
+    document.querySelector(".navAboutHeading").addEventListener("click", (event) => {
+        dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "aboutDropExpanded", "aboutDrop") )
         .then( textToggler("+ Information", "- Information", "navAboutHeading") )
         .catch( (error) => console.log(error) );
     }, false);
 
-//---// Adjusts the site layout and fills AJAX content based on menu selection //---//
+//---// Realigns the layout and fills AJAX content based on menu selection //---//
     Array.from(document.querySelectorAll(".dropDownItem")).forEach( (selection) => {
-        selection.addEventListener("click", (e) => {
-            dataCollector(e)
+        selection.addEventListener("click", (event) => {
+            dataCollector(event, ["event", event],
+                ["elementClicked", event.target],
+                ["elementClickedId", event.target.id],
+                ["elementClickedAlt", event.target.alt])
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "galleryWrapper") )
             .then( dataPipe => delayer(dataPipe, 200))
             .then( dataPipe => classRemover(dataPipe, "dropDownItemHighlight", "dropDownItem") )
@@ -368,9 +389,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 //---// Controls image gallery's navigation buttons //---//
-    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+    document.querySelector(".heroBorder").addEventListener("click", (event) => {
         if (e.target && e.target.matches("div.galleryNavButtons")) {
-            dataCollector(e)
+            dataCollector(event, ["event", event],
+                ["elementClicked", event.target],
+                ["elementClickedId", event.target.id],
+                ["elementClickedAlt", event.target.alt])
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
@@ -395,10 +419,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, false);
 
 //---// Allows for gallery image selection based on thumbnail clicked //---//
-    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+    document.querySelector(".heroBorder").addEventListener("click", (event) => {
         if (e.target && e.target.matches("img.thumbnailImg")) {
-            dataCollector(e)
-            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+            dataCollector(event, ["event", event],
+                ["elementClicked", event.target],
+                ["elementClickedId", event.target.id],
+                ["elementClickedAlt", event.target.alt])            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
             .then( dataPipe => delayer(dataPipe, 300) )
@@ -416,20 +442,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }, false);
 
 //---// Opens current image in full screen when either the image itself, of the full screen toggle, are clicked //---//
-    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+    document.querySelector(".heroBorder").addEventListener("click", (event) => {
         if (e.target && e.target.matches("img.fullSizedImg")) {
             fullScreenImg("fullSizedImg");
         }
     }, false);
 
-    document.querySelector(".heroBorder").addEventListener("click", (e) => {
-        if (e.target && e.target.matches("picture.fullScreenToggle")) {
+    document.querySelector(".heroBorder").addEventListener("click", (event) => {
+        if (e.target && e.target.matches("img.fullScreenArrows")) {
             fullScreenImg("fullSizedImg");
         }
     }, false);
 
 //---// Opens the image's information tab //---//
-    document.querySelector(".heroBorder").addEventListener("click", (e) => {
+    document.querySelector(".heroBorder").addEventListener("click", (event) => {
         if (e.target && e.target.matches("div.galleryInfoButton")) {
             classToggler("none", "galleryInfoButtonExpanded", "galleryInfoButton");
             textToggler("i", "X", "galleryInfoButton");
@@ -437,6 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, false);
 
+//---// Activates swipe controls for mobile users //---//
     document.querySelector(".heroBorder").addEventListener("touchstart", (touchStart) => {
         if (touchStart.target && (touchStart.target.matches("img.fullSizedImg") || touchStart.target.matches("source.fullSizedImgSmall"))) {
             return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
@@ -445,7 +472,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector(".heroBorder").addEventListener("touchend", (touchEnd) => {
         if (touchEnd.target && (touchEnd.target.matches("img.fullSizedImg") || touchEnd.target.matches("source.fullSizedImgSmall"))) {
-            dataCollector(touchEnd)
+            dataCollector(touchEnd, ["event", event],
+                ["elementClicked", event.target],
+                ["elementClickedId", ""],
+                ["elementClickedAlt", ""],
+                ["touches", event.touches],
+                ["endingPointX", event.changedTouches[event.changedTouches.length - 1].clientX])
             .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
@@ -473,8 +505,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
-    document.querySelector(".fullSizedImg").addEventListener("click", (e) => {
+/*if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
+    document.querySelector(".fullSizedImg").addEventListener("click", (event) => {
         fullScreenImg("fullSizedImg");
     }, false);
 
@@ -508,7 +540,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
 
 
 } else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
-    document.querySelector(".fullSizedImgSmall").addEventListener("click", (e) => {
+    document.querySelector(".fullSizedImgSmall").addEventListener("click", (event) => {
         fullScreenImg("fullSizedImgSmall");
     }, false);
 
@@ -516,7 +548,7 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
     }, false);
 
-    document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", (e) => {
+    document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", (event) => {
         dataCollector(touchEnd)
         .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
         .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
@@ -539,6 +571,6 @@ if (document.querySelector(".fullSizedImg") !== undefined && document.querySelec
         .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
         .catch( (error) => { console.log(error); } );
     }, false);
-}
+}*/
 
 

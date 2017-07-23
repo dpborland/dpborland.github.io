@@ -569,6 +569,7 @@ Right side of page, including all image and text content
     border-right: 1px solid transparent;
     border-bottom: 1px solid transparent;
     border-left: 0px;
+	cursor: pointer;
     transition: background-color .5s ease, height .3s ease, color .3s ease, border-right .3s ease .3s, border-bottom .3s ease;
 }
 
@@ -628,7 +629,7 @@ Right side of page, including all image and text content
     overflow: hidden;
     opacity: 0;
     z-index: 100;
-    transition: opacity .2s ease, background-color .5s ease;
+    transition: opacity .4s ease, background-color .5s ease;
 }
 
 .gallerySpacer {
@@ -692,7 +693,7 @@ Basic CSS for mobile
 		padding-left: 0;
 		padding-right: 0;
 		flex-direction: row;
-		justify-content: left;
+		justify-content: center;
 	}
 
 	.leftLandingCollapsed {
