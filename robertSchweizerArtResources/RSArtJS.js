@@ -3,19 +3,19 @@
 function getAJAXContent(dataPipe, containerElementByClass) {
     let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.split(" ").join("").toLowerCase() + ".html";
     let xhttp = new XMLHttpRequest();
-    let container;
+    let container, response;
 
     xhttp.open("GET", ajaxFill, true);
 
     xhttp.onload = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            dataPipe.response = xhttp.responseText;
+            response = xhttp.responseText;
             Array.isArray(containerElementByClass) ?
                 (container = document.querySelectorAll("." + containerElementByClass[0])[containerElementByClass[1]],
-                    container.innerHTML = dataPipe.response)
+                    container.innerHTML = response)
                 :
                 (container = document.querySelector("." + containerElementByClass),
-                    container.innerHTML = dataPipe.response);
+                    container.innerHTML = response);
         } else {
             console.log(xhttp.status);
         }
