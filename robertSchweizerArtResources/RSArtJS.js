@@ -292,6 +292,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".navWorkHeading").addEventListener("click", (event) => {
         dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "workDropExpanded", "workDrop") )
+        .then( dataPipe => {
+            if (window.matchMedia("(max-width: 499px)").matches) {
+                classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
+            }
+            return dataPipe;
+        })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "workDropExpanded") )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "aboutDropExpanded") )
         .then( textToggler("+ Paintings", "- Paintings", "navWorkHeading") )
@@ -301,6 +307,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".navAboutHeading").addEventListener("click", (event) => {
         dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "aboutDropExpanded", "aboutDrop") )
+        .then( dataPipe => {
+            if (window.matchMedia("(max-width: 499px)").matches) {
+                classRemover(dataPipe, "workDropExpanded", "workDrop");
+            }
+            return dataPipe;
+        })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "aboutDropExpanded") )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "workDropExpanded") )
         .then( textToggler("+ Information", "- Information", "navAboutHeading") )
