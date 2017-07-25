@@ -295,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
                 classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
+                textToggler("+ Information", "- Information", "navAboutHeading");
             }
             return dataPipe;
         })
@@ -310,6 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
                 classRemover(dataPipe, "workDropExpanded", "workDrop");
+                textToggler("+ Paintings", "- Paintings", "navWorkHeading");
             }
             return dataPipe;
         })
