@@ -220,58 +220,6 @@ function textToggler(initialText, nextText, elementByClassName) {
     }
 }
 
-/*function mobileSwipeInitiator(dataPipe, thresholdValue) {
-    let distanceTravelledX, endingPointX;
-
-    dataPipe.elementClicked.addEventListener("touchend", (x) => {
-        distanceTravelledX = dataPipe.startingPointX - x.changedTouches[0].clientX;
-        if (Math.abs(distanceTravelledX) >= thresholdValue) {
-            distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
-            console.log(distanceTravelledX, dataPipe.startingPointX, dataPipe.changedTouches[0].clientX);
-            return dataPipe;
-        } else {
-            return dataPipe;
-        }
-    }, false);
-
-    //return dataPipe;
-}
-
-function mobileSwipeInitiator(dataPipe, thresholdValue, elementByClass) {
-    let distanceTravelledX, endingPointX;
-
-    document.querySelector("." + elementByClass).addEventListener("touchend", getEndingPoint, false);
-
-    distanceTravelledX = dataPipe.startingPointX - endingPointX;
-    if (Math.abs(distanceTravelledX) >= thresholdValue) {
-        distanceTravelledX > 0 ? dataPipe.elementClickedId = "increment" : dataPipe.elementClickedId = "decrement";
-        console.log("distance travelled = " + distanceTravelledX + "\n" + "starting point = " + dataPipe.startingPointX + "\n" +
-            "ending point = " + endingPointX);
-
-        document.querySelector("." + elementByClass).removeEventListener("touchend", getEndingPoint, false);
-
-        return dataPipe;
-    } else {
-        document.querySelector("." + elementByClass).removeEventListener("touchend", getEndingPoint, false);
-        return dataPipe;
-    }
-}
-
-function mobileSwipeInit(dataPipe, threshold) {
-    return new Promise( (resolve, reject) => {
-        let distanceTravelledX = dataPipe.startingPointX - dataPipe.endingPointX;
-
-        if (Math.abs(distanceTravelledX) >= threshold) {
-            distanceTravelledX > 0 ?
-                (dataPipe.elementClickedId = "increment", resolve(dataPipe))
-                :
-                (dataPipe.elementClickedId = "decrement", resolve(dataPipe));
-        } else {
-            reject(console.log(endingPointX, dataPipe, "swipeInit Rejected!"));
-        }
-    });
-}*/
-
 function mobileSwipeInit(touchstart) {
     let distanceTravelledX;
     let startingPointX = touchstart.touches[0].clientX;
@@ -344,6 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".navWorkHeading").addEventListener("click", (event) => {
         dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "workDropExpanded", "workDrop") )
+        .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "workDropExpanded") )
+        .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "aboutDropExpanded") )
         .then( textToggler("+ Paintings", "- Paintings", "navWorkHeading") )
         .catch( error => console.log(error) );
     }, false);
@@ -351,6 +301,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".navAboutHeading").addEventListener("click", (event) => {
         dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "aboutDropExpanded", "aboutDrop") )
+        .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "aboutDropExpanded") )
+        .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "workDropExpanded") )
         .then( textToggler("+ Information", "- Information", "navAboutHeading") )
         .catch( (error) => console.log(error) );
     }, false);
@@ -502,75 +454,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }, false);
 
 }, false);
-
-
-
-/*if (document.querySelector(".fullSizedImg") !== undefined && document.querySelector(".fullSizedImg") !== null) {
-    document.querySelector(".fullSizedImg").addEventListener("click", (event) => {
-        fullScreenImg("fullSizedImg");
-    }, false);
-
-    document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
-        return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
-    }, false);
-
-    document.querySelector(".fullSizedImgContainer").addEventListener("touchend", (touchEnd) => {
-        dataCollector(touchEnd)
-        .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
-        .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-        .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-        .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-        .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
-        .then( dataPipe => delayer(dataPipe, 300) )
-        .then( dataPipe => changeAttribute(dataPipe, "src",
-            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
-            "fullSizedImg") )
-        .then( dataPipe => changeAttribute(dataPipe, "srcset",
-            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
-            "fullSizedImgSmall") )
-        .catch( dataPipe => {
-            console.log(dataPipe);
-            return dataPipe;
-        })
-        .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
-        .then( dataPipe => delayer(dataPipe, 400) )
-        .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
-        .catch( (error) => { console.log(error); } );
-    }, false);
-
-
-} else if (document.querySelector(".fullSizedImgSmall") !== undefined && document.querySelector(".fullSizedImgSmall") !== null) {
-    document.querySelector(".fullSizedImgSmall").addEventListener("click", (event) => {
-        fullScreenImg("fullSizedImgSmall");
-    }, false);
-
-    document.querySelector(".fullSizedImgContainer").addEventListener("touchstart", (touchStart) => {
-        return mobileSwipeInitCurried = mobileSwipeInit(touchStart);
-    }, false);
-
-    document.querySelector(".fullSizedImgSmall").addEventListener("touchstart", (event) => {
-        dataCollector(touchEnd)
-        .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
-        .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
-        .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
-        .then( dataPipe => classRemover(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-        .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
-        .then( dataPipe => delayer(dataPipe, 300) )
-        .then( dataPipe => changeAttribute(dataPipe, "src",
-            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + ".jpg"),
-            "fullSizedImg") )
-        .then( dataPipe => changeAttribute(dataPipe, "srcset",
-            ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
-            "fullSizedImgSmall") )
-        .catch( dataPipe => {
-            console.log(dataPipe);
-            return dataPipe;
-        })
-        .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
-        .then( dataPipe => delayer(dataPipe, 400) )
-        .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
-        .catch( (error) => { console.log(error); } );
-    }, false);
-}*/
-
 
