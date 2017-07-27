@@ -348,6 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => classAdder(dataPipe, "heroBorderDivExpanded", "heroBorder") )
             .then( dataPipe => {
                 if (window.matchMedia("(max-width: 499px)").matches) {
+                    delayer(dataPipe, 300);
                     classRemover(dataPipe, "workDropExpanded", "workDrop");
                     classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
                     textToggler("+ Paintings", "+ Paintings", "navWorkHeading");
