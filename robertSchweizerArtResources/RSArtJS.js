@@ -292,10 +292,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".navWorkHeading").addEventListener("click", (event) => {
         dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "workDropExpanded", "workDrop") )
+    //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
                 classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
-                textToggler("+ Information", "+ Information", "navAboutHeading")
+                textToggler("+ Information", "+ Information", "navAboutHeading");
                }
             return dataPipe;
         })
@@ -308,10 +309,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".navAboutHeading").addEventListener("click", (event) => {
         dataCollector(event, ["event", event])
         .then( dataPipe => classToggler(dataPipe, "aboutDropExpanded", "aboutDrop") )
+    //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
                 classRemover(dataPipe, "workDropExpanded", "workDrop");
-                textToggler("+ Paintings", "+ Paintings", "navWorkHeading")
+                textToggler("+ Paintings", "+ Paintings", "navWorkHeading");
             }
             return dataPipe;
         })
@@ -346,6 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => classAdder(dataPipe, "pageTitleCollapsed", "pageTitle") )
             .then( dataPipe => classAdder(dataPipe, "rightLandingExpanded", "rightLanding") )
             .then( dataPipe => classAdder(dataPipe, "heroBorderDivExpanded", "heroBorder") )
+        //---// These are refinements for the mobile site, which change the behavior of the menu //---//
             .then( dataPipe => {
                 if (window.matchMedia("(max-width: 499px)").matches) {
                     delayer(dataPipe, 300);
@@ -360,7 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch( (error) => {
                 console.log(error);
             })
-            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper") );
+            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper", "bioText", "contactText") );
         }, false);
     });
 
