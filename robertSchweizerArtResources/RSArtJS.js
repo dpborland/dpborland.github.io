@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch( (error) => {
                 console.log(error);
             })
-            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper") );
+            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper") )
             .then( dataPipe => {
                 if (window.matchMedia("(max-width: 499px)").matches) {
                     classRemover(dataPipe, "workDropExpanded", "workDrop");
