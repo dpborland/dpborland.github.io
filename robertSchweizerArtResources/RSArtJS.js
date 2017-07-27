@@ -346,11 +346,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => classAdder(dataPipe, "pageTitleCollapsed", "pageTitle") )
             .then( dataPipe => classAdder(dataPipe, "rightLandingExpanded", "rightLanding") )
             .then( dataPipe => classAdder(dataPipe, "heroBorderDivExpanded", "heroBorder") )
-            .then( dataPipe => delayer(dataPipe, 800) )
-            .catch( (error) => {
-                console.log(error);
-            })
-            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper") )
             .then( dataPipe => {
                 if (window.matchMedia("(max-width: 499px)").matches) {
                     classRemover(dataPipe, "workDropExpanded", "workDrop");
@@ -358,6 +353,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 return dataPipe;
             })
+            .then( dataPipe => delayer(dataPipe, 800) )
+            .catch( (error) => {
+                console.log(error);
+            })
+            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper") );
         }, false);
     });
 
