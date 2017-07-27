@@ -295,8 +295,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
                 classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
-                textToggler("+ Information", "- Information", "navAboutHeading");
-            }
+                textToggler("+ Information", "+ Information", "navAboutHeading")
+               }
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "workDropExpanded") )
@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
                 classRemover(dataPipe, "workDropExpanded", "workDrop");
-                textToggler("+ Paintings", "- Paintings", "navWorkHeading");
+                textToggler("+ Paintings", "+ Paintings", "navWorkHeading")
             }
             return dataPipe;
         })
