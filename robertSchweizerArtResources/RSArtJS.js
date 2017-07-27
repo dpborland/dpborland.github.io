@@ -350,6 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (window.matchMedia("(max-width: 499px)").matches) {
                     classRemover(dataPipe, "workDropExpanded", "workDrop");
                     classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
+                    textToggler("+ Paintings", "+ Paintings", "navWorkHeading");
+                    textToggler("+ Information", "+ Information", "navAboutHeading");
                 }
                 return dataPipe;
             })
