@@ -1,7 +1,7 @@
 //---// Function Declarations //---//
 
 function getAJAXContent(dataPipe, containerElementByClass) {
-    let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.split(" ").join("").toLowerCase() + ".html";
+    let ajaxFill = "robertSchweizerArtResources/" + dataPipe.elementClicked.textContent.split(" ").join("").toLowerCase().replace(/&/g, "&amp;") + ".html";
     let xhttp = new XMLHttpRequest();
     let container, response;
 
@@ -24,30 +24,6 @@ function getAJAXContent(dataPipe, containerElementByClass) {
     xhttp.send();
     return dataPipe;
 }
-
-/*function dataCollector(event) {
-    return new Promise( (resolve, reject) => {
-        let dataPipe = {};
-
-        if (event.target !== undefined && event.touches === undefined) {
-            dataPipe.event = event;
-            dataPipe.elementClicked = event.target;
-            dataPipe.elementClickedId = event.target.id;
-            dataPipe.elementClickedAlt = event.target.alt;
-            resolve(dataPipe);
-        } else if (event.target !== undefined && event.touches !== undefined) {
-            dataPipe.touches = event.touches;
-            dataPipe.endingPointX = event.changedTouches[event.changedTouches.length - 1].clientX;
-            dataPipe.elementClicked = event.target;
-            dataPipe.elementClickedId = "";
-            dataPipe.elementClickedAlt = "";
-            event.preventDefault();
-            resolve(dataPipe);
-        } else {
-            reject(event);
-        }
-    });
-}*/
 
 function dataCollector(event, ...keyValuePairs) {
     return new Promise( (resolve, reject) => {
@@ -100,25 +76,20 @@ function findNextThumbnailIndex(dataPipe, elementsToSearch) {
             :
             (dataPipe.nextIndex = dataPipe.currentElementIndex + 1, console.log(dataPipe.elementClickedId, dataPipe.nextIndex));
 
-        //return dataPipe;
-
     } else if (dataPipe.elementClickedId === "decrement") {
         dataPipe.currentElementIndex === 0 ?
             (dataPipe.nextIndex = elementArray.length - 1, console.log(dataPipe.elementClickedId, dataPipe.nextIndex))
             :
             (dataPipe.nextIndex = dataPipe.currentElementIndex - 1, console.log(dataPipe.elementClickedId, dataPipe.nextIndex));
 
-        //return dataPipe;
     } else {
         elementArray.findIndex( (element, index) => {
             if (element.id === dataPipe.elementClickedId) {
                 dataPipe.nextIndex = index;
                 console.log(dataPipe.elementClickedId, dataPipe.nextIndex);
-                //return dataPipe;
             } else if (element === dataPipe.elementClicked) {
                 dataPipe.nextIndex = index;
                 console.log(dataPipe.elementClickedId, dataPipe.nextIndex);
-                //return dataPipe;
             }
         });
     }
@@ -348,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => classAdder(dataPipe, "pageTitleCollapsed", "pageTitle") )
             .then( dataPipe => classAdder(dataPipe, "rightLandingExpanded", "rightLanding") )
             .then( dataPipe => classAdder(dataPipe, "heroBorderDivExpanded", "heroBorder") )
-        //---// These are refinements for the mobile site, which change the behavior of the menu //---//
+        //---// These are refinements for the mobile site that change the behavior of the menu //---//
             .then( dataPipe => {
                 if (window.matchMedia("(max-width: 499px)").matches) {
                     delayer(dataPipe, 300);
