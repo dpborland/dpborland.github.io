@@ -199,12 +199,15 @@ Right side of page, including all image and text content
     overflow: hidden;
 	background-color: rgba(0, 0, 0, 0);
 	border: 1px solid #BFBFBF;
-	transition: background-color .4s ease .6s;
+	transition: background-color .4s ease .6s, height .4s ease, width .4s ease, border .4s ease .6s;
 	z-index: 3;
 }
 
 .heroBorderDivExpanded {
+	height: 100%;
+	width: 100%;
 	background-color: rgba(248, 248, 255, .8);
+	border: none;
 }
 
 .heroBorderCenterAlign {
@@ -776,14 +779,14 @@ Basic CSS for mobile
 		font-family: Raleway;
 		font-size: 2.3em;
 		font-weight: 100;
-		transition: opacity .5s ease-in, height 0s ease .5s, font-size 0s ease .5s;
+		transition: opacity .6s ease-in, height 0s ease .5s, font-size 0s ease .5s;
 		z-index: 99999;
 	}
 
 	.workDropExpanded {
 		height: 94%;
 		opacity: 1;
-		transition: opacity .5s ease;
+		transition: opacity .2s ease;
 	}
 
 	.aboutDropExpanded {
@@ -791,7 +794,7 @@ Basic CSS for mobile
 		height: 94%;
 		font-size: 2.3em;
 		opacity: 1;
-		transition: opacity .5s ease;
+		transition: opacity .2s ease;
 	}
 
 	.rightLanding {
@@ -801,12 +804,6 @@ Basic CSS for mobile
 
 	.rightLandingExpanded {
 		height: 83%;
-	}
-
-	.heroBorderDivExpanded {
-		height: 100%;
-		width: 100%;
-		border: none;
 	}
 
 	.gallerySpacer {
