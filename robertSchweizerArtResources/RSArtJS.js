@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "workDropExpanded") )
-        .then(dataPipe => delayer(dataPipe, 200) )
+        .then( dataPipe => delayer(dataPipe, 900) )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "aboutDropExpanded") )
         .then( textToggler("+ Paintings", "- Paintings", "navWorkHeading") )
         .catch( error => console.log(error) );
@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "aboutDropExpanded") )
-        .then(dataPipe => delayer(dataPipe, 200) )
+        .then( dataPipe => delayer(dataPipe, 900) )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "workDropExpanded") )
         .then( textToggler("+ Information", "- Information", "navAboutHeading") )
         .catch( (error) => console.log(error) );
