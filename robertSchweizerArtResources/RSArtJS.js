@@ -113,6 +113,7 @@ function classAdder(dataPipe, classToAdd, ...targetElementsByClass) {
             return dataPipe;
         }
     });
+
     return dataPipe;
 }
 
@@ -132,6 +133,7 @@ function classRemover(dataPipe, classToRemove, ...targetElementsByClass) {
             return dataPipe;
         }
     });
+
     return dataPipe;
 }
 
@@ -151,6 +153,7 @@ function classToggler(dataPipe, classToToggle, ...targetElementsByClass) {
             return dataPipe;
         }
     });
+
     return dataPipe;
 }
 
@@ -266,6 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
+                delayer(dataPipe, 200);
                 classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
                 textToggler("+ Information", "+ Information", "navAboutHeading");
                }
@@ -283,6 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
+                delayer(dataPipe, 200);
                 classRemover(dataPipe, "workDropExpanded", "workDrop");
                 textToggler("+ Paintings", "+ Paintings", "navWorkHeading");
             }
