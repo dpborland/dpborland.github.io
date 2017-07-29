@@ -275,7 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "workDropExpanded") )
-        .then( dataPipe => delayer(dataPipe, 900) )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "aboutDropExpanded") )
         .then( textToggler("+ Paintings", "- Paintings", "navWorkHeading") )
         .catch( error => console.log(error) );
@@ -293,7 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "aboutDropExpanded") )
-        .then( dataPipe => delayer(dataPipe, 900) )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "workDropExpanded") )
         .then( textToggler("+ Information", "- Information", "navAboutHeading") )
         .catch( (error) => console.log(error) );
@@ -306,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["elementClicked", event.target],
                 ["elementClickedId", event.target.id],
                 ["elementClickedAlt", event.target.alt])
-            .then( dataPipe => classRemover(dataPipe, "contentVisible", "galleryWrapper") )
+            .then( dataPipe => classRemover(dataPipe, "contentVisible", "galleryWrapper", "bioText", "contactText", "bioImgBorderBox") )
             .then( dataPipe => delayer(dataPipe, 200))
             .then( dataPipe => classRemover(dataPipe, "dropDownItemHighlight", "dropDownItem") )
             .then( dataPipe => findIndexOfClicked(dataPipe, "dropDownItem") )
@@ -339,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch( (error) => {
                 console.log(error);
             })
-            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper", "bioText", "contactText") );
+            .then( dataPipe => classToggler(dataPipe, "contentVisible", "galleryWrapper", "bioText", "contactText", "bioImgBorderBox") );
         }, false);
     });
 
