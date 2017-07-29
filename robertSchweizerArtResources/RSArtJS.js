@@ -269,13 +269,13 @@ document.addEventListener("DOMContentLoaded", () => {
     //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
-                delayer(dataPipe, 900)
-                    .then(classRemover(dataPipe, "aboutDropExpanded", "aboutDrop") );
+                classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
                 textToggler("+ Information", "+ Information", "navAboutHeading");
                }
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "workDropExpanded") )
+        .then(dataPipe => delayer(dataPipe, 200) )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "aboutDropExpanded") )
         .then( textToggler("+ Paintings", "- Paintings", "navWorkHeading") )
         .catch( error => console.log(error) );
@@ -287,13 +287,13 @@ document.addEventListener("DOMContentLoaded", () => {
     //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
-                delayer(dataPipe, 900)
-                    .then(classRemover(dataPipe, "workDropExpanded", "workDrop") );
+                classRemover(dataPipe, "workDropExpanded", "workDrop");
                 textToggler("+ Paintings", "+ Paintings", "navWorkHeading");
             }
             return dataPipe;
         })
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: 2", "aboutDropExpanded") )
+        .then(dataPipe => delayer(dataPipe, 200) )
         .then( dataPipe => changeAttribute(dataPipe, "style", "z-index: -1", "workDropExpanded") )
         .then( textToggler("+ Information", "- Information", "navAboutHeading") )
         .catch( (error) => console.log(error) );
