@@ -781,7 +781,7 @@ Basic CSS for mobile
 	.workDropExpanded {
 		height: 94%;
 		opacity: 1;
-		transition: opacity .3s ease;
+		transition: opacity .5s ease;
 	}
 
 	.aboutDropExpanded {
@@ -789,7 +789,7 @@ Basic CSS for mobile
 		height: 94%;
 		font-size: 2.3em;
 		opacity: 1;
-		transition: opacity .3s ease;
+		transition: opacity .5s ease;
 	}
 
 	.rightLanding {
