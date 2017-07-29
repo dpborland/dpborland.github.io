@@ -722,9 +722,11 @@ Basic CSS for mobile
 	}
 
 	.pageTitleCollapsed {
-		letter-spacing: 6px;
+		width: 100%;
+		letter-spacing: 5.5px;
 		padding-bottom: 5px;
 		font-size: 8.2vw;
+		text-align-last: justify;
 	}
 
 	.nav {
@@ -799,6 +801,12 @@ Basic CSS for mobile
 
 	.rightLandingExpanded {
 		height: 83%;
+	}
+
+	.heroBorderDivExpanded {
+		height: 100%;
+		width: 100%;
+		border: none;
 	}
 
 	.gallerySpacer {
