@@ -269,8 +269,8 @@ document.addEventListener("DOMContentLoaded", () => {
     //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
-                delayer(dataPipe, 200);
-                classRemover(dataPipe, "aboutDropExpanded", "aboutDrop");
+                delayer(dataPipe, 200)
+                    .then(classRemover(dataPipe, "aboutDropExpanded", "aboutDrop") );
                 textToggler("+ Information", "+ Information", "navAboutHeading");
                }
             return dataPipe;
@@ -287,8 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
     //---// These are refinements for the mobile site, which change the behavior of the menu //---//
         .then( dataPipe => {
             if (window.matchMedia("(max-width: 499px)").matches) {
-                delayer(dataPipe, 200);
-                classRemover(dataPipe, "workDropExpanded", "workDrop");
+                delayer(dataPipe, 200)
+                    .then(classRemover(dataPipe, "workDropExpanded", "workDrop") );
                 textToggler("+ Paintings", "+ Paintings", "navWorkHeading");
             }
             return dataPipe;
