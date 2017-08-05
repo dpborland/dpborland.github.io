@@ -451,6 +451,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["touches", event.touches],
                 ["endingPointX", event.changedTouches[event.changedTouches.length - 1].clientX] )
             .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
+            .catch( dataPipe => {
+                return resolve();
+            })
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "infoDiv", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
@@ -463,10 +466,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => changeAttribute(dataPipe, "srcset",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
                 "fullSizedImgSmall") )
-            /*.catch( dataPipe => {
+            .catch( dataPipe => {
                 console.log(dataPipe);
                 return dataPipe;
-            })*/
+            })
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( dataPipe => delayer(dataPipe, 400) )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
