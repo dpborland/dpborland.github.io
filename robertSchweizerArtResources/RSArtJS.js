@@ -452,7 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["endingPointX", event.changedTouches[event.changedTouches.length - 1].clientX] )
             .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
             .catch( dataPipe => {
-                return new Promise.resolve(dataPipe);
+                return new Promise.reject(dataPipe);
             })
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
