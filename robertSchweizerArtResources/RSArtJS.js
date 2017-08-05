@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "fullSizedImgSmall") )
             .catch( dataPipe => {
                 console.log(dataPipe);
-                return new Promise.reject(dataPipe);
+                return Promise.reject(dataPipe);
             })
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( dataPipe => delayer(dataPipe, 400) )
