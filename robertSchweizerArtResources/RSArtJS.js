@@ -386,7 +386,8 @@ document.addEventListener("DOMContentLoaded", () => {
             dataCollector(event, ["event", event],
                 ["elementClicked", event.target],
                 ["elementClickedId", event.target.id],
-                ["elementClickedAlt", event.target.alt])            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
+                ["elementClickedAlt", event.target.alt] )
+            .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classToggler(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
             .then( dataPipe => delayer(dataPipe, 300) )
@@ -447,7 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["elementClickedId", ""],
                 ["elementClickedAlt", ""],
                 ["touches", event.touches],
-                ["endingPointX", event.changedTouches[event.changedTouches.length - 1].clientX])
+                ["endingPointX", event.changedTouches[event.changedTouches.length - 1].clientX] )
             .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
