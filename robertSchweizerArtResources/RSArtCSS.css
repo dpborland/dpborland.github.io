@@ -402,8 +402,9 @@ Right side of page, including all image and text content
 	max-height: 100%;
 	max-width: 100%;
 	opacity: 0;
+	filter: none;
 	z-index: 1;
-	transition: opacity .3s ease, width 1s ease;
+	transition: opacity .3s ease, width 1s ease, filter .3s ease;
 }
 
 .fullSizedImg:hover {
@@ -412,6 +413,11 @@ Right side of page, including all image and text content
 
 .fullSizedImg:-webkit-full-screen {
 	cursor: zoom-out;
+}
+
+.fullSizedImgFiltered {
+	filter: grayscale(100%) opacity(60%);
+	transition: filter .3s ease;
 }
 
 .fullSizedImgSmall {
