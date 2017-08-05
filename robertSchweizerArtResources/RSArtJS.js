@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "infoDiv", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-            .then( dataPipe => classRemover(dataPipe, "fullSizedImgFiltered", "fullSizedImg") )
+            .then( dataPipe => classRemover(dataPipe, "fullSizedImgFiltered", "fullSizedImg", "fullSizedImgSmall") )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
             .then( dataPipe => delayer(dataPipe, 300) )
             .then( dataPipe => changeAttribute(dataPipe, "src",
@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "infoDiv", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-            .then( dataPipe => classRemover(dataPipe, "fullSizedImgFiltered", "fullSizedImg") )
+            .then( dataPipe => classRemover(dataPipe, "fullSizedImgFiltered", "fullSizedImg", "fullSizedImgSmall") )
             .then( dataPipe => delayer(dataPipe, 300) )
             .then( dataPipe => changeAttribute(dataPipe, "src",
                 ("robertSchweizerArtResources/images/" + dataPipe.elementClickedId + ".jpg"),
@@ -423,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.target && event.target.matches("div.galleryInfoButton")) {
             sizeMatcher("fullSizedImg", "infoDiv");
             classAdder("none", "contentVisible", "infoDiv");
-            classAdder("none", "fullSizedImgFiltered", "fullSizedImg");
+            classAdder("none", "fullSizedImgFiltered", "fullSizedImg", "fullSizedImgSmall");
         }
     }, false);
 
@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".heroBorder").addEventListener("click", (event) => {
         if (event.target && event.target.matches("span.closeX")) {
             classRemover("none", "contentVisible", "infoDiv");
-            classRemover("none", "fullSizedImgFiltered", "fullSizedImg");
+            classRemover("none", "fullSizedImgFiltered", "fullSizedImg", "fullSizedImgSmall");
         }
     }, false);
 
@@ -454,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "infoDiv", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
-            .then( dataPipe => classRemover(dataPipe, "fullSizedImgFiltered", "fullSizedImg") )
+            .then( dataPipe => classRemover(dataPipe, "fullSizedImgFiltered", "fullSizedImg", "fullSizedImgSmall") )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
             .then( dataPipe => delayer(dataPipe, 300) )
             .then( dataPipe => changeAttribute(dataPipe, "src",
