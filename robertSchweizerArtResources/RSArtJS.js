@@ -463,10 +463,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => changeAttribute(dataPipe, "srcset",
                 ("robertSchweizerArtResources/images/" + document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id + "SMALL.jpg"),
                 "fullSizedImgSmall") )
-            .catch( dataPipe => {
+            /*.catch( dataPipe => {
                 console.log(dataPipe);
                 return dataPipe;
-            })
+            })*/
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( dataPipe => delayer(dataPipe, 400) )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
