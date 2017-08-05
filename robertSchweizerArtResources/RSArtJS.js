@@ -211,7 +211,7 @@ function mobileSwipeInit(touchstart) {
             return dataPipe;
 
         } else {
-            return dataPipe;
+            return Promise.reject(dataPipe);
         }
     }
 }
@@ -451,9 +451,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["touches", event.touches],
                 ["endingPointX", event.changedTouches[event.changedTouches.length - 1].clientX] )
             .then( dataPipe => mobileSwipeInitCurried(dataPipe, 100) )
-            .catch( dataPipe => {
-                return Promise.reject(dataPipe);
-            })
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "infoDiv", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
