@@ -250,6 +250,15 @@ function fullScreenImg(elementByClass) {
     }
 }
 
+function sizeMatcher(templateElement, resizedElement) {
+    let resized = document.querySelector("." + resizedElement);
+    let template = document.querySelector("." + templateElement);
+    resized.style.height = template.scrollHeight + "px";
+    resized.style.width = template.scrollWidth + "px";
+
+    return resizedElement;
+}
+
 function delayer (dataPipe, delayTime) {
     return new Promise( (resolve, reject) => {
         setTimeout( () => {
@@ -407,12 +416,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, false);
 
-//---// Opens the image's information tab //---//
+//---// Opens the image's information modal //---//
     document.querySelector(".heroBorder").addEventListener("click", (event) => {
         if (event.target && event.target.matches("div.galleryInfoButton")) {
-            classToggler("none", "galleryInfoButtonExpanded", "galleryInfoButton");
-            textToggler("i", "X", "galleryInfoButton");
-            classToggler("none", "infoSpacerExpanded", "infoSpacer");
+            sizeMatcher("fullSizedImg", "infoDiv");
+            classAdder("none", "contentVisible", "infoDiv");
+            document.querySelector(".fullSizedImg").style = "filter: grayscale(100%) opacity(60%)";
+        }
+    }, false);
+
+//---// Closes the image's information modal //---//
+    document.querySelector(".heroBorder").addEventListener("click", (event) => {
+        if (event.target && event.target.matches("span.closeX")) {
+            classRemover("none", "contentVisible", "infoDiv");
+            document.querySelector(".fullSizedImg").style = "filter: none";
         }
     }, false);
 

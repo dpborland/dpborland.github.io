@@ -195,7 +195,7 @@ Right side of page, including all image and text content
 	flex-wrap: wrap;
 	flex-direction: column;
     align-self: center;
-    justify-content: space-between;
+    justify-content: center;
     overflow: hidden;
 	background-color: rgba(0, 0, 0, 0);
 	border: 1px solid #BFBFBF;
@@ -375,8 +375,9 @@ Right side of page, including all image and text content
 }
 
 .fullSizedImgContainer {
+	display: flex;
+	position: relative;
     height: calc(100% - 90px);
-    display: flex;
     width: 95%;
     align-items: center;
     align-self: center;
@@ -420,7 +421,31 @@ Right side of page, including all image and text content
 	transition: opacity .3s ease, width 1s ease;
 }
 
-.imgDescription {
+.infoDiv {
+	display: flex;
+	position: absolute;
+	background: rgba(248, 248, 255, 0.8);
+	color: #0099ff;
+	font-family: raleway;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	opacity: 0;
+	z-index: 9;
+	transition: height 0.3s ease, width 0.3s ease, opacity .3s ease;
+}
+
+.closeX {
+	position: absolute;
+	right: 6px;
+	top: -1px;
+}
+
+.closeX:hover {
+	cursor: pointer;
+}
+
+/*.imgDescription {
 	height: 15%;
 	width: 85%;
 	background-color: rgba(0, 0, 0, .8);
@@ -434,7 +459,7 @@ Right side of page, including all image and text content
 	text-align: center;
 	align-self: center;
 	justify-content: center;
-}
+}*/
 
 .galleryThumbnails {
 	display: flex;
@@ -583,7 +608,7 @@ Right side of page, including all image and text content
 	transition: border-right .5s ease, border-bottom .5s ease, height .3s ease .3s;
 }
 
-.galleryInfoButtonExpanded {
+/*.galleryInfoButtonExpanded {
 	background-color: rgba(248, 248, 255, .8);
 	color: #0099ff;
 	font-style: normal;
@@ -620,7 +645,7 @@ Right side of page, including all image and text content
 	width: 200px;
 	background-color: rgba(248, 248, 255, .8);
 	transition: margin-left 300ms ease 300ms, background-color ease;
-}
+}*/
 
 .galleryWrapper {
     display: flex;
