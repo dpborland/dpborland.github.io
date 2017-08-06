@@ -389,6 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["elementClickedAlt", event.target.alt] )
             .then( dataPipe => findElementOfClass(dataPipe, "thumbnailImg", "contentVisible") )
             .then( dataPipe => findNextThumbnailIndex(dataPipe, "thumbnailImg") )
+            .then( dataPipe => classAdder(dataPipe, "contentVisible", ["thumbnailImg", dataPipe.nextIndex]) )
             .then( dataPipe => classRemover(dataPipe, "contentVisible", "infoDiv", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.currentElementIndex]) )
             .then( dataPipe => classRemover(dataPipe, "fullSizedImgFiltered", "fullSizedImg", "fullSizedImgSmall") )
             .then( dataPipe => delayer(dataPipe, 300) )
@@ -400,7 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "fullSizedImgSmall") )
             .then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
             .then( dataPipe => delayer(dataPipe, 400) )
-            .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall", ["thumbnailImg", dataPipe.nextIndex]) )
+            .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
             .catch( (error) => { console.log(error); } )
         }
     }, false);
@@ -465,7 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "fullSizedImgSmall") )
             .catch( dataPipe => {
                 console.log(dataPipe);
-                return Promise.reject(dataPipe);
+                return dataPipe;
             })
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( dataPipe => delayer(dataPipe, 400) )

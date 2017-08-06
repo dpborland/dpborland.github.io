@@ -451,22 +451,6 @@ Right side of page, including all image and text content
 	cursor: pointer;
 }
 
-/*.imgDescription {
-	height: 15%;
-	width: 85%;
-	background-color: rgba(0, 0, 0, .8);
-	opacity: 0;
-	transition: opacity .5s ease;
-}
-
-.imgDescriptionText {
-	font-family: lato;
-	color: #7f7f7f;
-	text-align: center;
-	align-self: center;
-	justify-content: center;
-}*/
-
 .galleryThumbnails {
 	display: flex;
 	flex-direction: row;
@@ -487,8 +471,7 @@ Right side of page, including all image and text content
 }
 
 .galleryThumbnails:hover {
-	border: 1px solid #bfbfbf;
-	border-bottom: none;
+
 	transition: border .6s ease .3s;
 }
 
@@ -613,45 +596,6 @@ Right side of page, including all image and text content
     border-bottom: 1px solid #7f7f7f;
 	transition: border-right .5s ease, border-bottom .5s ease, height .3s ease .3s;
 }
-
-/*.galleryInfoButtonExpanded {
-	background-color: rgba(248, 248, 255, .8);
-	color: #0099ff;
-	font-style: normal;
-	font-family: Lato;
-	font-size: .7em;
-	border-bottom: 1px solid #7f7f7f;
-	border-right: 1px solid #7f7f7f;
-	height: 75px;
-	margin-left: 0px;
-	transition: background-color .5s ease, color .3s ease, height .3s ease;
-}
-
-.infoSpacer {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	font-family: Lato;
-	font-weight: 300;
-	letter-spacing: .2em;
-	font-size: .9em;
-	color: #7f7f7f;
-	box-sizing: border-box;
-	border-bottom: 1px solid #7F7F7F;
-	margin-left: -200px;
-	padding-left: 10px;
-	width: 200px;
-	height: 75px;
-	transition: margin-left .3s ease, background-color .3s ease;
-}
-
-.infoSpacerExpanded {
-	margin-left: 0px;
-	width: 200px;
-	background-color: rgba(248, 248, 255, .8);
-	transition: margin-left 300ms ease 300ms, background-color ease;
-}*/
 
 .galleryWrapper {
     display: flex;
@@ -908,12 +852,6 @@ Basic CSS for mobile
 		margin-right: 0px;
 	}
 
-	.galleryThumbnails:hover {
-	    border-top: 1px solid #bfbfbf;
-	    border-left: none;
-	    border-right: none;
-	}
-
 	.thumbnailContainer {
 		height: 60px;
 		width: 60px;
@@ -1010,12 +948,6 @@ Optimization for portrait mode
 		border-right: none;
 		margin-left: 0px;
 		margin-right: 0px;
-	}
-
-	.galleryThumbnails:hover {
-	    border-top: 1px solid #bfbfbf;
-	    border-left: none;
-	    border-right: none;
 	}
 
 	.thumbnailContainer {
