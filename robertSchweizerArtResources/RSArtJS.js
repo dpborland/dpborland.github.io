@@ -267,6 +267,27 @@ function delayer (dataPipe, delayTime) {
     });
 }
 
+const paintingsInfo = {
+    francisBacon1 = ["Francis Bacon", "Sketch for Amy", "1xx X 1xx", "$XXX"],
+    gerhardRichter1 = ["Gerhard Richter", "Abstraktus Bild", "1xx X 1xx", "$XXX"],
+    edvardMunchEveningonKarlJohan = ["Edvard Munch", "Evening on Karl Johan Street", "1xx X 1xx", "$XXX"],
+    anselmKieferTempelhof = ["Anselm Kiefer", "Tempelhof 2010-11", "1xx X 1xx", "$XXX"],
+    frankAuerbachHeadCatherineLampert = ["Frank Auerbach", "Head of Catherine Lampert", "1xx X 1xx", "$XXX"],
+    bathersByRiverMatisse = ["Henri Matisse", "Bathers by a River", "1xx X 1xx", "$XXX"],
+    cityLandscapeJoanMitchell = ["Joan Mitchell", "City Landscape", "1xx X 1xx", "$XXX"],
+    compositionVIIKandinsky = ["Wassily Kandinsky", "Composition VII, 1913", "1xx X 1xx", "$XXX"],
+    eventualityOfDestinyChirico = ["Giorgio de Chirico", "Eventuality of Destiny", "1xx X 1xx", "$XXX"],
+    excavationDeKooning = ["Willem de Kooning", "Excavation", "1xx X 1xx", "$XXX"],
+    fleeingGhostKlee = ["Paul Klee", "Fleeing Ghost", "1xx X 1xx", "$XXX"],
+    forestAndDoveMaxErnst = ["Max Ernst", "Forest and Dove", "1xx X 1xx", "$XXX"],
+    fullFathomFivePollack = ["Jackson Pollack", "Full Fathom Five", "1xx X 1xx", "$XXX"],
+    goldenWingsShiragaKazuo = ["Shiraga Kazuo", "Golden Wings", "1xx X 1xx", "$XXX"],
+    isakuYanaiharaGiacometti = ["Alberto Giacometti", "Isaku Yanaihara", "1xx X 1xx", "$XXX"],
+    marriageReasonSqualorIIFrankStella = ["Frank Stella", "The Marriage of Reason and Squalor, II (1959)", "1xx X 1xx", "$XXX"],
+    personagesWithStarMiro = ["Joan Miro", "Personages with Star", "1xx X 1xx", "$XXX"],
+    withoutHopeKahlo = ["Frida Kahlo", "Without Hope", "1xx X 1xx", "$XXX"]
+}
+
 //---// Event Listeners and Promise Chain Composition //---//
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -376,6 +397,14 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( dataPipe => delayer(dataPipe, 400) )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+            .then( dataPipe => {
+                let painting = document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id;
+                document.querySelector(".artistName").textContent = paintingsInfo[painting][0];
+                document.querySelector(".paintingTitle").textContent = paintingsInfo[painting][1];
+                document.querySelector(".paintingSize").textContent = paintingsInfo[painting][2];
+                document.querySelector(".paintingPrice").textContent = paintingsInfo[painting][3];
+                return dataPipe;
+            })
             .catch( (error) => { console.log(error); } )
         }
     }, false);
@@ -402,6 +431,14 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => changeAttribute(dataPipe, "alt", dataPipe.elementClickedAlt, "fullSizedImg", "fullSizedImgSmall") )
             .then( dataPipe => delayer(dataPipe, 400) )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+            .then( dataPipe => {
+                let painting = document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id;
+                document.querySelector(".artistName").textContent = paintingsInfo[painting][0];
+                document.querySelector(".paintingTitle").textContent = paintingsInfo[painting][1];
+                document.querySelector(".paintingSize").textContent = paintingsInfo[painting][2];
+                document.querySelector(".paintingPrice").textContent = paintingsInfo[painting][3];
+                return dataPipe;
+            })
             .catch( (error) => { console.log(error); } )
         }
     }, false);
@@ -471,6 +508,14 @@ document.addEventListener("DOMContentLoaded", () => {
             .then( dataPipe => changeAttribute(dataPipe, "alt", document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].alt, "fullSizedImg", "fullSizedImgSmall"))
             .then( dataPipe => delayer(dataPipe, 400) )
             .then( dataPipe => classAdder(dataPipe, "contentVisible", "fullSizedImg", "fullSizedImgSmall") )
+            .then( dataPipe => {
+                let painting = document.querySelectorAll(".thumbnailImg")[dataPipe.nextIndex].id;
+                document.querySelector(".artistName").textContent = paintingsInfo[painting][0];
+                document.querySelector(".paintingTitle").textContent = paintingsInfo[painting][1];
+                document.querySelector(".paintingSize").textContent = paintingsInfo[painting][2];
+                document.querySelector(".paintingPrice").textContent = paintingsInfo[painting][3];
+                return dataPipe;
+            })
             .catch( (error) => { console.log(error); } );
         }
     }, false);
