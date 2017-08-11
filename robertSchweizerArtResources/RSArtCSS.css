@@ -429,6 +429,7 @@ Right side of page, including all image and text content
 
 .infoDiv {
 	display: flex;
+	flex-direction: column;
 	position: absolute;
 	background: rgba(248, 248, 255, 0.8);
 	color: #0099ff;

@@ -268,7 +268,7 @@ function delayer (dataPipe, delayTime) {
 }
 
 const paintingsInfo = {
-    francisBacon1: ["Francis Bacon", "Sketch for Amy", "1xx X 1xx", "$XXX"],
+    francisBacon1: ["Francis Bacon", "Sketch for Lisa", "1xx X 1xx", "$XXX"],
     gerhardRichter1: ["Gerhard Richter", "Abstraktus Bild", "1xx X 1xx", "$XXX"],
     edvardMunchEveningonKarlJohan: ["Edvard Munch", "Evening on Karl Johan Street", "1xx X 1xx", "$XXX"],
     anselmKieferTempelhof: ["Anselm Kiefer", "Tempelhof 2010-11", "1xx X 1xx", "$XXX"],
